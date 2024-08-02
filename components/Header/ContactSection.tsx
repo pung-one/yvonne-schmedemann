@@ -41,6 +41,7 @@ const ContactElement = styled.div`
 
   p {
     line-height: 14px;
+    white-space: nowrap;
   }
 
   a {
