@@ -2,15 +2,30 @@
 import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyles = createGlobalStyle`
-  
+  @font-face {
+    font-family: 'IvarDisplay';
+    src: url('/fonts/IvarDisplay-Regular.woff') format('woff'),
+        url('/fonts/IvarDisplay-Regular.woff2') format('woff2');
+    font-display: swap;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'IvarDisplay';
+    src: url('/fonts/IvarDisplay-Italic.woff') format('woff'),
+        url('/fonts/IvarDisplay-Italic.woff2') format('woff2');
+    font-display: swap;
+    font-style: italic;
+  }
+
   *,
   *::before,
   *::after {
     box-sizing: border-box;
-    font-size: 20px;
+    font-size: 18px;
     margin: 0;
     padding: 0;
-    font-family: 'sans', Times, serif;
+    font-family: 'IvarDisplay', 'sans', Times, serif;
     scroll-behavior: smooth;
     overscroll-behavior-block: none;
     overflow-anchor: none;
