@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import StyledComponentsRegistry from "@/lib/registry";
 import { GlobalStyles } from "@/globalStyles/global_styles";
 import { Layout } from "@/components/Layout";
+import { RequestWrapper } from "@/components/RequestWrapper";
 
 export const metadata: Metadata = {
   title: "Yvonne Schwedemann",
