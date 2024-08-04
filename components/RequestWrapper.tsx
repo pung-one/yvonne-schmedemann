@@ -47,6 +47,9 @@ export type Project = {
     HairMakeUp: string;
     Assistent: string;
     PositionOnLandingPage: string;
+    Titelbild: {
+      data: ImageData;
+    };
     Bilder: {
       data: ImageData[];
     };

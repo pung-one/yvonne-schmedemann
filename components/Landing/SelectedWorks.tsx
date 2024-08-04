@@ -10,8 +10,6 @@ const baseUrl = process.env.CMS_BASE_URL;
 export function SelectedWorks() {
   const projects = useContext(RequestContext);
 
-  console.log;
-
   console.log(projects);
   return (
     <Container>
@@ -22,17 +20,22 @@ export function SelectedWorks() {
       </Headline>
 
       <ImageSection>
-        {projects?.data.map((project) => {
-          const imageData = project.attributes.Bilder.data[0].attributes;
+        {projects?.data.map((project, index) => {
+          const imageData = project.attributes.Titelbild.data.attributes;
 
           return (
-            <StyledImage
+            <ImageWrapper
               key={project.id}
-              src={"http://localhost:1337" + imageData.url}
-              width={imageData.width}
-              height={imageData.height}
-              alt=""
-            />
+              className={`item${index + 1}`}
+              $title={project.attributes.Titel}
+            >
+              <StyledImage
+                src={"http://localhost:1337" + imageData.url}
+                width={imageData.width}
+                height={imageData.height}
+                alt=""
+              />
+            </ImageWrapper>
           );
         })}
       </ImageSection>
@@ -60,11 +63,103 @@ const Headline = styled.div`
 
 const ImageSection = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 10px;
+  width: 100%;
+  grid-template-columns: repeat(6, 1fr);
+  grid-gap: 20px;
+
+  .item1 {
+    grid-row: 1 / span 3;
+    grid-column: 1 / span 2;
+
+    height: 40vh;
+  }
+  .item2 {
+    grid-row: 1 / span 3;
+    grid-column: 3 / span 2;
+    height: 50vh;
+  }
+  .item3 {
+    grid-row: 1 / span 3;
+    grid-column: 5 / span 2;
+  }
+  .item4 {
+    grid-row: 4 / span 1;
+    grid-column: 1 / span 1;
+    * {
+      object-fit: cover;
+    }
+  }
+  .item5 {
+    grid-row: 4 / span 1;
+    grid-column: 2 / span 1;
+    * {
+      object-fit: cover;
+    }
+  }
+  .item6 {
+    grid-row: 4 / span 1;
+    grid-column: 3 / span 1;
+    * {
+      object-fit: cover;
+    }
+  }
+  .item7 {
+    grid-row: 4 / span 3;
+    grid-column: 4 / span 3;
+  }
+  .item8 {
+    grid-row: 5 / span 1;
+    grid-column: 1 / span 3;
+  }
+  .item9 {
+    grid-row: 6 / span 2;
+    grid-column: 1 / span 1;
+  }
+  .item10 {
+    grid-row: 6 / span 2;
+    grid-column: 2 / span 2;
+  }
+  .item11 {
+    grid-row: 7 / span 2;
+    grid-column: 4 / span 3;
+  }
+  .item12 {
+    grid-row: 8 / span 3;
+    grid-column: 1 / span 2;
+  }
+  .item13 {
+    grid-row: 9 / span 3;
+    grid-column: 3 / span 4;
+  }
+`;
+
+const ImageWrapper = styled.div<{ $title: string }>`
+  position: relative;
+  width: 100%;
+  padding-top: 100%; /* 1:1 aspect ratio */
+  &:after {
+    position: absolute;
+    content: "${({ $title }) => `${$title}`}";
+    top: 50%;
+    width: 100%;
+    text-align: center;
+    font-size: 30px;
+    color: yellow;
+    transform: translateY(-50%) scale(0);
+  }
+  &:hover {
+    cursor: pointer;
+    &:after {
+      transform: translateY(-50%) scale(1);
+    }
+  }
 `;
 
 const StyledImage = styled(Image)`
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: fit-content;
+  height: 100%;
+  object-fit: contain;
 `;
