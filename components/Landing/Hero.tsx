@@ -2,15 +2,25 @@
 
 import styled from "styled-components";
 import Image from "next/image";
-import landingGif from "@/public/landing.gif";
+import { RequestContext } from "../RequestWrapper";
+import { useContext } from "react";
 
 export function Hero() {
+  const { landingGif } = useContext(RequestContext);
+
+  const imageData = landingGif?.data.attributes.ImageOrGif.data.attributes;
+
   return (
     <Container>
-      <StyledImage
-        src={landingGif}
-        alt="animated image with text 'Welcome' and changing images"
-      />
+      {imageData && (
+        <StyledImage
+          priority
+          src={"http://localhost:1337" + imageData?.url}
+          width={imageData?.width}
+          height={imageData?.height}
+          alt={imageData?.alternativeText || ""}
+        />
+      )}
 
       <HorizontalLine />
 

@@ -8,9 +8,8 @@ import { RequestContext } from "../RequestWrapper";
 const baseUrl = process.env.CMS_BASE_URL;
 
 export function SelectedWorks() {
-  const projects = useContext(RequestContext);
+  const { projects } = useContext(RequestContext);
 
-  console.log(projects);
   return (
     <Container>
       <Headline>
