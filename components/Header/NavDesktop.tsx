@@ -7,7 +7,7 @@ export function NavDesktop() {
       <StyledLink href={"/portrait"}>PORTRAIT</StyledLink>
       <StyledLink href={"/corporate"}>CORPORATE</StyledLink>
       <StyledLink href={"/interior"}>INTERIOR</StyledLink>
-      <StyledLink href={"/jewellery"}>JEWELLERY</StyledLink>
+      <StyledLink href={"/published"}>PUBLISHED</StyledLink>
       <StyledLink href={"/all"}>ALL</StyledLink>
       <StyledLink $about href={"/about"}>
         ABOUT

@@ -7,6 +7,7 @@ import { ContactSection } from "./Header/ContactSection";
 import { NavDesktop } from "./Header/NavDesktop";
 import { motion, useScroll, useTransform } from "framer-motion";
 import logo from "@/public/logo/logo.png";
+import { RequestWrapper } from "./RequestWrapper";
 
 export function Layout({ children }: { children: React.ReactNode }) {
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
@@ -38,12 +39,15 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <NavDesktop />
       </HeaderContainer>
 
-      <MainContainer>{children}</MainContainer>
+      <MainContainer>
+        <RequestWrapper>{children}</RequestWrapper>
+      </MainContainer>
     </>
   );
 }
 
 const HeaderContainer = styled.header`
+  z-index: 3;
   display: flex;
   position: fixed;
   top: 0;
