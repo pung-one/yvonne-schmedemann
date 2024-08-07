@@ -6,16 +6,16 @@ import { RequestContext } from "../RequestWrapper";
 import { useContext } from "react";
 
 export function Hero() {
-  const { landingGif } = useContext(RequestContext);
+  const { landingGif, cmsBaseUrl } = useContext(RequestContext);
 
   const imageData = landingGif?.data.attributes.ImageOrGif.data.attributes;
 
   return (
     <Container>
-      {imageData && (
+      {imageData && cmsBaseUrl && (
         <StyledImage
           priority
-          src={"http://localhost:1337" + imageData?.url}
+          src={cmsBaseUrl + imageData?.url}
           width={imageData?.width}
           height={imageData?.height}
           alt={imageData?.alternativeText || ""}

@@ -8,7 +8,7 @@ import { RequestContext } from "../RequestWrapper";
 const baseUrl = process.env.CMS_BASE_URL;
 
 export function SelectedWorks() {
-  const { projects } = useContext(RequestContext);
+  const { projects, cmsBaseUrl } = useContext(RequestContext);
 
   return (
     <Container>
@@ -19,24 +19,25 @@ export function SelectedWorks() {
       </Headline>
 
       <ImageSection>
-        {projects?.data.map((project, index) => {
-          const imageData = project.attributes.Titelbild.data.attributes;
+        {cmsBaseUrl &&
+          projects?.data.map((project, index) => {
+            const imageData = project.attributes.Titelbild.data.attributes;
 
-          return (
-            <ImageWrapper
-              key={project.id}
-              className={`item${index + 1}`}
-              $title={project.attributes.Titel}
-            >
-              <StyledImage
-                src={"http://localhost:1337" + imageData.url}
-                width={imageData.width}
-                height={imageData.height}
-                alt=""
-              />
-            </ImageWrapper>
-          );
-        })}
+            return (
+              <ImageWrapper
+                key={project.id}
+                className={`item${index + 1}`}
+                $title={project.attributes.Titel}
+              >
+                <StyledImage
+                  src={cmsBaseUrl + imageData.url}
+                  width={imageData.width}
+                  height={imageData.height}
+                  alt=""
+                />
+              </ImageWrapper>
+            );
+          })}
       </ImageSection>
     </Container>
   );

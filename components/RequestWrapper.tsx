@@ -140,12 +140,16 @@ export type Project = {
   };
 };
 
+const cmsBaseUrl = process.env.NEXT_PUBLIC_CMS_BASE_URL;
+
 export const RequestContext = createContext<{
   projects: RequestData | undefined;
   landingGif: LandingGif | undefined;
+  cmsBaseUrl: string | undefined;
 }>({
   projects: undefined,
   landingGif: undefined,
+  cmsBaseUrl: cmsBaseUrl,
 });
 
 export function RequestWrapper({ children }: { children: ReactNode }) {
@@ -174,7 +178,11 @@ export function RequestWrapper({ children }: { children: ReactNode }) {
 
   return (
     <RequestContext.Provider
-      value={{ projects: projects, landingGif: landingGif }}
+      value={{
+        projects: projects,
+        landingGif: landingGif,
+        cmsBaseUrl: cmsBaseUrl,
+      }}
     >
       {children}
     </RequestContext.Provider>
