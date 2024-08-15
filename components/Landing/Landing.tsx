@@ -15,5 +15,6 @@ export function Landing() {
 }
 
 const Container = styled.article`
-  margin-top: 170px;
+  max-width: 1200px;
+  margin: 170px auto;
 `;

@@ -8,9 +8,14 @@ import { NavDesktop } from "./Header/NavDesktop";
 import { motion, useScroll, useTransform } from "framer-motion";
 import logo from "@/public/logo/logo.png";
 import { RequestWrapper } from "./RequestWrapper";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
+import path from "path";
 
 export function Layout({ children }: { children: React.ReactNode }) {
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
+
+  const pathname = usePathname();
 
   const { scrollY } = useScroll();
 
@@ -22,17 +27,16 @@ export function Layout({ children }: { children: React.ReactNode }) {
     document.body.style.overflow = menuOpen ? "hidden" : "initial";
   }, [menuOpen]);
 
+  console.log(pathname);
+
   return (
     <>
       <HeaderContainer>
-        <StyledImage
-          style={{ y }}
-          priority
-          src={logo}
-          alt="Yvonne Schmedemann Logo"
-        />
+        <StyledLink href={"/"} style={{ y: pathname === "/" ? y : 20 }}>
+          <StyledImage priority src={logo} alt="Yvonne Schmedemann Logo" />
+        </StyledLink>
 
-        <motion.div style={{ opacity }}>
+        <motion.div style={{ opacity: pathname === "/" ? opacity : 0 }}>
           <ContactSection />
         </motion.div>
 
@@ -59,15 +63,16 @@ const HeaderContainer = styled.header`
   border-bottom: 1px solid black;
 `;
 
-const StyledImage = styled(motion(Image))`
+const StyledLink = styled(motion(Link))`
   z-index: 5;
   position: absolute;
+`;
+
+const StyledImage = styled(motion(Image))`
   width: 400px;
   height: fit-content;
 `;
 
 const MainContainer = styled.main`
   position: relative;
-  max-width: 1200px;
-  margin: 70px auto;
 `;
