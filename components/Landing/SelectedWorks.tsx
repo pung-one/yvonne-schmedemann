@@ -4,11 +4,13 @@ import Image from "next/image";
 import { useContext } from "react";
 import styled from "styled-components";
 import { RequestContext } from "../RequestWrapper";
+import Link from "next/link";
+import { getCategoriesDataUrl } from "@/lib/_utils";
 
 const baseUrl = process.env.CMS_BASE_URL;
 
 export function SelectedWorks() {
-  const { projects } = useContext(RequestContext);
+  const { projects, cmsBaseUrl } = useContext(RequestContext);
 
   return (
     <Container>
@@ -19,24 +21,42 @@ export function SelectedWorks() {
       </Headline>
 
       <ImageSection>
-        {projects?.data.map((project, index) => {
-          const imageData = project.attributes.Titelbild.data.attributes;
+        {cmsBaseUrl &&
+          projects?.map((project, index) => {
+            const imageData = project.attributes.Titelbild.data;
 
-          return (
-            <ImageWrapper
-              key={project.id}
-              className={`item${index + 1}`}
-              $title={project.attributes.Titel}
-            >
-              <StyledImage
-                src={"http://localhost:1337" + imageData.url}
-                width={imageData.width}
-                height={imageData.height}
-                alt=""
-              />
-            </ImageWrapper>
-          );
-        })}
+            const category = project.attributes.Category;
+
+            const {
+              attributes: {
+                alternativeText,
+                url,
+                width,
+                height,
+                /* formats: {
+                  large: { url, width, height },
+                }, */
+              },
+            } = imageData;
+
+            return (
+              <ImageWrapper
+                href={`${project.attributes.Category}/${project.attributes.slug}`}
+                key={project.id}
+                className={`item${index + 1}`}
+                $title={project.attributes.Titel}
+              >
+                <StyledImage
+                  placeholder="blur"
+                  blurDataURL={getCategoriesDataUrl(category)}
+                  src={cmsBaseUrl + url}
+                  width={width}
+                  height={height}
+                  alt={alternativeText || ""}
+                />
+              </ImageWrapper>
+            );
+          })}
       </ImageSection>
     </Container>
   );
@@ -132,7 +152,7 @@ const ImageSection = styled.div`
   }
 `;
 
-const ImageWrapper = styled.div<{ $title: string }>`
+const ImageWrapper = styled(Link)<{ $title: string }>`
   position: relative;
   width: 100%;
   padding-top: 100%; /* 1:1 aspect ratio */

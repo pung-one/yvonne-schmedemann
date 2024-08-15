@@ -1,100 +1,101 @@
 "use client";
 import { createContext, ReactNode, useEffect, useState } from "react";
 
-export type RequestData = {
-  data: Project[];
-  metaData: {
-    pagination: {
-      page: number;
-      pageSize: number;
-      pageCount: number;
-      total: number;
-    };
-  };
-};
+export type Projects = Project[];
 
-export type LandingGif = {
-  data: {
-    id: number;
-    attributes: {
-      createdAt: string;
-      updatedAt: string;
-      publishedAt: string;
-      ImageOrGif: {
-        data: {
-          id: number;
-          attributes: {
-            name: string;
-            alternativeText: string;
-            caption: string;
-            width: number;
-            height: number;
-            formats: {
-              medium: {
-                name: string;
-                hash: string;
-                ext: string;
-                mime: string;
-                path: string;
-                width: number;
-                height: number;
-                size: number;
-                sizeInBytes: number;
-                url: string;
-              };
-              large: {
-                name: string;
-                hash: string;
-                ext: string;
-                mime: string;
-                path: null;
-                width: number;
-                height: number;
-                size: number;
-                sizeInBytes: number;
-                url: string;
-              };
-              thumbnail: {
-                name: string;
-                hash: string;
-                ext: string;
-                mime: string;
-                path: null;
-                width: number;
-                height: number;
-                size: number;
-                sizeInBytes: number;
-                url: string;
-              };
-              small: {
-                name: string;
-                hash: string;
-                ext: string;
-                mime: string;
-                path: null;
-                width: number;
-                height: number;
-                size: number;
-                sizeInBytes: number;
-                url: string;
-              };
+export type LandingInfo = {
+  id: number;
+  attributes: {
+    HeroText: string;
+    createdAt: string;
+    updatedAt: string;
+    publishedAt: string;
+    HeroImage: {
+      data: {
+        id: number;
+        attributes: {
+          name: string;
+          alternativeText: string;
+          caption: string;
+          width: number;
+          height: number;
+          formats: {
+            medium: {
+              name: string;
+              hash: string;
+              ext: string;
+              mime: string;
+              path: string;
+              width: number;
+              height: number;
+              size: number;
+              sizeInBytes: number;
+              url: string;
             };
-            hash: string;
-            ext: string;
-            mime: string;
-            size: number;
-            url: string;
-            previewUrl: string;
-            provider: string;
-            provider_metadata: string;
-            createdAt: string;
-            updatedAt: string;
+            large: {
+              name: string;
+              hash: string;
+              ext: string;
+              mime: string;
+              path: null;
+              width: number;
+              height: number;
+              size: number;
+              sizeInBytes: number;
+              url: string;
+            };
+            thumbnail: {
+              name: string;
+              hash: string;
+              ext: string;
+              mime: string;
+              path: null;
+              width: number;
+              height: number;
+              size: number;
+              sizeInBytes: number;
+              url: string;
+            };
+            small: {
+              name: string;
+              hash: string;
+              ext: string;
+              mime: string;
+              path: null;
+              width: number;
+              height: number;
+              size: number;
+              sizeInBytes: number;
+              url: string;
+            };
           };
+          hash: string;
+          ext: string;
+          mime: string;
+          size: number;
+          url: string;
+          previewUrl: string;
+          provider: string;
+          provider_metadata: string;
+          createdAt: string;
+          updatedAt: string;
         };
       };
     };
   };
-  meta: {};
+};
+
+export type FormatImageData = {
+  name: string;
+  hash: string;
+  ext: string;
+  mime: string;
+  path: string;
+  width: number;
+  height: number;
+  size: number;
+  sizeInBytes: number;
+  url: string;
 };
 
 export type ImageData = {
@@ -105,7 +106,12 @@ export type ImageData = {
     caption: string;
     width: number;
     height: number;
-    formats: any;
+    formats: {
+      thumbnail: FormatImageData;
+      small: FormatImageData;
+      medium: FormatImageData;
+      large: FormatImageData;
+    };
     hash: string;
     ext: string;
     mime: string;
@@ -119,10 +125,14 @@ export type ImageData = {
   };
 };
 
+export type Category = "portrait" | "corporate" | "interior" | "published";
+
 export type Project = {
   id: number;
   attributes: {
     Titel: string;
+    slug: string;
+    Category: Category;
     Beschreibung: string;
     createdAt: string;
     updatedAt: string;
@@ -140,33 +150,37 @@ export type Project = {
   };
 };
 
+const cmsBaseUrl = process.env.NEXT_PUBLIC_CMS_BASE_URL;
+
 export const RequestContext = createContext<{
-  projects: RequestData | undefined;
-  landingGif: LandingGif | undefined;
+  projects: Projects | undefined;
+  landingInfo: LandingInfo | undefined;
+  cmsBaseUrl: string | undefined;
 }>({
   projects: undefined,
-  landingGif: undefined,
+  landingInfo: undefined,
+  cmsBaseUrl: cmsBaseUrl,
 });
 
 export function RequestWrapper({ children }: { children: ReactNode }) {
-  const [projects, setProjects] = useState<RequestData>();
-  const [landingGif, setLandingGif] = useState();
+  const [projects, setProjects] = useState<Projects>();
+  const [landingInfo, setLandingInfo] = useState();
 
   useEffect(() => {
     async function getData() {
       const landingGifResponse = await fetch(
-        "http://localhost:1337/api/landing-page-image-gif?populate=*"
+        cmsBaseUrl + "/api/landing-page?populate=*"
       );
-      const landingGifObj = await landingGifResponse.json();
+      const landingInfoObject = await landingGifResponse.json();
 
-      setLandingGif(landingGifObj);
+      setLandingInfo(landingInfoObject.data);
 
       const projectsResponse = await fetch(
-        "http://localhost:1337/api/projekts?populate=*"
+        cmsBaseUrl + "/api/projekts?populate=*"
       );
       const projectsObj = await projectsResponse.json();
 
-      setProjects(projectsObj);
+      setProjects(projectsObj.data);
     }
 
     getData();
@@ -174,7 +188,11 @@ export function RequestWrapper({ children }: { children: ReactNode }) {
 
   return (
     <RequestContext.Provider
-      value={{ projects: projects, landingGif: landingGif }}
+      value={{
+        projects: projects,
+        landingInfo: landingInfo,
+        cmsBaseUrl: cmsBaseUrl,
+      }}
     >
       {children}
     </RequestContext.Provider>

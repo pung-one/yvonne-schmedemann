@@ -6,16 +6,19 @@ import { RequestContext } from "../RequestWrapper";
 import { useContext } from "react";
 
 export function Hero() {
-  const { landingGif } = useContext(RequestContext);
+  const { landingInfo, cmsBaseUrl } = useContext(RequestContext);
 
-  const imageData = landingGif?.data.attributes.ImageOrGif.data.attributes;
+  const imageData = landingInfo?.attributes.HeroImage.data.attributes;
+
+  const description = landingInfo?.attributes.HeroText;
 
   return (
     <Container>
-      {imageData && (
+      {imageData && cmsBaseUrl && (
         <StyledImage
           priority
-          src={"http://localhost:1337" + imageData?.url}
+          unoptimized
+          src={cmsBaseUrl + imageData?.url}
           width={imageData?.width}
           height={imageData?.height}
           alt={imageData?.alternativeText || ""}
@@ -24,17 +27,7 @@ export function Hero() {
 
       <HorizontalLine />
 
-      <Description>
-        YVONNE SCHMEDEMANN neben namenhaften Musker:innen Portraits wie Gregory
-        Porter, Nenneh Cherry und Herbert Grö- nemeyer bin ich . Corportate
-        sämtliche CEO's der Schmuckbranche. perferchicil et prehent ut quidele
-        ceptaqui dio ma volores ti occuscillaut volese estiori busanduci
-        consecaborro tem quam endaero corum que quos aboriosa voloribus am
-        faccabo rendiat- quam quat as idendanime vent pore magnihil is autem. Ut
-        alique dolentem. Voluptate pra doluptis vent fuga. Nam endae quaecae
-        niminih illestio toruptat velendae reptae odis dolorei ciatur au t qui
-        doluptiis asin ex exerum et volupta ilit reperem nimusda dolor
-      </Description>
+      <Description>{description}</Description>
     </Container>
   );
 }
