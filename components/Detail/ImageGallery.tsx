@@ -1,10 +1,13 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { useContext, useState } from "react";
-import { Category, ImageData, RequestContext } from "../RequestWrapper";
+import { useState } from "react";
 import styled from "styled-components";
 import Image from "next/image";
 import { PiArrowLeftThin, PiArrowRightThin } from "react-icons/pi";
 import { getCategoriesDataUrl } from "@/lib/_utils";
+import { Category } from "@/lib/types";
+import { ImageData } from "@/lib/types";
+
+const cmsBaseUrl = process.env.NEXT_PUBLIC_CMS_BASE_URL;
 
 const variants = {
   enter: (slideDirection: string) => {
@@ -36,8 +39,6 @@ type Props = {
 };
 
 export function ImageGallery({ imageData, category }: Props) {
-  const { cmsBaseUrl } = useContext(RequestContext);
-
   const [buttonEnabled, setButtonEnabled] = useState<boolean>(true);
 
   const [imageIndexAndDirection, setImageIndexAndDirection] = useState<{
@@ -75,8 +76,6 @@ export function ImageGallery({ imageData, category }: Props) {
       });
     }
   }
-
-  console.log(category);
 
   return (
     <Container>
@@ -131,6 +130,7 @@ const Container = styled.section`
 const StyledImage = styled(Image)`
   width: 100%;
   height: fit-content;
+  max-height: 65vh;
   object-fit: contain;
   object-position: center;
 `;

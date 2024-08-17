@@ -1,6 +1,3 @@
-"use client";
-import { createContext, ReactNode, useEffect, useState } from "react";
-
 export type Projects = Project[];
 
 export type LandingInfo = {
@@ -132,7 +129,8 @@ export type Project = {
   attributes: {
     Titel: string;
     slug: string;
-    Category: Category;
+    category: Category;
+    positionOnCategoryPage?: number;
     Beschreibung: string;
     createdAt: string;
     updatedAt: string;
@@ -140,7 +138,7 @@ export type Project = {
     Kunde: string;
     HairMakeUp: string;
     Assistent: string;
-    PositionOnLandingPage: string;
+    positionOnLandingPage?: number;
     Titelbild: {
       data: ImageData;
     };
@@ -149,52 +147,3 @@ export type Project = {
     };
   };
 };
-
-const cmsBaseUrl = process.env.NEXT_PUBLIC_CMS_BASE_URL;
-
-export const RequestContext = createContext<{
-  projects: Projects | undefined;
-  landingInfo: LandingInfo | undefined;
-  cmsBaseUrl: string | undefined;
-}>({
-  projects: undefined,
-  landingInfo: undefined,
-  cmsBaseUrl: cmsBaseUrl,
-});
-
-export function RequestWrapper({ children }: { children: ReactNode }) {
-  const [projects, setProjects] = useState<Projects>();
-  const [landingInfo, setLandingInfo] = useState();
-
-  useEffect(() => {
-    async function getData() {
-      const landingGifResponse = await fetch(
-        cmsBaseUrl + "/api/landing-page?populate=*"
-      );
-      const landingInfoObject = await landingGifResponse.json();
-
-      setLandingInfo(landingInfoObject.data);
-
-      const projectsResponse = await fetch(
-        cmsBaseUrl + "/api/projekts?populate=*"
-      );
-      const projectsObj = await projectsResponse.json();
-
-      setProjects(projectsObj.data);
-    }
-
-    getData();
-  }, []);
-
-  return (
-    <RequestContext.Provider
-      value={{
-        projects: projects,
-        landingInfo: landingInfo,
-        cmsBaseUrl: cmsBaseUrl,
-      }}
-    >
-      {children}
-    </RequestContext.Provider>
-  );
-}

@@ -3,13 +3,19 @@
 import styled from "styled-components";
 import { Hero } from "./Hero";
 import { SelectedWorks } from "./SelectedWorks";
+import { LandingInfo, Projects } from "@/lib/types";
 
-export function Landing() {
+type Props = {
+  projects: Projects;
+  landingInfo: LandingInfo;
+};
+
+export function Landing({ projects, landingInfo }: Props) {
   return (
     <Container>
-      <Hero />
+      <Hero landingInfo={landingInfo} />
 
-      <SelectedWorks />
+      <SelectedWorks projects={projects} />
     </Container>
   );
 }
