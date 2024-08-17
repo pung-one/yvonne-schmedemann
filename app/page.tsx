@@ -4,7 +4,8 @@ const cmsBaseUrl = process.env.NEXT_PUBLIC_CMS_BASE_URL;
 
 export default async function Home() {
   const landingInfoResponse = await fetch(
-    cmsBaseUrl + "/api/landing-page?populate=*"
+    cmsBaseUrl + "/api/landing-page?populate=*",
+    { next: { tags: ["landingInfo"] } }
   );
   const landingInfoObject = await landingInfoResponse.json();
 

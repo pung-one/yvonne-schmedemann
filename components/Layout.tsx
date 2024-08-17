@@ -21,6 +21,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
   const borderMargin = useTransform(scrollY, [0, 200], ["0px", "500px"]);
 
+  console.log(pathname);
+
   return (
     <>
       <HeaderContainer>

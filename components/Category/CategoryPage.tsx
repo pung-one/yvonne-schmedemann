@@ -1,26 +1,20 @@
 "use client";
 
-import Image from "next/image";
+import { Project } from "@/lib/types";
 import styled from "styled-components";
+import Image from "next/image";
 import Link from "next/link";
 import { getCategoriesDataUrl } from "@/lib/_utils";
-import { Projects } from "@/lib/types";
 
 const cmsBaseUrl = process.env.NEXT_PUBLIC_CMS_BASE_URL;
 
 type Props = {
-  projects: Projects;
+  projects: Project[];
 };
 
-export function SelectedWorks({ projects }: Props) {
+export function CategoryPage({ projects }: Props) {
   return (
     <Container>
-      <Headline>
-        <div />
-        <h2>Selected Works</h2>
-        <div />
-      </Headline>
-
       <ImageSection>
         {cmsBaseUrl &&
           projects?.map((project, index) => {
@@ -57,91 +51,63 @@ export function SelectedWorks({ projects }: Props) {
 
 const Container = styled.section`
   position: relative;
-`;
-
-const Headline = styled.div`
-  position: relative;
-  display: flex;
-  align-items: center;
-  margin-bottom: 100px;
-  div {
-    top: 50%;
-    flex: 1;
-    height: 1px;
-    background-color: black;
-    margin: 0 5vw;
-  }
+  max-width: 1200px;
+  margin: 170px auto;
 `;
 
 const ImageSection = styled.div`
   display: grid;
   width: 100%;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   grid-gap: 20px;
-
   .item1 {
-    grid-row: 1 / span 3;
-    grid-column: 1 / span 2;
-
-    height: 40vh;
+    height: 400px;
   }
   .item2 {
-    grid-row: 1 / span 3;
-    grid-column: 3 / span 2;
-    height: 50vh;
+    height: 400px;
   }
   .item3 {
-    grid-row: 1 / span 3;
-    grid-column: 5 / span 2;
+    height: 400px;
   }
   .item4 {
-    grid-row: 4 / span 1;
-    grid-column: 1 / span 1;
-    * {
-      object-fit: cover;
-    }
+    height: 400px;
   }
   .item5 {
-    grid-row: 4 / span 1;
-    grid-column: 2 / span 1;
-    * {
-      object-fit: cover;
-    }
+    grid-row: 2 / span 1;
+    grid-column: 2 / span 2;
+    height: 400px;
   }
   .item6 {
-    grid-row: 4 / span 1;
-    grid-column: 3 / span 1;
-    * {
-      object-fit: cover;
-    }
-  }
-  .item7 {
-    grid-row: 4 / span 3;
-    grid-column: 4 / span 3;
-  }
-  .item8 {
-    grid-row: 5 / span 1;
-    grid-column: 1 / span 3;
-  }
-  .item9 {
-    grid-row: 6 / span 2;
-    grid-column: 1 / span 1;
-  }
-  .item10 {
-    grid-row: 6 / span 2;
-    grid-column: 2 / span 2;
-  }
-  .item11 {
-    grid-row: 7 / span 2;
-    grid-column: 4 / span 3;
-  }
-  .item12 {
-    grid-row: 8 / span 3;
+    grid-row: 3 / span 2;
     grid-column: 1 / span 2;
   }
+  .item7 {
+    grid-row: 3 / span 1;
+    grid-column: 3 / span 1;
+  }
+  .item8 {
+    grid-row: 3 / span 1;
+    grid-column: 4 / span 1;
+  }
+  .item9 {
+    grid-row: 4 / span 1;
+    grid-column: 3 / span 2;
+  }
+  .item10 {
+    grid-row: 5 / span 1;
+    grid-column: 1 / span 1;
+  }
+  .item11 {
+    grid-row: 5 / span 1;
+    grid-column: 2 / span 1;
+  }
+  .item12 {
+    grid-row: 5 / span 1;
+    grid-column: 3 / span 1;
+  }
   .item13 {
-    grid-row: 9 / span 3;
-    grid-column: 3 / span 4;
+    grid-row: 5 / span 1;
+    grid-column: 4 / span 1;
   }
 `;
 

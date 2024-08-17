@@ -5,7 +5,7 @@ import { ImageGallery } from "./ImageGallery";
 import { Description } from "./Description";
 import { Project } from "@/lib/types";
 
-export function Detail({ project }: { project: Project }) {
+export function DetailPage({ project }: { project: Project }) {
   return (
     <Container>
       {project && (

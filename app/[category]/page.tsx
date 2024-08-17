@@ -1,10 +1,20 @@
+import { CategoryPage } from "@/components/Category/CategoryPage";
 import { Category } from "@/lib/types";
 
-export default function CorporatePage({
+const cmsBaseUrl = process.env.NEXT_PUBLIC_CMS_BASE_URL;
+
+export default async function Page({
   params,
 }: {
   params: { category: Category };
 }) {
-  console.log("detail params", params);
-  return <h1>corporate Page</h1>;
+  const projectsResponse = await fetch(
+    cmsBaseUrl +
+      `/api/projekts?filters[category][$eq]=${params.category}&populate=*`,
+    { cache: "default" }
+  );
+
+  const projectsObject = await projectsResponse.json();
+
+  return <CategoryPage projects={projectsObject.data} />;
 }
