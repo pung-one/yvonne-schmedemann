@@ -1,15 +1,26 @@
+import { getCategoryColor } from "@/lib/_utils";
 import Link from "next/link";
 import styled from "styled-components";
 
 export function NavDesktop() {
   return (
     <Navigation>
-      <StyledLink href={"/portrait"}>PORTRAIT</StyledLink>
-      <StyledLink href={"/corporate"}>CORPORATE</StyledLink>
-      <StyledLink href={"/interior"}>INTERIOR</StyledLink>
-      <StyledLink href={"/published"}>PUBLISHED</StyledLink>
-      <StyledLink href={"/all"}>ALL</StyledLink>
-      <StyledLink $about href={"/about"}>
+      <StyledLink $color={getCategoryColor("portrait")} href={"/portrait"}>
+        PORTRAIT
+      </StyledLink>
+      <StyledLink $color={getCategoryColor("corporate")} href={"/corporate"}>
+        CORPORATE
+      </StyledLink>
+      <StyledLink $color={getCategoryColor("interior")} href={"/interior"}>
+        INTERIOR
+      </StyledLink>
+      <StyledLink $color={getCategoryColor("published")} href={"/published"}>
+        PUBLISHED
+      </StyledLink>
+      <StyledLink $color={getCategoryColor("all")} href={"/all"}>
+        ALL
+      </StyledLink>
+      <StyledLink $color={"black"} $about href={"/about"}>
         ABOUT
       </StyledLink>
     </Navigation>
@@ -21,8 +32,11 @@ const Navigation = styled.nav`
   gap: 30px;
 `;
 
-const StyledLink = styled(Link)<{ $about?: boolean }>`
+const StyledLink = styled(Link)<{ $about?: boolean; $color: string }>`
   color: black;
   text-decoration: none;
   margin-left: ${({ $about }) => ($about ? "30px" : "0")};
+  &:hover {
+    color: ${({ $color }) => $color};
+  }
 `;

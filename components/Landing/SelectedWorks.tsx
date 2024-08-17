@@ -1,17 +1,18 @@
 "use client";
 
 import Image from "next/image";
-import { useContext } from "react";
 import styled from "styled-components";
-import { RequestContext } from "../RequestWrapper";
 import Link from "next/link";
 import { getCategoriesDataUrl } from "@/lib/_utils";
+import { Projects } from "@/lib/types";
 
-const baseUrl = process.env.CMS_BASE_URL;
+const cmsBaseUrl = process.env.NEXT_PUBLIC_CMS_BASE_URL;
 
-export function SelectedWorks() {
-  const { projects, cmsBaseUrl } = useContext(RequestContext);
+type Props = {
+  projects: Projects;
+};
 
+export function SelectedWorks({ projects }: Props) {
   return (
     <Container>
       <Headline>
@@ -25,7 +26,7 @@ export function SelectedWorks() {
           projects?.map((project, index) => {
             const imageData = project.attributes.Titelbild.data;
 
-            const category = project.attributes.Category;
+            const category = project.attributes.category;
 
             const {
               attributes: {
@@ -41,7 +42,7 @@ export function SelectedWorks() {
 
             return (
               <ImageWrapper
-                href={`${project.attributes.Category}/${project.attributes.slug}`}
+                href={`${category}/${project.id}`}
                 key={project.id}
                 className={`item${index + 1}`}
                 $title={project.attributes.Titel}
@@ -163,7 +164,7 @@ const ImageWrapper = styled(Link)<{ $title: string }>`
     width: 100%;
     text-align: center;
     font-size: 30px;
-    color: yellow;
+    color: #ffff00;
     transform: translateY(-50%) scale(0);
   }
   &:hover {

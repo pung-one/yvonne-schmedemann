@@ -17,6 +17,14 @@ export const GlobalStyles = createGlobalStyle`
     font-display: swap;
     font-style: italic;
   }
+  
+  @font-face {
+    font-family: 'LogoFont';
+    src: url('/fonts/logoFont.woff') format('woff'),
+        url('/fonts/logoFont.woff2') format('woff2');
+    font-display: swap;
+    font-style: bold;
+  }
 
   *,
   *::before,

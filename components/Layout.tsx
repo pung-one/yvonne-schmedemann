@@ -1,16 +1,12 @@
 "use client";
 
 import styled from "styled-components";
-import { useEffect, useState } from "react";
-import Image from "next/image";
+import { useState } from "react";
 import { ContactSection } from "./Header/ContactSection";
 import { NavDesktop } from "./Header/NavDesktop";
 import { motion, useScroll, useTransform } from "framer-motion";
-import logo from "@/public/logo/logo.png";
-import { RequestWrapper } from "./RequestWrapper";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import path from "path";
 
 export function Layout({ children }: { children: React.ReactNode }) {
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
@@ -19,21 +15,19 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
   const { scrollY } = useScroll();
 
-  const y = useTransform(scrollY, [0, 100], [100, 20]);
+  const y = useTransform(scrollY, [0, 300], [100, 20]);
 
   const opacity = useTransform(scrollY, [0, 100], [1, 0]);
 
-  useEffect(() => {
-    document.body.style.overflow = menuOpen ? "hidden" : "initial";
-  }, [menuOpen]);
-
-  console.log(pathname);
+  const borderMargin = useTransform(scrollY, [0, 200], ["0px", "500px"]);
 
   return (
     <>
       <HeaderContainer>
         <StyledLink href={"/"} style={{ y: pathname === "/" ? y : 20 }}>
-          <StyledImage priority src={logo} alt="Yvonne Schmedemann Logo" />
+          YVONNE
+          <br />
+          SCHMEDEMANN
         </StyledLink>
 
         <motion.div style={{ opacity: pathname === "/" ? opacity : 0 }}>
@@ -43,15 +37,17 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <NavDesktop />
       </HeaderContainer>
 
-      <MainContainer>
-        <RequestWrapper>{children}</RequestWrapper>
-      </MainContainer>
+      <BorderBottom
+        style={{ marginLeft: pathname === "/" ? borderMargin : 500 }}
+      />
+
+      <MainContainer>{children}</MainContainer>
     </>
   );
 }
 
 const HeaderContainer = styled.header`
-  z-index: 3;
+  z-index: 4;
   display: flex;
   position: fixed;
   top: 0;
@@ -60,19 +56,26 @@ const HeaderContainer = styled.header`
   height: 70px;
   width: 100%;
   padding: 0 30px;
+`;
+
+const BorderBottom = styled(motion.div)`
+  z-index: 2;
+  position: fixed;
+  top: 70px;
+  width: 100%;
   border-bottom: 1px solid black;
 `;
 
 const StyledLink = styled(motion(Link))`
-  z-index: 5;
   position: absolute;
-`;
-
-const StyledImage = styled(motion(Image))`
-  width: 400px;
-  height: fit-content;
+  font-family: "LogoFont";
+  font-size: 70px;
+  line-height: 22px;
+  text-decoration: none;
+  color: black;
 `;
 
 const MainContainer = styled.main`
+  z-index: 3;
   position: relative;
 `;

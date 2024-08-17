@@ -2,12 +2,15 @@
 
 import styled from "styled-components";
 import Image from "next/image";
-import { RequestContext } from "../RequestWrapper";
-import { useContext } from "react";
+import { LandingInfo } from "@/lib/types";
 
-export function Hero() {
-  const { landingInfo, cmsBaseUrl } = useContext(RequestContext);
+const cmsBaseUrl = process.env.NEXT_PUBLIC_CMS_BASE_URL;
 
+type Props = {
+  landingInfo: LandingInfo;
+};
+
+export function Hero({ landingInfo }: Props) {
   const imageData = landingInfo?.attributes.HeroImage.data.attributes;
 
   const description = landingInfo?.attributes.HeroText;

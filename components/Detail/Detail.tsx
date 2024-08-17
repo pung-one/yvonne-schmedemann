@@ -1,23 +1,18 @@
 "use client";
 
-import { useContext } from "react";
-import { RequestContext } from "../RequestWrapper";
 import styled from "styled-components";
 import { ImageGallery } from "./ImageGallery";
 import { Description } from "./Description";
+import { Project } from "@/lib/types";
 
-export function Detail({ slug }: { slug: string }) {
-  const { projects } = useContext(RequestContext);
-
-  const project = projects?.find((project) => slug === project.attributes.slug);
-
+export function Detail({ project }: { project: Project }) {
   return (
     <Container>
       {project && (
         <>
           <ImageGallery
             imageData={project?.attributes.Bilder.data}
-            category={project?.attributes.Category}
+            category={project?.attributes.category}
           />
 
           <Description project={project} />

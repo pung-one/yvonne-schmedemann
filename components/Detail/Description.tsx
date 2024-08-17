@@ -1,5 +1,5 @@
+import { Project } from "@/lib/types";
 import styled from "styled-components";
-import { Project } from "../RequestWrapper";
 
 export function Description({ project }: { project: Project }) {
   const { Beschreibung, Kunde, HairMakeUp, Assistent } = project.attributes;
