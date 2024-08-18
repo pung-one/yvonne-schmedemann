@@ -1,5 +1,4 @@
 import { AllPage } from "@/components/All/AllPage";
-import { CategoryPage } from "@/components/Category/CategoryPage";
 
 const cmsBaseUrl = process.env.NEXT_PUBLIC_CMS_BASE_URL;
 
