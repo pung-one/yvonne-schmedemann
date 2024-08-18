@@ -1,10 +1,10 @@
 "use client";
 
 import { Project } from "@/lib/types";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import Image from "next/image";
 import Link from "next/link";
-import { getCategoriesDataUrl } from "@/lib/_utils";
+import { getCategoriesDataUrl, getCategoryColor } from "@/lib/_utils";
 import { useContext } from "react";
 import { VisitedProjects } from "../Layout";
 
@@ -14,7 +14,9 @@ type Props = {
   projects: Project[];
 };
 
-export function CategoryPage({ projects }: Props) {
+export function AllPage({ projects }: Props) {
+  const { visitedProjects, setVisitedProjects } = useContext(VisitedProjects);
+
   return (
     <Container>
       <ImageSection>
@@ -23,6 +25,8 @@ export function CategoryPage({ projects }: Props) {
             const imageData = project.attributes.Titelbild.data;
 
             const category = project.attributes.category;
+
+            const visited = visitedProjects.includes(project.id);
 
             const {
               attributes: { alternativeText, url, width, height },
@@ -34,9 +38,22 @@ export function CategoryPage({ projects }: Props) {
                 key={project.id}
                 className={`item${index + 1}`}
                 $title={project.attributes.Titel}
+                onClick={() =>
+                  setVisitedProjects((prev) => [...prev, project.id])
+                }
               >
+                {visited && (
+                  <CategoryDot
+                    $categoryColor={getCategoryColor(
+                      project.attributes.category
+                    )}
+                    $positionTop={`${Math.floor(Math.random() * 80)}%`}
+                    $positionLeft={`${Math.floor(Math.random() * 80)}%`}
+                  />
+                )}
                 <StyledImage
                   placeholder="blur"
+                  $visited={visited}
                   blurDataURL={getCategoriesDataUrl(category)}
                   src={cmsBaseUrl + url}
                   width={width}
@@ -58,88 +75,55 @@ const Container = styled.section`
 `;
 
 const ImageSection = styled.div`
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
   width: 100%;
-  grid-template-columns: repeat(4, 1fr);
-  grid-gap: 20px;
-  .item1 {
-    height: 400px;
-  }
-  .item2 {
-    height: 400px;
-  }
-  .item3 {
-    height: 400px;
-  }
-  .item4 {
-    height: 400px;
-  }
-  .item5 {
-    grid-row: 2 / span 1;
-    grid-column: 2 / span 2;
-    height: 400px;
-  }
-  .item6 {
-    grid-row: 3 / span 2;
-    grid-column: 1 / span 2;
-  }
-  .item7 {
-    grid-row: 3 / span 1;
-    grid-column: 3 / span 1;
-  }
-  .item8 {
-    grid-row: 3 / span 1;
-    grid-column: 4 / span 1;
-  }
-  .item9 {
-    grid-row: 4 / span 1;
-    grid-column: 3 / span 2;
-  }
-  .item10 {
-    grid-row: 5 / span 1;
-    grid-column: 1 / span 1;
-  }
-  .item11 {
-    grid-row: 5 / span 1;
-    grid-column: 2 / span 1;
-  }
-  .item12 {
-    grid-row: 5 / span 1;
-    grid-column: 3 / span 1;
-  }
-  .item13 {
-    grid-row: 5 / span 1;
-    grid-column: 4 / span 1;
-  }
 `;
 
 const ImageWrapper = styled(Link)<{ $title: string }>`
   position: relative;
-  width: 100%;
-  padding-top: 100%; /* 1:1 aspect ratio */
+  width: 200px;
+  height: 300px;
   &:after {
+    z-index: 5;
     position: absolute;
     content: "${({ $title }) => `${$title}`}";
     top: 50%;
+    left: 0;
     width: 100%;
     text-align: center;
-    font-size: 30px;
+    font-size: 20px;
     color: #ffff00;
-    transform: translateY(-50%) scale(0);
+    transform: scale(0);
   }
   &:hover {
     cursor: pointer;
     &:after {
-      transform: translateY(-50%) scale(1);
+      transform: scale(1);
     }
   }
 `;
 
-const StyledImage = styled(Image)`
+const CategoryDot = styled.div<{
+  $categoryColor: string;
+  $positionTop: string;
+  $positionLeft: string;
+}>`
+  z-index: 1;
   position: absolute;
-  top: 0;
-  left: 0;
+  top: ${({ $positionTop }) => $positionTop};
+  left: ${({ $positionLeft }) => $positionLeft};
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background-color: ${({ $categoryColor }) => $categoryColor};
+`;
+
+const StyledImage = styled(Image)<{ $visited: boolean }>`
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
+  filter: ${({ $visited }) => ($visited ? "brightness(40%)" : "none")};
 `;

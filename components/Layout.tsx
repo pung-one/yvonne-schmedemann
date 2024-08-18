@@ -1,15 +1,24 @@
 "use client";
 
 import styled from "styled-components";
-import { useState } from "react";
+import { createContext, Dispatch, SetStateAction, useState } from "react";
 import { ContactSection } from "./Header/ContactSection";
 import { NavDesktop } from "./Header/NavDesktop";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 
+export const VisitedProjects = createContext<{
+  visitedProjects: number[];
+  setVisitedProjects: Dispatch<SetStateAction<number[]>>;
+}>({
+  visitedProjects: [],
+  setVisitedProjects: () => {},
+});
+
 export function Layout({ children }: { children: React.ReactNode }) {
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
+  const [visitedProjects, setVisitedProjects] = useState<number[]>([]);
 
   const pathname = usePathname();
 
@@ -20,8 +29,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
   const opacity = useTransform(scrollY, [0, 100], [1, 0]);
 
   const borderMargin = useTransform(scrollY, [0, 200], ["0px", "500px"]);
-
-  console.log(pathname);
 
   return (
     <>
@@ -43,7 +50,16 @@ export function Layout({ children }: { children: React.ReactNode }) {
         style={{ marginLeft: pathname === "/" ? borderMargin : 500 }}
       />
 
-      <MainContainer>{children}</MainContainer>
+      <MainContainer>
+        <VisitedProjects.Provider
+          value={{
+            visitedProjects: visitedProjects,
+            setVisitedProjects: setVisitedProjects,
+          }}
+        >
+          {children}
+        </VisitedProjects.Provider>
+      </MainContainer>
     </>
   );
 }
