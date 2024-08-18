@@ -5,7 +5,6 @@ type Props = {
 };
 
 export function Customers({ customers }: Props) {
-  console.log(customers);
   return (
     <Container>
       <Text>{customers}</Text>

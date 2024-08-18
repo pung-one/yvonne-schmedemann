@@ -29,7 +29,12 @@ export function SelectedWorks({ projects }: Props) {
             const category = project.attributes.category;
 
             const {
-              attributes: { alternativeText, url, width, height },
+              attributes: {
+                alternativeText,
+                formats: {
+                  medium: { url, width, height },
+                },
+              },
             } = imageData;
 
             return (

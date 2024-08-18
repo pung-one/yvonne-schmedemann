@@ -2,7 +2,7 @@ import { AboutPage } from "@/components/About/AboutPage";
 
 export default async function Page() {
   return (
-    <p style={{ margin: "270px 100px", maxWidth: "600px", lineHeight: "25px" }}>
+    <p style={{ margin: "250px 100px", maxWidth: "600px", lineHeight: "25px" }}>
       Fettstraße 7a
       <br />
       20357 Hamburg
