@@ -128,7 +128,6 @@ export type Project = {
   id: number;
   attributes: {
     Titel: string;
-    slug: string;
     category: Category;
     positionOnCategoryPage?: number;
     Beschreibung: string;

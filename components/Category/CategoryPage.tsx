@@ -5,8 +5,6 @@ import styled from "styled-components";
 import Image from "next/image";
 import Link from "next/link";
 import { getCategoriesDataUrl } from "@/lib/_utils";
-import { useContext } from "react";
-import { VisitedProjects } from "../Layout";
 
 const cmsBaseUrl = process.env.NEXT_PUBLIC_CMS_BASE_URL;
 
@@ -25,7 +23,12 @@ export function CategoryPage({ projects }: Props) {
             const category = project.attributes.category;
 
             const {
-              attributes: { alternativeText, url, width, height },
+              attributes: {
+                alternativeText,
+                formats: {
+                  medium: { url, width, height },
+                },
+              },
             } = imageData;
 
             return (

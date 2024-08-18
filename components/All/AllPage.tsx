@@ -29,7 +29,12 @@ export function AllPage({ projects }: Props) {
             const visited = visitedProjects.includes(project.id);
 
             const {
-              attributes: { alternativeText, url, width, height },
+              attributes: {
+                alternativeText,
+                formats: {
+                  medium: { url, width, height },
+                },
+              },
             } = imageData;
 
             return (
@@ -71,7 +76,7 @@ export function AllPage({ projects }: Props) {
 const Container = styled.section`
   position: relative;
   max-width: 1200px;
-  margin: 170px auto;
+  margin: 250px auto;
 `;
 
 const ImageSection = styled.div`

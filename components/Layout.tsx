@@ -40,6 +40,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
             y:
               pathname === "/" ||
               pathname === "/about" ||
+              pathname === "/all" ||
               pathname === "/impressum"
                 ? y
                 : 20,
@@ -55,6 +56,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
             opacity:
               pathname === "/" ||
               pathname === "/about" ||
+              pathname === "/all" ||
               pathname === "/impressum"
                 ? opacity
                 : 0,
@@ -70,6 +72,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
           marginLeft:
             pathname === "/" ||
             pathname === "/about" ||
+            pathname === "/all" ||
             pathname === "/impressum"
               ? borderMargin
               : 500,
@@ -124,4 +127,5 @@ const StyledLink = styled(motion(Link))`
 const MainContainer = styled.main`
   z-index: 3;
   position: relative;
+  padding: 0 20px;
 `;

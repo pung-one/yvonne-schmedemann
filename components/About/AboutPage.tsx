@@ -10,8 +10,6 @@ type Props = {
 };
 
 export function AboutPage({ aboutData }: Props) {
-  console.log(aboutData);
-
   const info = aboutData.attributes;
   return (
     <Container>
@@ -30,5 +28,5 @@ const Container = styled.div`
   position: relative;
   display: flex;
   max-width: 1600px;
-  margin: 270px auto;
+  margin: 250px auto;
 `;

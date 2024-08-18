@@ -22,5 +22,5 @@ export function Landing({ projects, landingInfo }: Props) {
 
 const Container = styled.article`
   max-width: 1200px;
-  margin: 170px auto;
+  margin: 250px auto;
 `;
