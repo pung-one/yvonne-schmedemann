@@ -147,3 +147,20 @@ export type Project = {
     };
   };
 };
+
+export type AboutData = {
+  id: number;
+  attributes: {
+    bio: string;
+    customers: string;
+    createdAt: string;
+    updatedAt: string;
+    publishedAt: string;
+    portrait: {
+      data: ImageData;
+    };
+    studioImage: {
+      data: ImageData;
+    };
+  };
+};

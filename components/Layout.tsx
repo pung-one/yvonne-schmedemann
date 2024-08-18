@@ -7,6 +7,7 @@ import { NavDesktop } from "./Header/NavDesktop";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import { Footer } from "./Footer/Footer";
 
 export const VisitedProjects = createContext<{
   visitedProjects: number[];
@@ -33,21 +34,46 @@ export function Layout({ children }: { children: React.ReactNode }) {
   return (
     <>
       <HeaderContainer>
-        <StyledLink href={"/"} style={{ y: pathname === "/" ? y : 20 }}>
+        <StyledLink
+          href={"/"}
+          style={{
+            y:
+              pathname === "/" ||
+              pathname === "/about" ||
+              pathname === "/impressum"
+                ? y
+                : 20,
+          }}
+        >
           YVONNE
           <br />
           SCHMEDEMANN
         </StyledLink>
 
-        <motion.div style={{ opacity: pathname === "/" ? opacity : 0 }}>
+        <motion.div
+          style={{
+            opacity:
+              pathname === "/" ||
+              pathname === "/about" ||
+              pathname === "/impressum"
+                ? opacity
+                : 0,
+          }}
+        >
           <ContactSection />
         </motion.div>
 
         <NavDesktop />
       </HeaderContainer>
-
       <BorderBottom
-        style={{ marginLeft: pathname === "/" ? borderMargin : 500 }}
+        style={{
+          marginLeft:
+            pathname === "/" ||
+            pathname === "/about" ||
+            pathname === "/impressum"
+              ? borderMargin
+              : 500,
+        }}
       />
 
       <MainContainer>
@@ -60,6 +86,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
           {children}
         </VisitedProjects.Provider>
       </MainContainer>
+
+      <Footer />
     </>
   );
 }
