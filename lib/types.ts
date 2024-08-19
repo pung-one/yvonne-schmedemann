@@ -138,6 +138,7 @@ export type Project = {
     HairMakeUp: string;
     Assistent: string;
     positionOnLandingPage?: number;
+    fullscreen: boolean;
     Titelbild: {
       data: ImageData;
     };

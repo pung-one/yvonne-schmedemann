@@ -36,9 +36,10 @@ const variants = {
 type Props = {
   imageData: ImageData[];
   category: Category;
+  fullscreen: boolean;
 };
 
-export function ImageGallery({ imageData, category }: Props) {
+export function ImageGallery({ imageData, category, fullscreen }: Props) {
   const [buttonEnabled, setButtonEnabled] = useState<boolean>(true);
 
   const [imageIndexAndDirection, setImageIndexAndDirection] = useState<{
@@ -106,6 +107,7 @@ export function ImageGallery({ imageData, category }: Props) {
           <StyledImage
             priority
             placeholder="blur"
+            fullscreen={fullscreen}
             blurDataURL={getCategoriesDataUrl(category)}
             alt={alternativeText || ""}
             src={cmsBaseUrl + url}
@@ -123,14 +125,13 @@ export function ImageGallery({ imageData, category }: Props) {
 
 const Container = styled.section`
   position: relative;
-  max-width: 100vw;
+  width: 100vw;
   overflow: hidden;
 `;
 
-const StyledImage = styled(Image)`
+const StyledImage = styled(Image)<{ fullscreen: boolean }>`
   width: 100%;
   height: fit-content;
-  max-height: 65vh;
   object-fit: contain;
   object-position: center;
 `;

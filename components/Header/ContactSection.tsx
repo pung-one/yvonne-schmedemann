@@ -29,6 +29,9 @@ export function ContactSection() {
 const Container = styled.div`
   display: flex;
   gap: 30px;
+  @media only screen and (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const ContactElement = styled.div`

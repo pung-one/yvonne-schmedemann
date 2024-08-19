@@ -79,88 +79,134 @@ const Headline = styled.div`
 `;
 
 const ImageSection = styled.div`
-  display: grid;
   width: 100%;
-  grid-template-columns: repeat(6, 1fr);
-  grid-gap: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  @media only screen and (min-width: 768px) {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 20px;
 
-  .item1 {
-    grid-row: 1 / span 3;
-    grid-column: 1 / span 2;
+    .item1 {
+      grid-row: 1 / span 3;
+      grid-column: 1 / span 2;
 
-    height: 40vh;
-  }
-  .item2 {
-    grid-row: 1 / span 3;
-    grid-column: 3 / span 2;
-    height: 50vh;
-  }
-  .item3 {
-    grid-row: 1 / span 3;
-    grid-column: 5 / span 2;
-  }
-  .item4 {
-    grid-row: 4 / span 1;
-    grid-column: 1 / span 1;
-    * {
-      object-fit: cover;
+      height: 40vh;
     }
-  }
-  .item5 {
-    grid-row: 4 / span 1;
-    grid-column: 2 / span 1;
-    * {
-      object-fit: cover;
+    .item2 {
+      grid-row: 1 / span 3;
+      grid-column: 3 / span 2;
+      height: 50vh;
     }
-  }
-  .item6 {
-    grid-row: 4 / span 1;
-    grid-column: 3 / span 1;
-    * {
-      object-fit: cover;
+    .item3 {
+      grid-row: 1 / span 3;
+      grid-column: 5 / span 2;
     }
-  }
-  .item7 {
-    grid-row: 4 / span 3;
-    grid-column: 4 / span 3;
-  }
-  .item8 {
-    grid-row: 5 / span 1;
-    grid-column: 1 / span 3;
-  }
-  .item9 {
-    grid-row: 6 / span 2;
-    grid-column: 1 / span 1;
-  }
-  .item10 {
-    grid-row: 6 / span 2;
-    grid-column: 2 / span 2;
-  }
-  .item11 {
-    grid-row: 7 / span 2;
-    grid-column: 4 / span 3;
-  }
-  .item12 {
-    grid-row: 8 / span 3;
-    grid-column: 1 / span 2;
-  }
-  .item13 {
-    grid-row: 9 / span 3;
-    grid-column: 3 / span 4;
+    .item4 {
+      grid-row: 4 / span 1;
+      grid-column: 1 / span 1;
+      * {
+        object-fit: cover;
+      }
+    }
+    .item5 {
+      grid-row: 4 / span 1;
+      grid-column: 2 / span 1;
+      * {
+        object-fit: cover;
+      }
+    }
+    .item6 {
+      grid-row: 4 / span 1;
+      grid-column: 3 / span 1;
+      * {
+        object-fit: cover;
+      }
+    }
+    .item7 {
+      grid-row: 4 / span 3;
+      grid-column: 4 / span 3;
+    }
+    .item8 {
+      grid-row: 5 / span 1;
+      grid-column: 1 / span 3;
+    }
+    .item9 {
+      grid-row: 6 / span 2;
+      grid-column: 1 / span 1;
+    }
+    .item10 {
+      grid-row: 6 / span 2;
+      grid-column: 2 / span 2;
+    }
+    .item11 {
+      grid-row: 7 / span 2;
+      grid-column: 4 / span 3;
+    }
+    .item12 {
+      grid-row: 8 / span 3;
+      grid-column: 1 / span 3;
+    }
+    .item13 {
+      grid-row: 9 / span 2;
+      grid-column: 4 / span 3;
+    }
+    .item14 {
+      grid-row: 11 / span 3;
+      grid-column: 1 / span 2;
+    }
+    .item15 {
+      grid-row: 11 / span 2;
+      grid-column: 3 / span 2;
+      * {
+        object-fit: cover;
+      }
+    }
+    .item16 {
+      grid-row: 11 / span 2;
+      grid-column: 5 / span 2;
+      * {
+        object-fit: cover;
+      }
+    }
+    .item17 {
+      grid-row: 13 / span 1;
+      grid-column: 4 / span 2;
+    }
+    .item18 {
+      grid-row: 14 / span 3;
+      grid-column: 1 / span 3;
+    }
+    .item19 {
+      grid-row: 15 / span 1;
+      grid-column: 4 / span 1;
+      * {
+        object-fit: cover;
+      }
+    }
+    .item20 {
+      grid-row: 14 / span 2;
+      grid-column: 5 / span 2;
+    }
   }
 `;
 
 const ImageWrapper = styled(Link)<{ $title: string }>`
   position: relative;
   width: 100%;
-  padding-top: 100%; /* 1:1 aspect ratio */
+  @media only screen and (min-width: 768px) {
+    padding-top: 100%;
+  }
   &:after {
+    z-index: 9;
     position: absolute;
     content: "${({ $title }) => `${$title}`}";
     top: 50%;
+    left: 0;
     width: 100%;
     text-align: center;
-    font-size: 30px;
+    font-size: 18px;
     color: #ffff00;
     transform: translateY(-50%) scale(0);
   }
@@ -173,9 +219,11 @@ const ImageWrapper = styled(Link)<{ $title: string }>`
 `;
 
 const StyledImage = styled(Image)`
-  position: absolute;
-  top: 0;
-  left: 0;
+  @media only screen and (min-width: 768px) {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
   width: 100%;
   height: 100%;
   object-fit: contain;

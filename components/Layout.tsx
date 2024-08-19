@@ -105,6 +105,9 @@ const HeaderContainer = styled.header`
   height: 70px;
   width: 100%;
   padding: 0 30px;
+  @media only screen and (max-width: 768px) {
+    padding: 0 20px;
+  }
 `;
 
 const BorderBottom = styled(motion.div)`
@@ -119,9 +122,13 @@ const StyledLink = styled(motion(Link))`
   position: absolute;
   font-family: "LogoFont";
   font-size: 70px;
-  line-height: 22px;
+  line-height: 0.6;
   text-decoration: none;
   color: black;
+  @media only screen and (max-width: 768px) {
+    font-size: 30px;
+    transform: translateY(0) !important;
+  }
 `;
 
 const MainContainer = styled.main`

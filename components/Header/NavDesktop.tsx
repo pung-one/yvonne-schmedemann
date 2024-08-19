@@ -30,6 +30,9 @@ export function NavDesktop() {
 const Navigation = styled.nav`
   display: flex;
   gap: 30px;
+  @media only screen and (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const StyledLink = styled(Link)<{ $about?: boolean; $color: string }>`

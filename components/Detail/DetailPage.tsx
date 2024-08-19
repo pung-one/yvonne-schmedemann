@@ -11,8 +11,9 @@ export function DetailPage({ project }: { project: Project }) {
       {project && (
         <>
           <ImageGallery
-            imageData={project?.attributes.Bilder.data}
-            category={project?.attributes.category}
+            imageData={project.attributes.Bilder.data}
+            category={project.attributes.category}
+            fullscreen={project.attributes.fullscreen}
           />
 
           <Description project={project} />
