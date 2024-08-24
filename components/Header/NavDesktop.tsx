@@ -14,8 +14,8 @@ export function NavDesktop() {
       <StyledLink $color={getCategoryColor("interior")} href={"/interior"}>
         INTERIOR
       </StyledLink>
-      <StyledLink $color={getCategoryColor("published")} href={"/published"}>
-        PUBLISHED
+      <StyledLink $color={getCategoryColor("jewellery")} href={"/jewellery"}>
+        JEWELLERY
       </StyledLink>
       <StyledLink $color={getCategoryColor("all")} href={"/all"}>
         ALL

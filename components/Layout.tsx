@@ -116,6 +116,9 @@ const BorderBottom = styled(motion.div)`
   top: 70px;
   width: 100%;
   border-bottom: 1px solid black;
+  @media only screen and (max-width: 768px) {
+    margin-left: 0 !important;
+  }
 `;
 
 const StyledLink = styled(motion(Link))`
@@ -134,5 +137,4 @@ const StyledLink = styled(motion(Link))`
 const MainContainer = styled.main`
   z-index: 3;
   position: relative;
-  padding: 0 20px;
 `;

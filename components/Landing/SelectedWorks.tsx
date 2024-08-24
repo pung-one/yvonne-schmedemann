@@ -3,7 +3,7 @@
 import Image from "next/image";
 import styled from "styled-components";
 import Link from "next/link";
-import { getCategoriesDataUrl } from "@/lib/_utils";
+import { getCategoriesBlurDataUrl, getCategoryColor } from "@/lib/_utils";
 import { Projects } from "@/lib/types";
 
 const cmsBaseUrl = process.env.NEXT_PUBLIC_CMS_BASE_URL;
@@ -46,7 +46,8 @@ export function SelectedWorks({ projects }: Props) {
               >
                 <StyledImage
                   placeholder="blur"
-                  blurDataURL={getCategoriesDataUrl(category)}
+                  $cursorColor={getCategoryColor(category)}
+                  blurDataURL={getCategoriesBlurDataUrl(category)}
                   src={cmsBaseUrl + url}
                   width={width}
                   height={height}
@@ -199,7 +200,6 @@ const ImageWrapper = styled(Link)<{ $title: string }>`
     padding-top: 100%;
   }
   &:after {
-    z-index: 9;
     position: absolute;
     content: "${({ $title }) => `${$title}`}";
     top: 50%;
@@ -218,7 +218,7 @@ const ImageWrapper = styled(Link)<{ $title: string }>`
   }
 `;
 
-const StyledImage = styled(Image)`
+const StyledImage = styled(Image)<{ $cursorColor: string }>`
   @media only screen and (min-width: 768px) {
     position: absolute;
     top: 0;
@@ -227,4 +227,9 @@ const StyledImage = styled(Image)`
   width: 100%;
   height: 100%;
   object-fit: contain;
+  cursor: ${({ $cursorColor }) =>
+    `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30'%3E%3Ccircle cx='12' cy='12' r='10' fill='${$cursorColor.replace(
+      "#",
+      "%23"
+    )}'/%3E%3C/svg%3E"), auto`};
 `;

@@ -47,6 +47,9 @@ const Credits = styled.div`
   display: flex;
   margin: 50px 0 30px;
   gap: 50px;
+  @media only screen and (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
 const Partner = styled.p``;

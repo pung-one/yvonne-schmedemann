@@ -5,33 +5,37 @@ import Image from "next/image";
 const cmsBaseUrl = process.env.NEXT_PUBLIC_CMS_BASE_URL;
 
 type Props = {
-  portrait: ImageData;
-  studioImage: ImageData;
-  bio: string;
+  portrait?: ImageData;
+  studioImage?: ImageData;
+  bio?: string;
 };
 
 export function LeftSection({ portrait, bio, studioImage }: Props) {
-  const portraitData = portrait.attributes;
-  const studioImageData = studioImage.attributes;
+  const portraitData = portrait?.attributes;
+  const studioImageData = studioImage?.attributes;
   return (
     <Container>
-      <PortraitImage
-        src={cmsBaseUrl + portraitData.url}
-        width={portraitData.width}
-        height={portraitData.height}
-        alt={portraitData.alternativeText || ""}
-      />
+      {portraitData && (
+        <PortraitImage
+          src={cmsBaseUrl + portraitData.url}
+          width={portraitData.width}
+          height={portraitData.height}
+          alt={portraitData.alternativeText || ""}
+        />
+      )}
 
       <Bio>
         <span>YVONNE SCHMEDEMANN</span> {bio}
       </Bio>
 
-      <StudioImage
-        src={cmsBaseUrl + studioImageData.url}
-        width={studioImageData.width}
-        height={studioImageData.height}
-        alt={studioImageData.alternativeText || ""}
-      />
+      {studioImageData && (
+        <StudioImage
+          src={cmsBaseUrl + studioImageData.url}
+          width={studioImageData.width}
+          height={studioImageData.height}
+          alt={studioImageData.alternativeText || ""}
+        />
+      )}
     </Container>
   );
 }
@@ -41,8 +45,11 @@ const Container = styled.section`
   width: 30%;
   display: flex;
   flex-direction: column;
-  gap: 70px;
+  gap: 100px;
   align-items: center;
+  @media only screen and (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 const PortraitImage = styled(Image)`
@@ -52,13 +59,16 @@ const PortraitImage = styled(Image)`
 `;
 
 const Bio = styled.p`
-  padding: 70px 50px;
+  padding: 100px 50px;
   border-top: 1px solid black;
   border-bottom: 1px solid black;
   line-height: 24px;
   span {
     font-family: "LogoFont";
     font-size: 20px;
+  }
+  @media only screen and (max-width: 768px) {
+    padding: 100px 20px;
   }
 `;
 

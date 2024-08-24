@@ -23,4 +23,7 @@ export function Landing({ projects, landingInfo }: Props) {
 const Container = styled.article`
   max-width: 1200px;
   margin: 250px auto;
+  @media only screen and (max-width: 768px) {
+    margin: 170px auto;
+  }
 `;

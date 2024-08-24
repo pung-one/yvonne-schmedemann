@@ -122,7 +122,7 @@ export type ImageData = {
   };
 };
 
-export type Category = "portrait" | "corporate" | "interior" | "published";
+export type Category = "portrait" | "corporate" | "interior" | "jewellery";
 
 export type Project = {
   id: number;

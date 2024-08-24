@@ -1,34 +1,31 @@
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, delay, motion } from "framer-motion";
 import { useState } from "react";
 import styled from "styled-components";
 import Image from "next/image";
 import { PiArrowLeftThin, PiArrowRightThin } from "react-icons/pi";
-import { getCategoriesDataUrl } from "@/lib/_utils";
 import { Category } from "@/lib/types";
 import { ImageData } from "@/lib/types";
+import { getCategoriesBlurDataUrl } from "@/lib/_utils";
 
 const cmsBaseUrl = process.env.NEXT_PUBLIC_CMS_BASE_URL;
 
 const variants = {
   enter: (slideDirection: string) => {
     return {
-      x: slideDirection === "right" ? "-10%" : "10%",
+      x: slideDirection === "right" ? "-30%" : "30%",
       opacity: 0,
     };
   },
   center: {
     x: 0,
     opacity: 1,
-    transition: { duration: 0.5 },
+    transition: { duration: 0.3 },
   },
   exit: (slideDirection: string) => {
     return {
-      x: slideDirection === "right" ? "10%" : "-10%",
+      x: slideDirection === "right" ? "30%" : "-30%",
       opacity: 0,
-      transition: {
-        x: { duration: 0.4 },
-        opacity: { delay: 0.1, duration: 0.3 },
-      },
+      transition: { duration: 0.3 },
     };
   },
 };
@@ -82,7 +79,7 @@ export function ImageGallery({ imageData, category, fullscreen }: Props) {
     <Container>
       <AnimatePresence
         initial={false}
-        mode={"wait"}
+        mode={"popLayout"}
         custom={imageIndexAndDirection.direction}
       >
         <motion.div
@@ -107,8 +104,8 @@ export function ImageGallery({ imageData, category, fullscreen }: Props) {
           <StyledImage
             priority
             placeholder="blur"
-            fullscreen={fullscreen}
-            blurDataURL={getCategoriesDataUrl(category)}
+            $fullscreen={fullscreen}
+            blurDataURL={getCategoriesBlurDataUrl(category)}
             alt={alternativeText || ""}
             src={cmsBaseUrl + url}
             width={width}
@@ -129,10 +126,10 @@ const Container = styled.section`
   overflow: hidden;
 `;
 
-const StyledImage = styled(Image)<{ fullscreen: boolean }>`
+const StyledImage = styled(Image)<{ $fullscreen: boolean }>`
   width: 100%;
-  height: fit-content;
-  object-fit: contain;
+  height: ${({ $fullscreen }) => ($fullscreen ? "100dvh" : "fit-content")};
+  object-fit: ${({ $fullscreen }) => ($fullscreen ? "cover" : "contain")};
   object-position: center;
 `;
 
@@ -147,11 +144,18 @@ const StyledButton = styled.button<{ $direction: "left" | "right" }>`
   flex: 1;
   display: flex;
   justify-content: ${({ $direction }) =>
-    $direction === "right" ? "flex-end" : "flex-sart"};
+    $direction === "right" ? "flex-end" : "flex-start"};
   align-items: center;
   background: none;
   border: none;
   padding: 0 20px;
+  @media only screen and (min-width: 768px) {
+    * {
+      display: none;
+    }
+    cursor: ${({ $direction }) =>
+      $direction === "right" ? "e-resize" : "w-resize"};
+  }
 `;
 
 const ImageCounter = styled.p`

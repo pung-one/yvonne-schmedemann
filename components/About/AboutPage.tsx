@@ -10,16 +10,16 @@ type Props = {
 };
 
 export function AboutPage({ aboutData }: Props) {
-  const info = aboutData.attributes;
+  const info = aboutData?.attributes;
   return (
     <Container>
       <LeftSection
-        portrait={info.portrait.data}
-        bio={info.bio}
-        studioImage={info.studioImage.data}
+        portrait={info?.portrait.data}
+        bio={info?.bio}
+        studioImage={info?.studioImage.data}
       />
 
-      <Customers customers={info.customers} />
+      <Customers customers={info?.customers} />
     </Container>
   );
 }
@@ -27,6 +27,10 @@ export function AboutPage({ aboutData }: Props) {
 const Container = styled.div`
   position: relative;
   display: flex;
-  max-width: 1600px;
+  max-width: 1400px;
   margin: 250px auto;
+  @media only screen and (max-width: 768px) {
+    margin: 170px auto;
+    flex-direction: column;
+  }
 `;

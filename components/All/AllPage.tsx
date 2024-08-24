@@ -4,7 +4,11 @@ import { Project } from "@/lib/types";
 import styled, { css } from "styled-components";
 import Image from "next/image";
 import Link from "next/link";
-import { getCategoriesDataUrl, getCategoryColor } from "@/lib/_utils";
+import {
+  getCategoriesBlurDataUrl,
+  getCategoriesCursorDataUrl,
+  getCategoryColor,
+} from "@/lib/_utils";
 import { useContext } from "react";
 import { VisitedProjects } from "../Layout";
 
@@ -49,9 +53,7 @@ export function AllPage({ projects }: Props) {
               >
                 {visited && (
                   <CategoryDot
-                    $categoryColor={getCategoryColor(
-                      project.attributes.category
-                    )}
+                    $categoryColor={getCategoryColor(category)}
                     $positionTop={`${Math.floor(Math.random() * 80)}%`}
                     $positionLeft={`${Math.floor(Math.random() * 80)}%`}
                   />
@@ -59,7 +61,8 @@ export function AllPage({ projects }: Props) {
                 <StyledImage
                   placeholder="blur"
                   $visited={visited}
-                  blurDataURL={getCategoriesDataUrl(category)}
+                  $cursorColor={getCategoryColor(category)}
+                  blurDataURL={getCategoriesBlurDataUrl(category)}
                   src={cmsBaseUrl + url}
                   width={width}
                   height={height}
@@ -76,7 +79,10 @@ export function AllPage({ projects }: Props) {
 const Container = styled.section`
   position: relative;
   max-width: 1200px;
-  margin: 250px auto;
+  margin: 270px auto;
+  @media only screen and (max-width: 768px) {
+    margin: 90px auto;
+  }
 `;
 
 const ImageSection = styled.div`
@@ -120,15 +126,20 @@ const CategoryDot = styled.div<{
   position: absolute;
   top: ${({ $positionTop }) => $positionTop};
   left: ${({ $positionLeft }) => $positionLeft};
-  height: 20px;
-  width: 20px;
+  height: 30px;
+  width: 30px;
   border-radius: 50%;
   background-color: ${({ $categoryColor }) => $categoryColor};
 `;
 
-const StyledImage = styled(Image)<{ $visited: boolean }>`
+const StyledImage = styled(Image)<{ $visited: boolean; $cursorColor: string }>`
   width: 100%;
   height: 100%;
   object-fit: cover;
   filter: ${({ $visited }) => ($visited ? "brightness(40%)" : "none")};
+  cursor: ${({ $cursorColor }) =>
+    `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30'%3E%3Ccircle cx='12' cy='12' r='10' fill='${$cursorColor.replace(
+      "#",
+      "%23"
+    )}'/%3E%3C/svg%3E"), auto`};
 `;
