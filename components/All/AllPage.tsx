@@ -4,7 +4,11 @@ import { Project } from "@/lib/types";
 import styled, { css } from "styled-components";
 import Image from "next/image";
 import Link from "next/link";
-import { getCategoriesDataUrl, getCategoryColor } from "@/lib/_utils";
+import {
+  getCategoriesBlurDataUrl,
+  getCategoriesCursorDataUrl,
+  getCategoryColor,
+} from "@/lib/_utils";
 import { useContext } from "react";
 import { VisitedProjects } from "../Layout";
 
@@ -43,15 +47,14 @@ export function AllPage({ projects }: Props) {
                 key={project.id}
                 className={`item${index + 1}`}
                 $title={project.attributes.Titel}
+                $cursorColor={getCategoryColor(category)}
                 onClick={() =>
                   setVisitedProjects((prev) => [...prev, project.id])
                 }
               >
                 {visited && (
                   <CategoryDot
-                    $categoryColor={getCategoryColor(
-                      project.attributes.category
-                    )}
+                    $categoryColor={getCategoryColor(category)}
                     $positionTop={`${Math.floor(Math.random() * 80)}%`}
                     $positionLeft={`${Math.floor(Math.random() * 80)}%`}
                   />
@@ -59,7 +62,7 @@ export function AllPage({ projects }: Props) {
                 <StyledImage
                   placeholder="blur"
                   $visited={visited}
-                  blurDataURL={getCategoriesDataUrl(category)}
+                  blurDataURL={getCategoriesBlurDataUrl(category)}
                   src={cmsBaseUrl + url}
                   width={width}
                   height={height}
@@ -76,7 +79,10 @@ export function AllPage({ projects }: Props) {
 const Container = styled.section`
   position: relative;
   max-width: 1200px;
-  margin: 250px auto;
+  margin: 270px auto;
+  @media only screen and (max-width: 768px) {
+    margin: 90px auto;
+  }
 `;
 
 const ImageSection = styled.div`
@@ -87,10 +93,15 @@ const ImageSection = styled.div`
   width: 100%;
 `;
 
-const ImageWrapper = styled(Link)<{ $title: string }>`
+const ImageWrapper = styled(Link)<{ $title: string; $cursorColor: string }>`
   position: relative;
   width: 200px;
   height: 300px;
+  cursor: ${({ $cursorColor }) =>
+    `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30'%3E%3Ccircle cx='12' cy='12' r='10' fill='${$cursorColor.replace(
+      "#",
+      "%23"
+    )}'/%3E%3C/svg%3E")  15 15, auto`};
   &:after {
     z-index: 5;
     position: absolute;
@@ -104,10 +115,13 @@ const ImageWrapper = styled(Link)<{ $title: string }>`
     transform: scale(0);
   }
   &:hover {
-    cursor: pointer;
     &:after {
       transform: scale(1);
     }
+  }
+  @media only screen and (max-width: 768px) {
+    width: 40%;
+    height: fit-content;
   }
 `;
 
@@ -120,8 +134,8 @@ const CategoryDot = styled.div<{
   position: absolute;
   top: ${({ $positionTop }) => $positionTop};
   left: ${({ $positionLeft }) => $positionLeft};
-  height: 20px;
-  width: 20px;
+  height: 30px;
+  width: 30px;
   border-radius: 50%;
   background-color: ${({ $categoryColor }) => $categoryColor};
 `;

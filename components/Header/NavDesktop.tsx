@@ -14,8 +14,8 @@ export function NavDesktop() {
       <StyledLink $color={getCategoryColor("interior")} href={"/interior"}>
         INTERIOR
       </StyledLink>
-      <StyledLink $color={getCategoryColor("published")} href={"/published"}>
-        PUBLISHED
+      <StyledLink $color={getCategoryColor("jewellery")} href={"/jewellery"}>
+        JEWELLERY
       </StyledLink>
       <StyledLink $color={getCategoryColor("all")} href={"/all"}>
         ALL
@@ -36,7 +36,9 @@ const StyledLink = styled(Link)<{ $about?: boolean; $color: string }>`
   color: black;
   text-decoration: none;
   margin-left: ${({ $about }) => ($about ? "30px" : "0")};
+  transition: transform 0.2s;
   &:hover {
     color: ${({ $color }) => $color};
+    transform: ${({ $about }) => ($about ? "rotate(7deg)" : "none")};
   }
 `;

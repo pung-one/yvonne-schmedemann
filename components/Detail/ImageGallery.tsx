@@ -1,9 +1,8 @@
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, delay, motion } from "framer-motion";
 import { useState } from "react";
 import styled from "styled-components";
 import Image from "next/image";
 import { PiArrowLeftThin, PiArrowRightThin } from "react-icons/pi";
-import { getCategoriesDataUrl } from "@/lib/_utils";
 import { Category } from "@/lib/types";
 import { ImageData } from "@/lib/types";
 
@@ -12,39 +11,39 @@ const cmsBaseUrl = process.env.NEXT_PUBLIC_CMS_BASE_URL;
 const variants = {
   enter: (slideDirection: string) => {
     return {
-      x: slideDirection === "right" ? "-10%" : "10%",
+      x: slideDirection === "right" ? "-30%" : "30%",
       opacity: 0,
     };
   },
   center: {
     x: 0,
     opacity: 1,
-    transition: { duration: 0.5 },
+    transition: { duration: 0.3 },
   },
   exit: (slideDirection: string) => {
     return {
-      x: slideDirection === "right" ? "10%" : "-10%",
+      x: slideDirection === "right" ? "30%" : "-30%",
       opacity: 0,
-      transition: {
-        x: { duration: 0.4 },
-        opacity: { delay: 0.1, duration: 0.3 },
-      },
+      transition: { duration: 0.3 },
     };
   },
 };
 
 type Props = {
+  title: string;
   imageData: ImageData[];
-  category: Category;
+  fullscreen: boolean;
 };
 
-export function ImageGallery({ imageData, category }: Props) {
+export function ImageGallery({ title, imageData, fullscreen }: Props) {
   const [buttonEnabled, setButtonEnabled] = useState<boolean>(true);
 
   const [imageIndexAndDirection, setImageIndexAndDirection] = useState<{
     index: number;
     direction: "left" | "right";
   }>({ index: 0, direction: "right" });
+
+  console.log(imageIndexAndDirection);
 
   const {
     attributes: {
@@ -81,7 +80,7 @@ export function ImageGallery({ imageData, category }: Props) {
     <Container>
       <AnimatePresence
         initial={false}
-        mode={"wait"}
+        mode={"popLayout"}
         custom={imageIndexAndDirection.direction}
       >
         <motion.div
@@ -95,6 +94,24 @@ export function ImageGallery({ imageData, category }: Props) {
           onAnimationStart={() => setButtonEnabled(false)}
           onAnimationComplete={() => setButtonEnabled(true)}
         >
+          {imageIndexAndDirection.index === 0 && (
+            <AnimatePresence>
+              <motion.div
+                style={{
+                  zIndex: "3",
+                  position: "absolute",
+                  top: "50%",
+                  left: "50%",
+                  transform: "translateX(-50%) translateY(-50%)",
+                }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.2, duration: 0.3 }}
+              >
+                <Title>{title}</Title>
+              </motion.div>
+            </AnimatePresence>
+          )}
           <Navigation>
             <StyledButton $direction="left" onClick={() => prevImage()}>
               <PiArrowLeftThin />
@@ -105,8 +122,7 @@ export function ImageGallery({ imageData, category }: Props) {
           </Navigation>
           <StyledImage
             priority
-            placeholder="blur"
-            blurDataURL={getCategoriesDataUrl(category)}
+            $fullscreen={fullscreen}
             alt={alternativeText || ""}
             src={cmsBaseUrl + url}
             width={width}
@@ -123,15 +139,22 @@ export function ImageGallery({ imageData, category }: Props) {
 
 const Container = styled.section`
   position: relative;
-  max-width: 100vw;
+  width: 100vw;
   overflow: hidden;
 `;
 
-const StyledImage = styled(Image)`
+const Title = styled.h2`
+  font-size: 30px;
+  color: #ffff00;
+  &:hover {
+    opacity: 0;
+  }
+`;
+
+const StyledImage = styled(Image)<{ $fullscreen: boolean }>`
   width: 100%;
-  height: fit-content;
-  max-height: 65vh;
-  object-fit: contain;
+  height: ${({ $fullscreen }) => ($fullscreen ? "100vh" : "80vh")};
+  object-fit: ${({ $fullscreen }) => ($fullscreen ? "cover" : "contain")};
   object-position: center;
 `;
 
@@ -146,11 +169,18 @@ const StyledButton = styled.button<{ $direction: "left" | "right" }>`
   flex: 1;
   display: flex;
   justify-content: ${({ $direction }) =>
-    $direction === "right" ? "flex-end" : "flex-sart"};
+    $direction === "right" ? "flex-end" : "flex-start"};
   align-items: center;
   background: none;
   border: none;
   padding: 0 20px;
+  @media only screen and (min-width: 768px) {
+    * {
+      display: none;
+    }
+    cursor: ${({ $direction }) =>
+      $direction === "right" ? "e-resize" : `w-resize`};
+  }
 `;
 
 const ImageCounter = styled.p`

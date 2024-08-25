@@ -14,16 +14,21 @@ export function Customers({ customers }: Props) {
 
         <Contact>
           <h4>CONTACT</h4>
-          <a href="tel:+491792304580">+491792304580</a> •{" "}
-          <a href="mailto:mail@vvonneschmedemann.com">
-            mail@vvonneschmedemann.com
-          </a>
-          <span>
-            <a href="linkedin.com">linkedIn</a>
-          </span>
-          <span>
-            <a href="instagram.com">instagram</a>
-          </span>
+
+          <Links>
+            <p>
+              <a href="tel:+491792304580">+491792304580</a> •{" "}
+              <a href="mailto:mail@vvonneschmedemann.com">
+                mail@vvonneschmedemann.com
+              </a>
+            </p>
+            <span>
+              <a href="linkedin.com">linkedIn</a>
+            </span>
+            <span>
+              <a href="instagram.com">instagram</a>
+            </span>
+          </Links>
         </Contact>
 
         <p>
@@ -42,33 +47,51 @@ const Container = styled.section`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 0 70px;
+  padding: 0 50px;
+  @media only screen and (max-width: 768px) {
+    padding: 100px 20px;
+  }
 `;
 
 const Text = styled.p`
   column-count: 4;
   column-gap: 20px;
   white-space: pre-line;
+  @media only screen and (max-width: 768px) {
+    column-count: 1;
+  }
 `;
 
 const StudioInfo = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
+  padding-top: 100px;
   h3 {
     font-size: 30px;
   }
   a,
   p {
+    width: fit-content;
     font-size: 14px;
     color: black;
     text-decoration: none;
     font-style: italic;
   }
+  a {
+    &:hover {
+      color: #9966ff;
+    }
+  }
 `;
 
-const Contact = styled.div`
-  span {
-    margin-left: 50px;
+const Contact = styled.div``;
+
+const Links = styled.div`
+  display: flex;
+  gap: 50px;
+  @media only screen and (max-width: 768px) {
+    flex-direction: column;
+    gap: 20px;
   }
 `;

@@ -54,4 +54,5 @@ const HorizontalLine = styled.div`
 const Description = styled.p`
   max-width: 800px;
   margin: 100px auto;
+  padding: 0 20px;
 `;

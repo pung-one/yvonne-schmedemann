@@ -1,8 +1,8 @@
-import { AboutPage } from "@/components/About/AboutPage";
+import styles from "./page.module.css";
 
 export default async function Page() {
   return (
-    <p style={{ margin: "250px 100px", maxWidth: "600px", lineHeight: "25px" }}>
+    <p className={styles.textContainer}>
       Fettstraße 7a
       <br />
       20357 Hamburg
