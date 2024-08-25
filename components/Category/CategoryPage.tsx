@@ -57,9 +57,10 @@ export function CategoryPage({ projects }: Props) {
 const Container = styled.section`
   position: relative;
   max-width: 1200px;
-  margin: 170px auto;
+  margin: 0 auto;
+  padding-top: 170px;
   @media only screen and (max-width: 768px) {
-    margin: 0 auto;
+    padding-top: 70px;
   }
 `;
 
@@ -177,7 +178,6 @@ const ImageWrapper = styled(Link)<{ $title: string }>`
     transform: translateY(-50%) scale(0);
   }
   &:hover {
-    cursor: pointer;
     &:after {
       transform: translateY(-50%) scale(1);
     }

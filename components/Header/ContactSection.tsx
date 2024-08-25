@@ -30,7 +30,7 @@ const Container = styled.div`
   display: flex;
   gap: 30px;
   @media only screen and (max-width: 768px) {
-    display: none;
+    flex-direction: column;
   }
 `;
 
@@ -52,5 +52,8 @@ const ContactElement = styled.div`
     color: black;
     text-decoration: none;
     font-style: italic;
+    &:hover {
+      color: #9966ff;
+    }
   }
 `;

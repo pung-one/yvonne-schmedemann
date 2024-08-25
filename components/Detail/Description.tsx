@@ -36,7 +36,6 @@ const Container = styled.section`
   max-width: 1200px;
   margin: 50px auto;
   padding: 0 10px;
-  border-bottom: 1px solid black;
 `;
 
 const Text = styled.p`

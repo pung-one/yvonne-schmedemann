@@ -72,10 +72,16 @@ const StudioInfo = styled.div`
   }
   a,
   p {
+    width: fit-content;
     font-size: 14px;
     color: black;
     text-decoration: none;
     font-style: italic;
+  }
+  a {
+    &:hover {
+      color: #9966ff;
+    }
   }
 `;
 

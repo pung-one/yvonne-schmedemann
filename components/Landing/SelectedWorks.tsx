@@ -43,10 +43,10 @@ export function SelectedWorks({ projects }: Props) {
                 key={project.id}
                 className={`item${index + 1}`}
                 $title={project.attributes.Titel}
+                $cursorColor={getCategoryColor(category)}
               >
                 <StyledImage
                   placeholder="blur"
-                  $cursorColor={getCategoryColor(category)}
                   blurDataURL={getCategoriesBlurDataUrl(category)}
                   src={cmsBaseUrl + url}
                   width={width}
@@ -193,12 +193,17 @@ const ImageSection = styled.div`
   }
 `;
 
-const ImageWrapper = styled(Link)<{ $title: string }>`
+const ImageWrapper = styled(Link)<{ $title: string; $cursorColor: string }>`
   position: relative;
   width: 100%;
   @media only screen and (min-width: 768px) {
     padding-top: 100%;
   }
+  cursor: ${({ $cursorColor }) =>
+    `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30'%3E%3Ccircle cx='12' cy='12' r='10' fill='${$cursorColor.replace(
+      "#",
+      "%23"
+    )}'/%3E%3C/svg%3E")  15 15, auto`} !important;
   &:after {
     position: absolute;
     content: "${({ $title }) => `${$title}`}";
@@ -211,14 +216,13 @@ const ImageWrapper = styled(Link)<{ $title: string }>`
     transform: translateY(-50%) scale(0);
   }
   &:hover {
-    cursor: pointer;
     &:after {
       transform: translateY(-50%) scale(1);
     }
   }
 `;
 
-const StyledImage = styled(Image)<{ $cursorColor: string }>`
+const StyledImage = styled(Image)`
   @media only screen and (min-width: 768px) {
     position: absolute;
     top: 0;
@@ -227,9 +231,4 @@ const StyledImage = styled(Image)<{ $cursorColor: string }>`
   width: 100%;
   height: 100%;
   object-fit: contain;
-  cursor: ${({ $cursorColor }) =>
-    `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30'%3E%3Ccircle cx='12' cy='12' r='10' fill='${$cursorColor.replace(
-      "#",
-      "%23"
-    )}'/%3E%3C/svg%3E"), auto`};
 `;

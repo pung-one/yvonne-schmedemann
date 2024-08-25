@@ -13,6 +13,9 @@ export function Footer() {
 }
 
 const Container = styled.footer`
+  z-index: 4;
+  position: absolute;
+  bottom: 0;
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -22,10 +25,13 @@ const Container = styled.footer`
   border-top: 1px solid black;
   * {
     font-size: 14px;
-    color: black;
     text-decoration: none;
   }
   a {
+    color: black;
     margin-left: 30px;
+    &:hover {
+      color: #9966ff;
+    }
   }
 `;

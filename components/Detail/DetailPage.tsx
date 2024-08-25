@@ -7,7 +7,7 @@ import { Project } from "@/lib/types";
 
 export function DetailPage({ project }: { project: Project }) {
   return (
-    <Container>
+    <Container $fullscreen={project.attributes.fullscreen}>
       {project && (
         <>
           <ImageGallery
@@ -23,6 +23,7 @@ export function DetailPage({ project }: { project: Project }) {
   );
 }
 
-const Container = styled.article`
+const Container = styled.article<{ $fullscreen: boolean }>`
   position: relative;
+  padding-top: ${({ $fullscreen }) => ($fullscreen ? "0" : "71px")};
 `;

@@ -15,13 +15,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
-        <StyledComponentsRegistry>
-          <GlobalStyles />
+      <StyledComponentsRegistry>
+        <GlobalStyles />
 
-          <Layout>{children}</Layout>
-        </StyledComponentsRegistry>
-      </body>
+        <Layout>{children}</Layout>
+      </StyledComponentsRegistry>
     </html>
   );
 }

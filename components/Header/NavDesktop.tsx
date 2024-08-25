@@ -30,16 +30,15 @@ export function NavDesktop() {
 const Navigation = styled.nav`
   display: flex;
   gap: 30px;
-  @media only screen and (max-width: 768px) {
-    display: none;
-  }
 `;
 
 const StyledLink = styled(Link)<{ $about?: boolean; $color: string }>`
   color: black;
   text-decoration: none;
   margin-left: ${({ $about }) => ($about ? "30px" : "0")};
+  transition: transform 0.2s;
   &:hover {
     color: ${({ $color }) => $color};
+    transform: ${({ $about }) => ($about ? "rotate(7deg)" : "none")};
   }
 `;

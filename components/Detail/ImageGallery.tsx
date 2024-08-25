@@ -6,6 +6,7 @@ import { PiArrowLeftThin, PiArrowRightThin } from "react-icons/pi";
 import { Category } from "@/lib/types";
 import { ImageData } from "@/lib/types";
 import { getCategoriesBlurDataUrl } from "@/lib/_utils";
+import arrowLeft from "@/public/svg/arrowLeft.svg";
 
 const cmsBaseUrl = process.env.NEXT_PUBLIC_CMS_BASE_URL;
 
@@ -128,7 +129,7 @@ const Container = styled.section`
 
 const StyledImage = styled(Image)<{ $fullscreen: boolean }>`
   width: 100%;
-  height: ${({ $fullscreen }) => ($fullscreen ? "100dvh" : "fit-content")};
+  height: ${({ $fullscreen }) => ($fullscreen ? "100dvh" : "80dvh")};
   object-fit: ${({ $fullscreen }) => ($fullscreen ? "cover" : "contain")};
   object-position: center;
 `;
@@ -154,7 +155,7 @@ const StyledButton = styled.button<{ $direction: "left" | "right" }>`
       display: none;
     }
     cursor: ${({ $direction }) =>
-      $direction === "right" ? "e-resize" : "w-resize"};
+      $direction === "right" ? "e-resize" : `w-resize`};
   }
 `;
 

@@ -47,6 +47,7 @@ export function AllPage({ projects }: Props) {
                 key={project.id}
                 className={`item${index + 1}`}
                 $title={project.attributes.Titel}
+                $cursorColor={getCategoryColor(category)}
                 onClick={() =>
                   setVisitedProjects((prev) => [...prev, project.id])
                 }
@@ -61,7 +62,6 @@ export function AllPage({ projects }: Props) {
                 <StyledImage
                   placeholder="blur"
                   $visited={visited}
-                  $cursorColor={getCategoryColor(category)}
                   blurDataURL={getCategoriesBlurDataUrl(category)}
                   src={cmsBaseUrl + url}
                   width={width}
@@ -93,10 +93,15 @@ const ImageSection = styled.div`
   width: 100%;
 `;
 
-const ImageWrapper = styled(Link)<{ $title: string }>`
+const ImageWrapper = styled(Link)<{ $title: string; $cursorColor: string }>`
   position: relative;
   width: 200px;
   height: 300px;
+  cursor: ${({ $cursorColor }) =>
+    `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30'%3E%3Ccircle cx='12' cy='12' r='10' fill='${$cursorColor.replace(
+      "#",
+      "%23"
+    )}'/%3E%3C/svg%3E")  15 15, auto`};
   &:after {
     z-index: 5;
     position: absolute;
@@ -110,10 +115,13 @@ const ImageWrapper = styled(Link)<{ $title: string }>`
     transform: scale(0);
   }
   &:hover {
-    cursor: pointer;
     &:after {
       transform: scale(1);
     }
+  }
+  @media only screen and (max-width: 768px) {
+    width: 40%;
+    height: fit-content;
   }
 `;
 
@@ -132,14 +140,9 @@ const CategoryDot = styled.div<{
   background-color: ${({ $categoryColor }) => $categoryColor};
 `;
 
-const StyledImage = styled(Image)<{ $visited: boolean; $cursorColor: string }>`
+const StyledImage = styled(Image)<{ $visited: boolean }>`
   width: 100%;
   height: 100%;
   object-fit: cover;
   filter: ${({ $visited }) => ($visited ? "brightness(40%)" : "none")};
-  cursor: ${({ $cursorColor }) =>
-    `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30'%3E%3Ccircle cx='12' cy='12' r='10' fill='${$cursorColor.replace(
-      "#",
-      "%23"
-    )}'/%3E%3C/svg%3E"), auto`};
 `;
