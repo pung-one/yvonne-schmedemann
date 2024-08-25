@@ -47,7 +47,11 @@ export function NavMobile({
       >
         ALL
       </StyledLink>
-      <StyledLink $color={"black"} href={"/about"}>
+      <StyledLink
+        onClick={() => setMenuOpen(false)}
+        $color={"black"}
+        href={"/about"}
+      >
         ABOUT
       </StyledLink>
 

@@ -104,9 +104,7 @@ export function ImageGallery({ imageData, category, fullscreen }: Props) {
           </Navigation>
           <StyledImage
             priority
-            placeholder="blur"
             $fullscreen={fullscreen}
-            blurDataURL={getCategoriesBlurDataUrl(category)}
             alt={alternativeText || ""}
             src={cmsBaseUrl + url}
             width={width}
@@ -129,7 +127,7 @@ const Container = styled.section`
 
 const StyledImage = styled(Image)<{ $fullscreen: boolean }>`
   width: 100%;
-  height: ${({ $fullscreen }) => ($fullscreen ? "100dvh" : "80dvh")};
+  height: ${({ $fullscreen }) => ($fullscreen ? "100vh" : "80vh")};
   object-fit: ${({ $fullscreen }) => ($fullscreen ? "cover" : "contain")};
   object-position: center;
 `;
