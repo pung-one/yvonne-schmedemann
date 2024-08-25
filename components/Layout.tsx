@@ -6,6 +6,7 @@ import {
   Dispatch,
   SetStateAction,
   useEffect,
+  useMemo,
   useState,
 } from "react";
 import { ContactSection } from "./Header/ContactSection";
@@ -61,17 +62,32 @@ export function Layout({ children }: { children: React.ReactNode }) {
     document.body.style.overflow = menuOpen ? "hidden" : "initial";
   }, [menuOpen]);
 
+  const dynamicY = useMemo(() => {
+    return ["/", "/about", "/all", "/impressum"].includes(pathname) ? y : 20;
+  }, [pathname, y]);
+
+  const dynamicOpacity = useMemo(() => {
+    return ["/", "/about", "/all", "/impressum"].includes(pathname)
+      ? opacity
+      : 0;
+  }, [pathname, opacity]);
+
+  const dynamicBorderMargin = useMemo(() => {
+    return ["/", "/about", "/all", "/impressum"].includes(pathname)
+      ? borderMargin
+      : 500;
+  }, [pathname, borderMargin]);
+
+  const dynamicPointerEvents = useMemo(() => {
+    return ["/", "/about", "/all", "/impressum"].includes(pathname)
+      ? pointerEvents
+      : "none";
+  }, [pathname, pointerEvents]);
+
   return (
     <BodyContainer>
       <HeaderContainer>
-        <StyledLink
-          href={"/"}
-          style={{
-            y: ["/", "/about", "/all", "/impressum"].includes(pathname)
-              ? y
-              : 20,
-          }}
-        >
+        <StyledLink href={"/"} style={{ y: dynamicY }}>
           YVONNE
           <br />
           SCHMEDEMANN
@@ -80,14 +96,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
         {viewportWidth > 768 && (
           <motion.div
             style={{
-              opacity: ["/", "/about", "/all", "/impressum"].includes(pathname)
-                ? opacity
-                : 0,
-              pointerEvents: ["/", "/about", "/all", "/impressum"].includes(
-                pathname
-              )
-                ? pointerEvents
-                : "none",
+              opacity: dynamicOpacity,
+              pointerEvents: dynamicPointerEvents,
             }}
           >
             <ContactSection />
@@ -109,9 +119,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
       <BorderBottom
         style={{
-          marginLeft: ["/", "/about", "/all", "/impressum"].includes(pathname)
-            ? borderMargin
-            : 500,
+          marginLeft: dynamicBorderMargin,
         }}
       />
 
