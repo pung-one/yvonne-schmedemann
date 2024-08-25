@@ -6,6 +6,7 @@ import { Layout } from "@/components/Layout";
 export const metadata: Metadata = {
   title: "Yvonne Schwedemann",
   description: "Photography by Yvonne Schwedemann",
+  robots: { index: false, follow: false },
 };
 
 export default function RootLayout({
