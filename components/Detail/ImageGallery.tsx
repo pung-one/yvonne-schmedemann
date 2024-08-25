@@ -5,8 +5,6 @@ import Image from "next/image";
 import { PiArrowLeftThin, PiArrowRightThin } from "react-icons/pi";
 import { Category } from "@/lib/types";
 import { ImageData } from "@/lib/types";
-import { getCategoriesBlurDataUrl } from "@/lib/_utils";
-import arrowLeft from "@/public/svg/arrowLeft.svg";
 
 const cmsBaseUrl = process.env.NEXT_PUBLIC_CMS_BASE_URL;
 
@@ -32,18 +30,20 @@ const variants = {
 };
 
 type Props = {
+  title: string;
   imageData: ImageData[];
-  category: Category;
   fullscreen: boolean;
 };
 
-export function ImageGallery({ imageData, category, fullscreen }: Props) {
+export function ImageGallery({ title, imageData, fullscreen }: Props) {
   const [buttonEnabled, setButtonEnabled] = useState<boolean>(true);
 
   const [imageIndexAndDirection, setImageIndexAndDirection] = useState<{
     index: number;
     direction: "left" | "right";
   }>({ index: 0, direction: "right" });
+
+  console.log(imageIndexAndDirection);
 
   const {
     attributes: {
@@ -94,6 +94,24 @@ export function ImageGallery({ imageData, category, fullscreen }: Props) {
           onAnimationStart={() => setButtonEnabled(false)}
           onAnimationComplete={() => setButtonEnabled(true)}
         >
+          {imageIndexAndDirection.index === 0 && (
+            <AnimatePresence>
+              <motion.div
+                style={{
+                  zIndex: "3",
+                  position: "absolute",
+                  top: "50%",
+                  left: "50%",
+                  transform: "translateX(-50%) translateY(-50%)",
+                }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.2, duration: 0.3 }}
+              >
+                <Title>{title}</Title>
+              </motion.div>
+            </AnimatePresence>
+          )}
           <Navigation>
             <StyledButton $direction="left" onClick={() => prevImage()}>
               <PiArrowLeftThin />
@@ -123,6 +141,14 @@ const Container = styled.section`
   position: relative;
   width: 100vw;
   overflow: hidden;
+`;
+
+const Title = styled.h2`
+  font-size: 30px;
+  color: #ffff00;
+  &:hover {
+    opacity: 0;
+  }
 `;
 
 const StyledImage = styled(Image)<{ $fullscreen: boolean }>`
