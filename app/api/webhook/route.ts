@@ -18,6 +18,7 @@ export async function POST(request: Request) {
     if (changedModel === "projekt") {
       revalidatePath(`/${entry.category}`);
       revalidatePath(`/${entry.category}/${entry.id}`);
+      revalidatePath("/all");
       if (entry.positionOnLandingPage) {
         revalidatePath("/");
       }

@@ -43,8 +43,6 @@ export function ImageGallery({ title, imageData, fullscreen }: Props) {
     direction: "left" | "right";
   }>({ index: 0, direction: "right" });
 
-  console.log(imageIndexAndDirection);
-
   const {
     attributes: {
       alternativeText,

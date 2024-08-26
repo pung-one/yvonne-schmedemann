@@ -84,6 +84,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
       : "none";
   }, [pathname, pointerEvents]);
 
+  console.log(pathname);
+  console.log("dynamicY: ", dynamicY);
+
   return (
     <BodyContainer>
       <HeaderContainer>
