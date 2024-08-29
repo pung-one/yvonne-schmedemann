@@ -1,9 +1,8 @@
-import { AnimatePresence, delay, motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import styled from "styled-components";
 import Image from "next/image";
 import { PiArrowLeftThin, PiArrowRightThin } from "react-icons/pi";
-import { Category } from "@/lib/types";
 import { ImageData } from "@/lib/types";
 
 const cmsBaseUrl = process.env.NEXT_PUBLIC_CMS_BASE_URL;

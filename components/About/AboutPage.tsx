@@ -28,9 +28,10 @@ const Container = styled.div`
   position: relative;
   display: flex;
   max-width: 1400px;
-  margin: 250px auto;
+  margin: 0 auto;
+  padding-top: 250px;
   @media only screen and (max-width: 768px) {
-    margin: 170px auto;
+    padding-top: 170px;
     flex-direction: column;
   }
 `;

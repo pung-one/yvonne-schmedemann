@@ -76,12 +76,13 @@ export function AllPage({ projects }: Props) {
   );
 }
 
-const Container = styled.section`
+const Container = styled.article`
   position: relative;
   max-width: 1200px;
-  margin: 270px auto;
+  margin: 0 auto;
+  padding-top: 270px;
   @media only screen and (max-width: 768px) {
-    margin: 90px auto;
+    padding-top: 90px;
   }
 `;
 
@@ -96,7 +97,7 @@ const ImageSection = styled.div`
 const ImageWrapper = styled(Link)<{ $title: string; $cursorColor: string }>`
   position: relative;
   width: 200px;
-  height: 300px;
+  height: 250px;
   cursor: ${({ $cursorColor }) =>
     `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30'%3E%3Ccircle cx='12' cy='12' r='10' fill='${$cursorColor.replace(
       "#",
@@ -120,8 +121,8 @@ const ImageWrapper = styled(Link)<{ $title: string; $cursorColor: string }>`
     }
   }
   @media only screen and (max-width: 768px) {
-    width: 40%;
-    height: fit-content;
+    width: 40vw;
+    height: 50vw;
   }
 `;
 

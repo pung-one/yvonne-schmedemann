@@ -43,6 +43,6 @@ export function getCategoryColor(category: Category | "all") {
     case "all":
       return "#9966ff";
     default:
-      return "";
+      return "black";
   }
 }

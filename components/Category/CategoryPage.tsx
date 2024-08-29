@@ -54,7 +54,7 @@ export function CategoryPage({ projects }: Props) {
   );
 }
 
-const Container = styled.section`
+const Container = styled.article`
   position: relative;
   max-width: 1200px;
   margin: 0 auto;
