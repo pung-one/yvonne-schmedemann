@@ -12,12 +12,14 @@ import {
 import { ContactSection } from "./Header/ContactSection";
 import { NavDesktop } from "./Header/NavDesktop";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import { Footer } from "./Footer/Footer";
 import { TfiClose } from "react-icons/tfi";
 import { CiMenuBurger } from "react-icons/ci";
 import { NavMobile } from "./Header/NavMobile";
+import { getCategoryColor } from "@/lib/_utils";
+import { Category } from "@/lib/types";
 
 export const VisitedProjects = createContext<{
   visitedProjects: number[];
@@ -84,11 +86,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
       : "none";
   }, [pathname, pointerEvents]);
 
-  console.log(pathname);
-  console.log("dynamicY: ", dynamicY);
-
   return (
-    <BodyContainer>
+    <BodyContainer
+      $cursorColor={getCategoryColor(pathname.replace("/", "") as Category)}
+    >
       <HeaderContainer>
         <StyledLink href={"/"} style={{ y: dynamicY }}>
           YVONNE
@@ -142,9 +143,14 @@ export function Layout({ children }: { children: React.ReactNode }) {
   );
 }
 
-const BodyContainer = styled.body`
+const BodyContainer = styled.body<{ $cursorColor: string }>`
   position: relative;
   min-height: 100dvh;
+  cursor: ${({ $cursorColor }) =>
+    `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30'%3E%3Ccircle cx='12' cy='12' r='10' fill='${$cursorColor.replace(
+      "#",
+      "%23"
+    )}'/%3E%3C/svg%3E")  15 15, auto`} !important;
 `;
 
 const HeaderContainer = styled.header`
