@@ -35,8 +35,9 @@ export function NavMobile({
       <StyledLink onClick={() => setMenuOpen(false)} href={"/about"}>
         ABOUT
       </StyledLink>
-
-      <ContactSection />
+      <StyledLink onClick={() => setMenuOpen(false)} href={"/about#contact"}>
+        CONTACT
+      </StyledLink>
     </Navigation>
   );
 }

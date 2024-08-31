@@ -38,25 +38,20 @@ const Container = styled.article<{
 }>`
   position: relative;
   padding-top: ${({ $fullscreen }) => ($fullscreen ? "0" : "71px")};
-
-  /* cursor: ${({ $cursorColor }) =>
-    `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30'%3E%3Ccircle cx='12' cy='12' r='10' fill='${$cursorColor.replace(
-      "#",
-      "%23"
-    )}'/%3E%3C/svg%3E")  15 15, auto`} !important; */
 `;
 
 const CloseButton = styled.button`
   position: fixed;
   z-index: 99999;
   right: 35px;
-  top: 100px;
+  top: 90px;
   height: 45px;
   background: none;
   border: none;
-  color: black;
+  color: grey;
   cursor: inherit;
-  //mix-blend-mode: difference;
+  mix-blend-mode: difference;
+  transition: transform 0.2s;
   &:hover {
     transform: rotate(-15deg);
   }

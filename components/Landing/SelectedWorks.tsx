@@ -48,7 +48,7 @@ export function SelectedWorks({ projects }: Props) {
                 href={`${category}/${project.id}`}
                 key={project.id}
                 className={`item${index + 1}`}
-                $title={project.attributes.Titel}
+                $title={`${project.attributes.Titel} \\A ${category}+${project.attributes.Bilder.data.length}`}
                 onMouseEnter={() => setHoverImageFromCategory(category)}
                 onMouseLeave={() => setHoverImageFromCategory("none")}
                 $cursorColor={getCategoryColor(category)}
@@ -214,12 +214,14 @@ const ImageWrapper = styled(Link)<{ $title: string; $cursorColor: string }>`
     )}'/%3E%3C/svg%3E")  15 15, auto`} !important;
   &:after {
     position: absolute;
-    content: "${({ $title }) => `${$title}`}";
+    content: "${({ $title }) => $title}";
+    white-space: pre-wrap;
     top: 50%;
     left: 0;
     width: 100%;
     text-align: center;
-    font-size: 18px;
+    font-size: 23px;
+    font-weight: 500;
     color: #ffff00;
     transform: translateY(-50%) scale(0);
   }

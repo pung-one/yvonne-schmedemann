@@ -9,7 +9,7 @@ export function Customers({ customers }: Props) {
     <Container>
       <Text>{customers}</Text>
 
-      <StudioInfo>
+      <StudioInfo id="contact">
         <h3>Studio</h3>
 
         <Contact>

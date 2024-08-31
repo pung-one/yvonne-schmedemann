@@ -17,6 +17,14 @@ export const GlobalStyles = createGlobalStyle`
     font-display: swap;
     font-style: italic;
   }
+
+  @font-face {
+    font-family: 'IvarDisplay';
+    src: url('/fonts/IvarDisplay-Medium.woff') format('woff'),
+        url('/fonts/IvarDisplay-Medium.woff2') format('woff2');
+    font-display: swap;
+    font-weight: 500;
+  }
   
   @font-face {
     font-family: 'LogoFont';

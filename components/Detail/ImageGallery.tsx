@@ -150,7 +150,7 @@ const Title = styled.h2`
 
 const StyledImage = styled(Image)<{ $fullscreen: boolean }>`
   width: 100%;
-  height: ${({ $fullscreen }) => ($fullscreen ? "100vh" : "80vh")};
+  height: ${({ $fullscreen }) => ($fullscreen ? "100vh" : "fit-content")};
   object-fit: ${({ $fullscreen }) => ($fullscreen ? "cover" : "contain")};
   object-position: center;
 `;

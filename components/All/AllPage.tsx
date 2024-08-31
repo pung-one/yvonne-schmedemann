@@ -28,7 +28,7 @@ export function AllPage({ projects }: Props) {
     let hash = 0;
     for (let i = 0; i < str.length; i++) {
       hash = (hash << 5) - hash + str.charCodeAt(i);
-      hash = hash & hash; // Convert to 32bit integer
+      hash = hash & hash;
     }
     return Math.abs(hash);
   }
@@ -53,16 +53,16 @@ export function AllPage({ projects }: Props) {
               },
             } = imageData;
 
-            const hashValue = hashStringToNumber(project.id.toString());
-            const positionTop = `${hashValue % 80}%`;
-            const positionLeft = `${(hashValue * 2) % 80}%`;
+            const hashValue = hashStringToNumber(project.attributes.Titel);
+            const positionTop = `${hashValue % 100}%`;
+            const positionLeft = `${(hashValue * 2) % 100}%`;
 
             return (
               <ImageWrapper
                 href={`${category}/${project.id}`}
                 key={project.id}
                 className={`item${index + 1}`}
-                $title={project.attributes.Titel}
+                $title={`${project.attributes.Titel} \\A ${category}+${project.attributes.Bilder.data.length}`}
                 $cursorColor={getCategoryColor(category)}
                 onMouseEnter={() => setHoverImageFromCategory(category)}
                 onMouseLeave={() => setHoverImageFromCategory("none")}
@@ -124,18 +124,20 @@ const ImageWrapper = styled(Link)<{ $title: string; $cursorColor: string }>`
   &:after {
     z-index: 5;
     position: absolute;
-    content: "${({ $title }) => `${$title}`}";
+    content: "${({ $title }) => $title}";
+    white-space: pre-wrap;
     top: 50%;
     left: 0;
     width: 100%;
     text-align: center;
-    font-size: 20px;
+    font-size: 23px;
+    font-weight: 500;
     color: #ffff00;
-    transform: scale(0);
+    transform: translateY(-50%) scale(0);
   }
   &:hover {
     &:after {
-      transform: scale(1);
+      transform: translateY(-50%) scale(1);
     }
   }
   @media only screen and (max-width: 768px) {

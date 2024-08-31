@@ -4,8 +4,8 @@ import { GlobalStyles } from "@/globalStyles/global_styles";
 import { Layout } from "@/components/Layout";
 
 export const metadata: Metadata = {
-  title: "Yvonne Schwedemann",
-  description: "Photography by Yvonne Schwedemann",
+  title: "Yvonne Schmedemann",
+  description: "Photography by Yvonne Schmedemann",
   robots: { index: false, follow: false },
 };
 
