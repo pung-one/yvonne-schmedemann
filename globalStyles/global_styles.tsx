@@ -39,8 +39,8 @@ export const GlobalStyles = createGlobalStyle`
     overflow-anchor: none;
   }
   
-  body, a {
-    //cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30'%3E%3Ccircle cx='12' cy='12' r='10' fill='black'/%3E%3C/svg%3E") 15 15, auto;
+  a {
+    cursor: inherit;
   }
 
   button {

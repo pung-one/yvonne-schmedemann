@@ -39,11 +39,11 @@ const Container = styled.article<{
   position: relative;
   padding-top: ${({ $fullscreen }) => ($fullscreen ? "0" : "71px")};
 
-  cursor: ${({ $cursorColor }) =>
+  /* cursor: ${({ $cursorColor }) =>
     `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30'%3E%3Ccircle cx='12' cy='12' r='10' fill='${$cursorColor.replace(
       "#",
       "%23"
-    )}'/%3E%3C/svg%3E")  15 15, auto`} !important;
+    )}'/%3E%3C/svg%3E")  15 15, auto`} !important; */
 `;
 
 const CloseButton = styled.button`
@@ -55,5 +55,9 @@ const CloseButton = styled.button`
   background: none;
   border: none;
   color: black;
+  cursor: inherit;
   //mix-blend-mode: difference;
+  &:hover {
+    transform: rotate(-15deg);
+  }
 `;

@@ -4,7 +4,9 @@ import Image from "next/image";
 import styled from "styled-components";
 import Link from "next/link";
 import { getCategoriesBlurDataUrl, getCategoryColor } from "@/lib/_utils";
-import { Projects } from "@/lib/types";
+import { Category, Projects } from "@/lib/types";
+import { useContext, useState } from "react";
+import { HoverImageFromCategoryContext } from "../Layout";
 
 const cmsBaseUrl = process.env.NEXT_PUBLIC_CMS_BASE_URL;
 
@@ -13,6 +15,10 @@ type Props = {
 };
 
 export function SelectedWorks({ projects }: Props) {
+  const { setHoverImageFromCategory } = useContext(
+    HoverImageFromCategoryContext
+  );
+
   return (
     <Container>
       <Headline>
@@ -43,6 +49,8 @@ export function SelectedWorks({ projects }: Props) {
                 key={project.id}
                 className={`item${index + 1}`}
                 $title={project.attributes.Titel}
+                onMouseEnter={() => setHoverImageFromCategory(category)}
+                onMouseLeave={() => setHoverImageFromCategory("none")}
                 $cursorColor={getCategoryColor(category)}
               >
                 <StyledImage

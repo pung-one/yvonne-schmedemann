@@ -15,7 +15,6 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import { Footer } from "./Footer/Footer";
-import { TfiClose } from "react-icons/tfi";
 import { CiMenuBurger } from "react-icons/ci";
 import { NavMobile } from "./Header/NavMobile";
 import { getCategoryColor } from "@/lib/_utils";
@@ -29,10 +28,22 @@ export const VisitedProjects = createContext<{
   setVisitedProjects: () => {},
 });
 
+export const HoverImageFromCategoryContext = createContext<{
+  hoverImageFromCategory: Category | "none";
+  setHoverImageFromCategory: Dispatch<SetStateAction<Category | "none">>;
+}>({
+  hoverImageFromCategory: "none",
+  setHoverImageFromCategory: () => {},
+});
+
 export function Layout({ children }: { children: React.ReactNode }) {
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
   const [visitedProjects, setVisitedProjects] = useState<number[]>([]);
   const [viewportWidth, setViewportWidth] = useState(1079);
+
+  const [hoverImageFromCategory, setHoverImageFromCategory] = useState<
+    Category | "none"
+  >("none");
 
   const pathname = usePathname();
 
@@ -88,55 +99,64 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
   return (
     <BodyContainer
-      $cursorColor={getCategoryColor(pathname.replace("/", "") as Category)}
+      $cursorColor={
+        getCategoryColor(pathname.replace("/", "") as Category) || "black"
+      }
     >
-      <HeaderContainer>
-        <StyledLink href={"/"} style={{ y: dynamicY }}>
-          YVONNE
-          <br />
-          SCHMEDEMANN
-        </StyledLink>
+      <HoverImageFromCategoryContext.Provider
+        value={{
+          hoverImageFromCategory: hoverImageFromCategory,
+          setHoverImageFromCategory: setHoverImageFromCategory,
+        }}
+      >
+        <HeaderContainer>
+          <StyledLink href={"/"} style={{ y: dynamicY }}>
+            YVONNE
+            <br />
+            SCHMEDEMANN
+          </StyledLink>
 
-        {viewportWidth > 768 && (
-          <motion.div
-            style={{
-              opacity: dynamicOpacity,
-              pointerEvents: dynamicPointerEvents,
+          {viewportWidth > 768 && (
+            <motion.div
+              style={{
+                opacity: dynamicOpacity,
+                pointerEvents: dynamicPointerEvents,
+              }}
+            >
+              <ContactSection />
+            </motion.div>
+          )}
+
+          {viewportWidth > 900 ? (
+            <NavDesktop />
+          ) : (
+            <>
+              <MenuButton onClick={() => setMenuOpen(!menuOpen)}>
+                <CiMenuBurger />
+              </MenuButton>
+            </>
+          )}
+        </HeaderContainer>
+
+        <NavMobile menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+
+        <BorderBottom
+          style={{
+            marginLeft: dynamicBorderMargin,
+          }}
+        />
+
+        <MainContainer>
+          <VisitedProjects.Provider
+            value={{
+              visitedProjects: visitedProjects,
+              setVisitedProjects: setVisitedProjects,
             }}
           >
-            <ContactSection />
-          </motion.div>
-        )}
-
-        {viewportWidth > 900 ? (
-          <NavDesktop />
-        ) : (
-          <>
-            <MenuButton onClick={() => setMenuOpen(!menuOpen)}>
-              {menuOpen ? <TfiClose /> : <CiMenuBurger />}
-            </MenuButton>
-          </>
-        )}
-      </HeaderContainer>
-
-      <NavMobile menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-
-      <BorderBottom
-        style={{
-          marginLeft: dynamicBorderMargin,
-        }}
-      />
-
-      <MainContainer $blur={menuOpen}>
-        <VisitedProjects.Provider
-          value={{
-            visitedProjects: visitedProjects,
-            setVisitedProjects: setVisitedProjects,
-          }}
-        >
-          {children}
-        </VisitedProjects.Provider>
-      </MainContainer>
+            {children}
+          </VisitedProjects.Provider>
+        </MainContainer>
+      </HoverImageFromCategoryContext.Provider>
 
       <Footer />
     </BodyContainer>
@@ -169,6 +189,7 @@ const HeaderContainer = styled.header`
 `;
 
 const MenuButton = styled.button`
+  z-index: 7;
   position: absolute;
   display: flex;
   align-items: center;
@@ -176,7 +197,7 @@ const MenuButton = styled.button`
   right: 0;
   height: 6vh;
   width: 6vh;
-  margin: 20px;
+  margin: 0 20px;
   background: none;
   border: none;
   * {
@@ -211,9 +232,8 @@ const StyledLink = styled(motion(Link))`
   }
 `;
 
-const MainContainer = styled.main<{ $blur: boolean }>`
+const MainContainer = styled.main`
   z-index: 3;
   position: relative;
   padding-bottom: 150px;
-  filter: ${({ $blur }) => ($blur ? "blur(15px)" : "none")};
 `;
