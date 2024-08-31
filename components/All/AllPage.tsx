@@ -10,7 +10,7 @@ import {
   getCategoryColor,
 } from "@/lib/_utils";
 import { useContext } from "react";
-import { VisitedProjects } from "../Layout";
+import { HoverImageFromCategoryContext, VisitedProjects } from "../Layout";
 
 const cmsBaseUrl = process.env.NEXT_PUBLIC_CMS_BASE_URL;
 
@@ -20,6 +20,18 @@ type Props = {
 
 export function AllPage({ projects }: Props) {
   const { visitedProjects, setVisitedProjects } = useContext(VisitedProjects);
+  const { setHoverImageFromCategory } = useContext(
+    HoverImageFromCategoryContext
+  );
+
+  function hashStringToNumber(str: string) {
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) {
+      hash = (hash << 5) - hash + str.charCodeAt(i);
+      hash = hash & hash; // Convert to 32bit integer
+    }
+    return Math.abs(hash);
+  }
 
   return (
     <Container>
@@ -41,6 +53,10 @@ export function AllPage({ projects }: Props) {
               },
             } = imageData;
 
+            const hashValue = hashStringToNumber(project.id.toString());
+            const positionTop = `${hashValue % 80}%`;
+            const positionLeft = `${(hashValue * 2) % 80}%`;
+
             return (
               <ImageWrapper
                 href={`${category}/${project.id}`}
@@ -48,6 +64,8 @@ export function AllPage({ projects }: Props) {
                 className={`item${index + 1}`}
                 $title={project.attributes.Titel}
                 $cursorColor={getCategoryColor(category)}
+                onMouseEnter={() => setHoverImageFromCategory(category)}
+                onMouseLeave={() => setHoverImageFromCategory("none")}
                 onClick={() =>
                   setVisitedProjects((prev) => [...prev, project.id])
                 }
@@ -55,8 +73,8 @@ export function AllPage({ projects }: Props) {
                 {visited && (
                   <CategoryDot
                     $categoryColor={getCategoryColor(category)}
-                    $positionTop={`${Math.floor(Math.random() * 80)}%`}
-                    $positionLeft={`${Math.floor(Math.random() * 80)}%`}
+                    $positionTop={positionTop}
+                    $positionLeft={positionLeft}
                   />
                 )}
                 <StyledImage
@@ -135,8 +153,8 @@ const CategoryDot = styled.div<{
   position: absolute;
   top: ${({ $positionTop }) => $positionTop};
   left: ${({ $positionLeft }) => $positionLeft};
-  height: 30px;
-  width: 30px;
+  height: 20px;
+  width: 20px;
   border-radius: 50%;
   background-color: ${({ $categoryColor }) => $categoryColor};
 `;

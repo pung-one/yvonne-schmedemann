@@ -2,35 +2,51 @@ import { getCategoryColor } from "@/lib/_utils";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import styled from "styled-components";
+import { useContext } from "react";
+import { HoverImageFromCategoryContext } from "../Layout";
 
 export function NavDesktop() {
   const pathname = usePathname();
 
+  const { hoverImageFromCategory } = useContext(HoverImageFromCategoryContext);
+
   return (
     <Navigation>
       <StyledLink
-        $isActive={pathname.includes("portrait")}
+        $isActive={
+          pathname.includes("portrait") ||
+          hoverImageFromCategory.includes("portrait")
+        }
         $color={getCategoryColor("portrait")}
         href={"/portrait"}
       >
         PORTRAIT
       </StyledLink>
       <StyledLink
-        $isActive={pathname.includes("corporate")}
+        $isActive={
+          pathname.includes("corporate") ||
+          hoverImageFromCategory.includes("corporate")
+        }
         $color={getCategoryColor("corporate")}
         href={"/corporate"}
       >
         CORPORATE
       </StyledLink>
       <StyledLink
-        $isActive={pathname.includes("interior")}
+        $isActive={
+          pathname.includes("interior") ||
+          hoverImageFromCategory.includes("interior")
+        }
         $color={getCategoryColor("interior")}
         href={"/interior"}
       >
         INTERIOR
       </StyledLink>
       <StyledLink
-        $isActive={pathname.includes("jewellery")}
+        $isActive={
+          pathname.includes("jewellery") ||
+          hoverImageFromCategory.includes("jewellery")
+        }
         $color={getCategoryColor("jewellery")}
         href={"/jewellery"}
       >

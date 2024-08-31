@@ -2,6 +2,7 @@ import { getCategoryColor } from "@/lib/_utils";
 import Link from "next/link";
 import styled from "styled-components";
 import { ContactSection } from "./ContactSection";
+import { TfiClose } from "react-icons/tfi";
 
 export function NavMobile({
   menuOpen,
@@ -12,46 +13,26 @@ export function NavMobile({
 }) {
   return (
     <Navigation $menuOpen={menuOpen}>
-      <StyledLink
-        onClick={() => setMenuOpen(false)}
-        $color={getCategoryColor("portrait")}
-        href={"/portrait"}
-      >
+      <CloseButton onClick={() => setMenuOpen(!menuOpen)}>
+        <TfiClose />
+      </CloseButton>
+
+      <StyledLink onClick={() => setMenuOpen(false)} href={"/portrait"}>
         PORTRAIT
       </StyledLink>
-      <StyledLink
-        onClick={() => setMenuOpen(false)}
-        $color={getCategoryColor("corporate")}
-        href={"/corporate"}
-      >
+      <StyledLink onClick={() => setMenuOpen(false)} href={"/corporate"}>
         CORPORATE
       </StyledLink>
-      <StyledLink
-        onClick={() => setMenuOpen(false)}
-        $color={getCategoryColor("interior")}
-        href={"/interior"}
-      >
+      <StyledLink onClick={() => setMenuOpen(false)} href={"/interior"}>
         INTERIOR
       </StyledLink>
-      <StyledLink
-        onClick={() => setMenuOpen(false)}
-        $color={getCategoryColor("jewellery")}
-        href={"/jewellery"}
-      >
+      <StyledLink onClick={() => setMenuOpen(false)} href={"/jewellery"}>
         JEWELLERY
       </StyledLink>
-      <StyledLink
-        onClick={() => setMenuOpen(false)}
-        $color={getCategoryColor("all")}
-        href={"/all"}
-      >
+      <StyledLink onClick={() => setMenuOpen(false)} href={"/all"}>
         ALL
       </StyledLink>
-      <StyledLink
-        onClick={() => setMenuOpen(false)}
-        $color={"black"}
-        href={"/about"}
-      >
+      <StyledLink onClick={() => setMenuOpen(false)} href={"/about"}>
         ABOUT
       </StyledLink>
 
@@ -61,20 +42,37 @@ export function NavMobile({
 }
 
 const Navigation = styled.nav<{ $menuOpen: boolean }>`
-  z-index: 999999;
+  z-index: 5;
   position: fixed;
-  top: 70px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 30px;
   width: 100%;
-  height: calc(100% - 70px);
-  padding-top: 70px;
+  height: 100%;
+  padding-top: 100px;
+  background-color: white;
   transform: ${({ $menuOpen }) => ($menuOpen ? "scale(1)" : "scale(0)")};
 `;
 
-const StyledLink = styled(Link)<{ $color: string }>`
+const CloseButton = styled.button`
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  right: 0;
+  top: 0%;
+  height: 6vh;
+  width: 6vh;
+  margin: 10px 20px 0;
+  background: none;
+  border: none;
+  * {
+    font-size: 4vh;
+  }
+`;
+
+const StyledLink = styled(Link)`
   text-decoration: none;
-  color: ${({ $color }) => $color};
+  color: black;
 `;
