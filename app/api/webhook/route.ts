@@ -1,4 +1,4 @@
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 
 const secret = process.env.STRAPI_WEBHOOK_SECRET;
 
@@ -20,7 +20,7 @@ export async function POST(request: Request) {
       revalidatePath(`/${entry.category}/${entry.id}`);
       revalidatePath("/all");
       if (entry.positionOnLandingPage) {
-        revalidatePath("/");
+        revalidateTag("landing-page");
       }
     } else if (changedModel === "about-page") {
       revalidatePath("/about");
