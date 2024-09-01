@@ -2,30 +2,20 @@ import { Project } from "@/lib/types";
 import styled from "styled-components";
 
 export function Description({ project }: { project: Project }) {
-  const { Beschreibung, Kunde, HairMakeUp, Assistent } = project.attributes;
+  const { Beschreibung, involved } = project.attributes;
 
   return (
     <Container>
       <Text>{Beschreibung}</Text>
 
       <Credits>
-        <Partner>
-          Kunde:
-          <br />
-          {Kunde}
-        </Partner>
-
-        <Partner>
-          Hair & Make-Up:
-          <br />
-          {HairMakeUp}
-        </Partner>
-
-        <Partner>
-          Assistent:
-          <br />
-          {Assistent}
-        </Partner>
+        {involved.map((inv) => (
+          <Partner>
+            {inv.Rolle}
+            <br />
+            {inv.Name}
+          </Partner>
+        ))}
       </Credits>
     </Container>
   );

@@ -59,7 +59,12 @@ export function NavDesktop() {
       >
         ALL
       </StyledLink>
-      <StyledLink $color={"black"} $about href={"/about"}>
+      <StyledLink
+        $isActive={pathname.includes("about")}
+        $color={"#ff00cf"}
+        $about
+        href={"/about"}
+      >
         ABOUT
       </StyledLink>
     </Navigation>
@@ -82,6 +87,5 @@ const StyledLink = styled(Link)<{
   transition: transform 0.2s;
   &:hover {
     color: ${({ $color }) => $color};
-    transform: ${({ $about }) => ($about ? "rotate(7deg)" : "none")};
   }
 `;

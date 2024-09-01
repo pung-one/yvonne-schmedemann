@@ -18,7 +18,7 @@ export function CategoryPage({ projects }: Props) {
       <ImageSection>
         {cmsBaseUrl &&
           projects?.map((project, index) => {
-            const imageData = project.attributes.Titelbild.data;
+            const imageData = project.attributes.landingPageImage.data;
 
             const category = project.attributes.category;
 

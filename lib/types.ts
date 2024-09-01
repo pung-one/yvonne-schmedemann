@@ -134,12 +134,17 @@ export type Project = {
     createdAt: string;
     updatedAt: string;
     publishedAt: string;
-    Kunde: string;
-    HairMakeUp: string;
-    Assistent: string;
     positionOnLandingPage?: number;
     fullscreen: boolean;
-    Titelbild: {
+    involved: {
+      id: number;
+      Name: string;
+      Rolle: string;
+    }[];
+    landingPageImage: {
+      data: ImageData;
+    };
+    allPageImage: {
       data: ImageData;
     };
     Bilder: {

@@ -38,7 +38,7 @@ export function AllPage({ projects }: Props) {
       <ImageSection>
         {cmsBaseUrl &&
           projects?.map((project, index) => {
-            const imageData = project.attributes.Titelbild.data;
+            const imageData = project.attributes.allPageImage.data;
 
             const category = project.attributes.category;
 
@@ -112,8 +112,8 @@ const ImageSection = styled.div`
 
 const ImageWrapper = styled(Link)<{ $title: string; $cursorColor: string }>`
   position: relative;
-  width: 200px;
-  height: 250px;
+  width: 254px;
+  height: 317.5px;
   cursor: ${({ $cursorColor }) =>
     `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30'%3E%3Ccircle cx='12' cy='12' r='10' fill='${$cursorColor.replace(
       "#",

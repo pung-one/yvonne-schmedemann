@@ -89,9 +89,11 @@ const Contact = styled.div``;
 
 const Links = styled.div`
   display: flex;
+  align-items: center;
   gap: 50px;
   @media only screen and (max-width: 768px) {
     flex-direction: column;
+    align-items: flex-start;
     gap: 20px;
   }
 `;
