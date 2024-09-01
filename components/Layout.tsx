@@ -40,6 +40,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
   const [visitedProjects, setVisitedProjects] = useState<number[]>([]);
   const [viewportWidth, setViewportWidth] = useState(1079);
+  const [showScrollableLogo, setShowScrollableLogo] = useState<boolean>(true);
 
   const [hoverImageFromCategory, setHoverImageFromCategory] = useState<
     Category | "none"
@@ -75,6 +76,16 @@ export function Layout({ children }: { children: React.ReactNode }) {
     document.body.style.overflow = menuOpen ? "hidden" : "initial";
   }, [menuOpen]);
 
+  useEffect(() => {
+    console.log(pathname);
+    console.log(["/", "/about", "/all", "/impressum"].includes(pathname));
+    if (["/", "/about", "/all", "/impressum"].includes(pathname)) {
+      setShowScrollableLogo(true);
+    } else {
+      setShowScrollableLogo(false);
+    }
+  }, [pathname]);
+
   return (
     <BodyContainer
       $cursorColor={
@@ -88,22 +99,21 @@ export function Layout({ children }: { children: React.ReactNode }) {
         }}
       >
         <HeaderContainer>
-          {["/", "/about", "/all", "/impressum"].includes(pathname) ? (
-            <StyledLink href={"/"} style={{ y: y }}>
+          {showScrollableLogo ? (
+            <StyledLinkScrollEffect href={"/"} style={{ y: y }}>
               YVONNE
               <br />
               SCHMEDEMANN
-            </StyledLink>
+            </StyledLinkScrollEffect>
           ) : (
-            <StyledLink href={"/"} style={{ y: 20 }}>
+            <StyledLink href={"/"} style={{ top: 20 }}>
               YVONNE
               <br />
               SCHMEDEMANN
             </StyledLink>
           )}
 
-          {viewportWidth > 768 &&
-          ["/", "/about", "/all", "/impressum"].includes(pathname) ? (
+          {viewportWidth > 768 && showScrollableLogo ? (
             <motion.div
               style={{
                 opacity: opacity,
@@ -129,8 +139,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
         <NavMobile menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
 
-        {["/", "/about", "/all", "/impressum"].includes(pathname) ? (
-          <BorderBottom
+        {showScrollableLogo ? (
+          <BorderBottomScrollEffect
             style={{
               marginLeft: borderMargin,
             }}
@@ -206,7 +216,7 @@ const MenuButton = styled.button`
   }
 `;
 
-const BorderBottom = styled(motion.div)`
+const BorderBottomScrollEffect = styled(motion.div)`
   z-index: 2;
   position: sticky;
   top: 70px;
@@ -217,7 +227,33 @@ const BorderBottom = styled(motion.div)`
   }
 `;
 
-const StyledLink = styled(motion(Link))`
+const BorderBottom = styled.div`
+  z-index: 2;
+  position: sticky;
+  top: 70px;
+  right: 0;
+  border-bottom: 1px solid black;
+  @media only screen and (max-width: 768px) {
+    margin-left: 500px;
+  }
+`;
+
+const StyledLink = styled(Link)`
+  position: absolute;
+  font-family: "LogoFont";
+  font-size: 70px;
+  line-height: 0.6;
+  text-decoration: none;
+  color: black;
+  &:hover {
+    color: #9966ff;
+  }
+  @media only screen and (max-width: 768px) {
+    font-size: 30px;
+  }
+`;
+
+const StyledLinkScrollEffect = styled(motion(Link))`
   position: absolute;
   font-family: "LogoFont";
   font-size: 70px;
