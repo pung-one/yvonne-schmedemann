@@ -77,8 +77,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
   }, [menuOpen]);
 
   useEffect(() => {
-    console.log(pathname);
-    console.log(["/", "/about", "/all", "/impressum"].includes(pathname));
     if (["/", "/about", "/all", "/impressum"].includes(pathname)) {
       setShowScrollableLogo(true);
     } else {
@@ -181,6 +179,16 @@ const BodyContainer = styled.body<{ $cursorColor: string }>`
       "#",
       "%23"
     )}'/%3E%3C/svg%3E")  15 15, auto`} !important;
+  &:before {
+    cursor: inherit;
+    content: "";
+    z-index: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
 `;
 
 const HeaderContainer = styled.header`
