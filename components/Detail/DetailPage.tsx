@@ -6,16 +6,42 @@ import { Description } from "./Description";
 import { Project } from "@/lib/types";
 import { getCategoryColor } from "@/lib/_utils";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export function DetailPage({ project }: { project: Project }) {
   const router = useRouter();
+  const [windowWidthOverflow, setWindowWidthOverflow] = useState(0);
+
+  function handleResize() {
+    if (window.innerWidth > 1350) {
+      setWindowWidthOverflow((window.innerWidth - 1350) / 2);
+    }
+  }
+
+  useEffect(() => {
+    if (typeof window !== undefined) {
+      if (window.innerWidth > 1350) {
+        setWindowWidthOverflow((window.innerWidth - 1350) / 2);
+      }
+
+      window.addEventListener("resize", handleResize);
+      return () => window.removeEventListener("resize", handleResize);
+    }
+  }, []);
+
   return (
     <>
       <Container
         $cursorColor={getCategoryColor(project.attributes.category)}
+        $windowWidthOverflow={windowWidthOverflow}
         $fullscreen={project.attributes.fullscreen}
       >
-        <CloseButton onClick={() => router.back()}>close</CloseButton>
+        <CloseButton
+          $windowWidthOverflow={windowWidthOverflow}
+          onClick={() => router.back()}
+        >
+          CLOSE
+        </CloseButton>
         {project && (
           <>
             <ImageGallery
@@ -34,25 +60,31 @@ export function DetailPage({ project }: { project: Project }) {
 
 const Container = styled.article<{
   $fullscreen: boolean;
+  $windowWidthOverflow: number;
   $cursorColor: string;
 }>`
   position: relative;
-  padding-top: ${({ $fullscreen }) => ($fullscreen ? "0" : "71px")};
+  width: ${({ $fullscreen }) => ($fullscreen ? "100vw" : "unset")};
+  margin-top: ${({ $fullscreen }) => ($fullscreen ? "-71px" : "unset")};
+  margin-left: ${({ $fullscreen, $windowWidthOverflow }) =>
+    $fullscreen ? `-${$windowWidthOverflow}px` : "unset"};
 `;
 
-const CloseButton = styled.button`
+const CloseButton = styled.button<{
+  $windowWidthOverflow: number;
+}>`
   position: fixed;
-  z-index: 99999;
-  right: 35px;
-  top: 90px;
-  height: 45px;
+  z-index: 5;
+  margin-right: 20px;
+  right: ${({ $windowWidthOverflow }) => `${$windowWidthOverflow}px`};
+  height: 70px;
+  top: 70px;
+  padding: 0 10px;
   background: none;
   border: none;
-  color: grey;
   cursor: inherit;
+  color: grey;
   mix-blend-mode: difference;
   transition: transform 0.2s;
-  &:hover {
-    transform: rotate(-15deg);
-  }
+  font-size: 18px;
 `;

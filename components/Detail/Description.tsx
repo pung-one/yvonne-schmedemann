@@ -33,9 +33,12 @@ export function Description({ project }: { project: Project }) {
 
 const Container = styled.section`
   position: relative;
-  max-width: 1200px;
   margin: 50px auto;
-  padding: 0 10px;
+  max-width: 1350px;
+  margin: 0 auto;
+  @media only screen and (max-width: 1350px) {
+    padding: 0 20px;
+  }
 `;
 
 const Text = styled.p`
@@ -48,6 +51,7 @@ const Credits = styled.div`
   gap: 70px;
   @media only screen and (max-width: 768px) {
     flex-direction: column;
+    gap: 30px;
   }
 `;
 

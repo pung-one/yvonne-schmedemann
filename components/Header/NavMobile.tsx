@@ -43,11 +43,12 @@ export function NavMobile({
 }
 
 const Navigation = styled.nav<{ $menuOpen: boolean }>`
-  z-index: 5;
+  z-index: 6;
   position: fixed;
   display: flex;
   flex-direction: column;
   align-items: center;
+  top: 0;
   gap: 30px;
   width: 100%;
   height: 100%;
@@ -62,14 +63,15 @@ const CloseButton = styled.button`
   align-items: center;
   justify-content: center;
   right: 0;
-  top: 0%;
+  top: 0;
   height: 6vh;
   width: 6vh;
   margin: 10px 20px 0;
   background: none;
   border: none;
+  cursor: inherit;
   * {
-    font-size: 4vh;
+    font-size: 30px;
   }
 `;
 

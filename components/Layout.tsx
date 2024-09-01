@@ -166,6 +166,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
 const BodyContainer = styled.body<{ $cursorColor: string }>`
   position: relative;
   min-height: 100dvh;
+  max-width: 1350px;
+  margin: 0 auto;
+  overflow-x: hidden !important;
   cursor: ${({ $cursorColor }) =>
     `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30'%3E%3Ccircle cx='12' cy='12' r='10' fill='${$cursorColor.replace(
       "#",
@@ -176,7 +179,7 @@ const BodyContainer = styled.body<{ $cursorColor: string }>`
 const HeaderContainer = styled.header`
   z-index: 4;
   display: flex;
-  position: fixed;
+  position: sticky;
   top: 0;
   justify-content: space-between;
   align-items: center;
@@ -200,16 +203,17 @@ const MenuButton = styled.button`
   margin: 0 20px;
   background: none;
   border: none;
+  cursor: inherit;
   * {
-    font-size: 4vh;
+    font-size: 30px;
   }
 `;
 
 const BorderBottom = styled(motion.div)`
   z-index: 2;
-  position: fixed;
+  position: sticky;
   top: 70px;
-  width: 100%;
+  right: 0;
   border-bottom: 1px solid black;
   @media only screen and (max-width: 768px) {
     margin-left: 0 !important;
@@ -234,6 +238,5 @@ const StyledLink = styled(motion(Link))`
 
 const MainContainer = styled.main`
   z-index: 3;
-  position: relative;
   padding-bottom: 150px;
 `;

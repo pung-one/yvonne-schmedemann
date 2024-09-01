@@ -56,8 +56,6 @@ export function CategoryPage({ projects }: Props) {
 
 const Container = styled.article`
   position: relative;
-  max-width: 1200px;
-  margin: 0 auto;
   padding-top: 170px;
   @media only screen and (max-width: 768px) {
     padding-top: 70px;
