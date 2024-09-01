@@ -106,7 +106,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
               SCHMEDEMANN
             </StyledLinkScrollEffect>
           ) : (
-            <StyledLink href={"/"} style={{ top: 20 }}>
+            <StyledLink href={"/"}>
               YVONNE
               <br />
               SCHMEDEMANN
@@ -245,11 +245,13 @@ const StyledLink = styled(Link)`
   line-height: 0.6;
   text-decoration: none;
   color: black;
+  transform: translateY(20px);
   &:hover {
     color: #9966ff;
   }
   @media only screen and (max-width: 768px) {
     font-size: 30px;
+    transform: translateY(0);
   }
 `;
 
