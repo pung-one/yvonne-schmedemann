@@ -81,13 +81,13 @@ const Headline = styled.div`
   h2 {
     font-weight: normal;
     font-size: 20px;
+    padding: 0 5vw;
   }
   div {
     top: 50%;
     flex: 1;
     height: 1px;
     background-color: black;
-    margin: 0 5vw;
   }
 `;
 

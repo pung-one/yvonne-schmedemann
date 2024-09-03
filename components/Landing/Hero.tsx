@@ -48,7 +48,6 @@ const StyledImage = styled(Image)`
 const HorizontalLine = styled.div`
   height: 1px;
   background-color: black;
-  margin: 0 5vw;
 `;
 
 const Description = styled.p`
