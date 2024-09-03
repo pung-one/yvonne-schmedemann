@@ -37,6 +37,7 @@ export function DetailPage({ project }: { project: Project }) {
         $fullscreen={project.attributes.fullscreen}
       >
         <CloseButton
+          $fullscreen={project.attributes.fullscreen}
           $windowWidthOverflow={windowWidthOverflow}
           onClick={() => router.back()}
         >
@@ -63,31 +64,36 @@ const Container = styled.article<{
   $windowWidthOverflow: number;
   $cursorColor: string;
 }>`
+  background: white;
   position: relative;
   width: ${({ $fullscreen }) => ($fullscreen ? "100vw" : "unset")};
   margin-top: ${({ $fullscreen }) => ($fullscreen ? "-71px" : "unset")};
+  padding-top: ${({ $fullscreen }) => ($fullscreen ? "unset" : "70px")};
   margin-left: ${({ $fullscreen, $windowWidthOverflow }) =>
     $fullscreen ? `-${$windowWidthOverflow}px` : "unset"};
 `;
 
 const CloseButton = styled.button<{
+  $fullscreen: boolean;
   $windowWidthOverflow: number;
 }>`
-  position: fixed;
-  z-index: 5;
-  margin-right: 20px;
-  right: ${({ $windowWidthOverflow }) => `${$windowWidthOverflow}px`};
+  position: ${({ $fullscreen }) => ($fullscreen ? "fixed" : "absolute")};
+  z-index: 9;
+  right: ${({ $windowWidthOverflow, $fullscreen }) =>
+    $fullscreen ? `${$windowWidthOverflow}px` : "0"};
   height: 70px;
-  top: 70px;
-  padding: 0 10px;
+  top: ${({ $fullscreen }) => ($fullscreen ? "70px" : "0")};
   background: none;
   border: none;
   cursor: inherit;
-  color: grey;
-  mix-blend-mode: difference;
+  color: ${({ $fullscreen }) => ($fullscreen ? "white" : "black")};
+  //mix-blend-mode: difference;
   transition: transform 0.2s;
   font-size: 18px;
   cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Cpath stroke='%23ff00cf' stroke-width='2' d='m0 0 32 32M0 32 32 0'/%3E%3C/svg%3E")
       16 16,
     auto;
+  @media only screen and (max-width: 1350px) {
+    margin-right: 20px;
+  }
 `;

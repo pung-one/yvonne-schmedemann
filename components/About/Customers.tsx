@@ -76,7 +76,6 @@ const StudioInfo = styled.div`
     font-size: 14px;
     color: black;
     text-decoration: none;
-    font-style: italic;
   }
   a {
     &:hover {

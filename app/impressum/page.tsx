@@ -3,9 +3,9 @@ import styles from "./page.module.css";
 export default async function Page() {
   return (
     <p className={styles.textContainer}>
-      Fettstraße 7a
+      Hoheluftchaussee 139
       <br />
-      20357 Hamburg
+      20253 Hamburg
       <br />
       mail@yvonneschmedemann.com
       <br />

@@ -21,8 +21,8 @@ export function Landing({ projects, landingInfo }: Props) {
 }
 
 const Container = styled.article`
-  padding-top: 250px;
+  padding-top: 120px;
   @media only screen and (max-width: 768px) {
-    padding-top: 170px;
+    padding-top: 100px;
   }
 `;

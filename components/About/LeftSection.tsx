@@ -16,12 +16,17 @@ export function LeftSection({ portrait, bio, studioImage }: Props) {
   return (
     <Container>
       {portraitData && (
-        <PortraitImage
-          src={cmsBaseUrl + portraitData.url}
-          width={portraitData.width}
-          height={portraitData.height}
-          alt={portraitData.alternativeText || ""}
-        />
+        <PortraitContainer>
+          <PortraitImage
+            src={cmsBaseUrl + portraitData.url}
+            width={portraitData.width}
+            height={portraitData.height}
+            alt={portraitData.alternativeText || ""}
+          />
+          <p>
+            Photo: <a href="https://melfholm.com/">Melf Holm</a>
+          </p>
+        </PortraitContainer>
       )}
 
       <Bio>
@@ -49,6 +54,18 @@ const Container = styled.section`
   align-items: center;
   @media only screen and (max-width: 768px) {
     width: 100%;
+  }
+`;
+
+const PortraitContainer = styled.div`
+  p,
+  a {
+    text-align: right;
+    font-size: 14px;
+    color: black;
+  }
+  a:hover {
+    color: #9966ff;
   }
 `;
 

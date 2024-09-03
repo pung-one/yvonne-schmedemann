@@ -50,11 +50,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
   const { scrollY } = useScroll();
 
-  const y = useTransform(scrollY, [0, 300], [100, 20]);
+  const y = useTransform(scrollY, [0, 300], [85, 20]);
 
   const opacity = useTransform(scrollY, [0, 100], [1, 0]);
 
-  const borderMargin = useTransform(scrollY, [0, 200], ["0px", "500px"]);
+  const borderMargin = useTransform(scrollY, [0, 200], ["0px", "350px"]);
 
   const pointerEvents = useTransform(opacity, (value) =>
     value === 0 ? "none" : "auto"
@@ -144,11 +144,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
             }}
           />
         ) : (
-          <BorderBottom
-            style={{
-              marginLeft: "500px",
-            }}
-          />
+          <BorderBottom />
         )}
 
         <MainContainer>
@@ -200,8 +196,7 @@ const HeaderContainer = styled.header`
   align-items: center;
   height: 70px;
   width: 100%;
-  padding: 0 30px;
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 1350px) {
     padding: 0 20px;
   }
 `;
@@ -241,15 +236,13 @@ const BorderBottom = styled.div`
   top: 70px;
   right: 0;
   border-bottom: 1px solid black;
-  @media only screen and (max-width: 768px) {
-    margin-left: 500px;
-  }
+  margin-left: 350px;
 `;
 
 const StyledLink = styled(Link)`
   position: absolute;
   font-family: "LogoFont";
-  font-size: 70px;
+  font-size: 50px;
   line-height: 0.6;
   text-decoration: none;
   color: black;
@@ -266,7 +259,7 @@ const StyledLink = styled(Link)`
 const StyledLinkScrollEffect = styled(motion(Link))`
   position: absolute;
   font-family: "LogoFont";
-  font-size: 70px;
+  font-size: 50px;
   line-height: 0.6;
   text-decoration: none;
   color: black;
