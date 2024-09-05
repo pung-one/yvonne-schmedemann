@@ -36,7 +36,7 @@ export function CategoryPage({ projects }: Props) {
                 href={`${category}/${project.id}`}
                 key={project.id}
                 className={`item${index + 1}`}
-                $title={project.attributes.Titel}
+                $title={`${project.attributes.Titel} \\A \\A ${category}\\A+${project.attributes.Bilder.data.length}`}
               >
                 <StyledImage
                   placeholder="blur"
@@ -166,12 +166,16 @@ const ImageWrapper = styled(Link)<{ $title: string }>`
   }
   &:after {
     position: absolute;
-    content: "${({ $title }) => `${$title}`}";
+    content: "${({ $title }) => $title}";
+    white-space: preserve-breaks;
+    word-spacing: 100vw;
     top: 50%;
     left: 0;
     width: 100%;
     text-align: center;
-    font-size: 18px;
+    font-size: 30px;
+    line-height: 25px;
+    font-weight: 500;
     color: #ffff00;
     transform: translateY(-50%) scale(0);
   }

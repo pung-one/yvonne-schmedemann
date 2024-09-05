@@ -30,9 +30,10 @@ export function getCategoriesCursorDataUrl(category: Category | "all") {
   }
 }
 
-export function getCategoryColor(category: Category | "all") {
+export function getCategoryColor(category: Category | "all" | "about") {
   switch (category) {
     case "portrait":
+    case "about":
       return "#ff00cf";
     case "corporate":
       return "#00ff00";
