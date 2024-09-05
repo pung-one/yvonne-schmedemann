@@ -124,7 +124,7 @@ const ImageSection = styled.div`
       }
     }
     .item5 {
-      grid-row: 4 / span 2;
+      grid-row: 4 / span 3;
       grid-column: 4 / span 3;
     }
     .item6 {
