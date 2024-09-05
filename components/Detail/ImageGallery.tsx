@@ -73,6 +73,14 @@ export function ImageGallery({ title, imageData, fullscreen }: Props) {
     }
   }
 
+  function getCursor(direction: "left" | "right") {
+    if (direction === "left") {
+      return `url("data:image/svg+xml,%3Csvg fill='%23000000' height='32px' width='32px' version='1.1' id='Layer_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='-23.81 -23.81 285.725 285.725' xml:space='preserve' transform='matrix(1, 0, 0, 1, 0, 0)rotate(0)' stroke='%23000000' stroke-width='0.002381065'%3E%3Cg id='SVGRepo_bgCarrier' stroke-width='0' transform='translate(0,0), scale(0.5)'%3E%3C/g%3E%3Cg id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round' stroke='%23fbfbfb' stroke-width='23.81065'%3E%3Cpolygon points='238.1065,111.5535 28.7135,111.5535 75.91,64.3565 65.3035,53.75 0,119.053 65.3035,184.357 75.91,173.75 28.7135,126.5535 238.1065,126.5535 '%3E%3C/polygon%3E%3C/g%3E%3Cg id='SVGRepo_iconCarrier'%3E%3Cpolygon points='238.1065,111.5535 28.7135,111.5535 75.91,64.3565 65.3035,53.75 0,119.053 65.3035,184.357 75.91,173.75 28.7135,126.5535 238.1065,126.5535 '%3E%3C/polygon%3E%3C/g%3E%3C/svg%3E%0A") 15 15, auto`;
+    } else {
+      return `url("data:image/svg+xml,%3Csvg fill='%23000000' height='32px' width='32px' version='1.1' id='Layer_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='-23.81 -23.81 285.725 285.725' xml:space='preserve' transform='matrix(-1, 0, 0, 1, 0, 0)rotate(0)' stroke='%23000000' stroke-width='0.002381065'%3E%3Cg id='SVGRepo_bgCarrier' stroke-width='0' transform='translate(0,0), scale(0.5)'%3E%3C/g%3E%3Cg id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round' stroke='%23fbfbfb' stroke-width='23.81065'%3E%3Cpolygon points='238.1065,111.5535 28.7135,111.5535 75.91,64.3565 65.3035,53.75 0,119.053 65.3035,184.357 75.91,173.75 28.7135,126.5535 238.1065,126.5535 '%3E%3C/polygon%3E%3C/g%3E%3Cg id='SVGRepo_iconCarrier'%3E%3Cpolygon points='238.1065,111.5535 28.7135,111.5535 75.91,64.3565 65.3035,53.75 0,119.053 65.3035,184.357 75.91,173.75 28.7135,126.5535 238.1065,126.5535 '%3E%3C/polygon%3E%3C/g%3E%3C/svg%3E%0A") 15 15, auto`;
+    }
+  }
+
   return (
     <Container>
       <AnimatePresence
@@ -110,10 +118,18 @@ export function ImageGallery({ title, imageData, fullscreen }: Props) {
             </AnimatePresence>
           )}
           <Navigation>
-            <StyledButton $direction="left" onClick={() => prevImage()}>
+            <StyledButton
+              $direction="left"
+              $cursor={getCursor("left")}
+              onClick={() => prevImage()}
+            >
               <PiArrowLeftThin />
             </StyledButton>
-            <StyledButton $direction="right" onClick={() => nextImage()}>
+            <StyledButton
+              $direction="right"
+              $cursor={getCursor("right")}
+              onClick={() => nextImage()}
+            >
               <PiArrowRightThin />
             </StyledButton>
           </Navigation>
@@ -161,7 +177,10 @@ const Navigation = styled.div`
   height: 100%;
 `;
 
-const StyledButton = styled.button<{ $direction: "left" | "right" }>`
+const StyledButton = styled.button<{
+  $direction: "left" | "right";
+  $cursor: string;
+}>`
   flex: 1;
   display: flex;
   justify-content: ${({ $direction }) =>
@@ -174,8 +193,7 @@ const StyledButton = styled.button<{ $direction: "left" | "right" }>`
     * {
       display: none;
     }
-    cursor: ${({ $direction }) =>
-      $direction === "right" ? "e-resize" : `w-resize`};
+    cursor: ${({ $cursor }) => $cursor};
   }
 `;
 
