@@ -10,7 +10,7 @@ export default async function Page({
 }) {
   const projectsResponse = await fetch(
     cmsBaseUrl +
-      `/api/projekts?filters[category][$eq]=${params.category}&sort=positionOnCategoryPage:ascc&populate=*`
+      `/api/projekts?filters[category][$eq]=${params.category}&sort=positionOnCategoryPage:asc&populate=*`
   );
 
   const projectsObject = await projectsResponse.json();
