@@ -1,8 +1,8 @@
 .textContainer {
-  margin: 250px 100px;
+  margin: 170px 100px;
   max-width: 600px;
   line-height: 25px;
   @media only screen and (max-width: 768px) {
-    margin: 100px 20px;
+    margin: 70px 20px;
   }
 }

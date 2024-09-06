@@ -207,12 +207,13 @@ const ImageWrapper = styled(Link)<{ $title: string; $cursorColor: string }>`
     content: "${({ $title }) => $title}";
     white-space: preserve-breaks;
     word-spacing: 100vw;
+    letter-spacing: 1px;
     top: 50%;
     left: 0;
     width: 100%;
     text-align: center;
     font-size: 30px;
-    line-height: 25px;
+    line-height: 29px;
     font-weight: 500;
     color: #ffff00;
     transform: translateY(-50%) scale(0);

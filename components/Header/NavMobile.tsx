@@ -43,7 +43,7 @@ export function NavMobile({
 }
 
 const Navigation = styled.nav<{ $menuOpen: boolean }>`
-  z-index: 6;
+  z-index: 10;
   position: fixed;
   display: flex;
   flex-direction: column;

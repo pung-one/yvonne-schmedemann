@@ -87,7 +87,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
   return (
     <BodyContainer
       $cursorColor={
-        getCategoryColor(pathname.replace("/", "") as Category) || "black"
+        pathname === "/"
+          ? "#00ff00"
+          : getCategoryColor(pathname.replace("/", "") as Category)
       }
     >
       <HoverImageFromCategoryContext.Provider
@@ -237,6 +239,9 @@ const BorderBottom = styled.div`
   right: 0;
   border-bottom: 1px solid black;
   margin-left: 350px;
+  @media only screen and (max-width: 768px) {
+    margin-left: 0;
+  }
 `;
 
 const StyledLink = styled(Link)`

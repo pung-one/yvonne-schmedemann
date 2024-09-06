@@ -70,6 +70,9 @@ const StudioInfo = styled.div`
   h3 {
     font-size: 30px;
   }
+  h4 {
+    font-weight: 500;
+  }
   a,
   p {
     width: fit-content;
