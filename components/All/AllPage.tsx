@@ -96,9 +96,9 @@ export function AllPage({ projects }: Props) {
 
 const Container = styled.article`
   position: relative;
-  padding-top: 270px;
+  padding-top: 200px;
   @media only screen and (max-width: 768px) {
-    padding-top: 90px;
+    padding-top: 50px;
   }
 `;
 

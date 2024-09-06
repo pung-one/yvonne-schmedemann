@@ -27,9 +27,9 @@ export function AboutPage({ aboutData }: Props) {
 const Container = styled.div`
   position: relative;
   display: flex;
-  padding-top: 250px;
+  padding-top: 200px;
   @media only screen and (max-width: 768px) {
-    padding-top: 170px;
+    padding-top: 100px;
     flex-direction: column;
   }
 `;
