@@ -31,9 +31,7 @@ const Container = styled.section`
   }
 `;
 
-const Text = styled.p`
-  max-width: 80%;
-`;
+const Text = styled.p``;
 
 const Credits = styled.div`
   display: flex;

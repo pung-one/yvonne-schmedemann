@@ -36,7 +36,7 @@ export function CategoryPage({ projects }: Props) {
                 href={`${category}/${project.id}`}
                 key={project.id}
                 className={`item${index + 1}`}
-                $title={`${project.attributes.Titel} \\A \\A ${category}\\A+${project.attributes.Bilder.data.length}`}
+                $title={`${project.attributes.Titel} \\A \\A ${category}\\A+${project.attributes.Bilder?.data?.length}`}
               >
                 <StyledImage
                   placeholder="blur"

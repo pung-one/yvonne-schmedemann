@@ -158,6 +158,7 @@ const Container = styled.section`
 const Title = styled.h2`
   font-size: 30px;
   color: #ffff00;
+  text-align: center;
   &:hover {
     opacity: 0;
   }
