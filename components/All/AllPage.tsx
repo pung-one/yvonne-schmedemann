@@ -4,18 +4,14 @@ import { Project } from "@/lib/types";
 import styled, { css } from "styled-components";
 import Image from "next/image";
 import Link from "next/link";
-import {
-  getCategoriesBlurDataUrl,
-  getCategoriesCursorDataUrl,
-  getCategoryColor,
-} from "@/lib/_utils";
+import { getCategoriesBlurDataUrl, getCategoryColor } from "@/lib/_utils";
 import { useContext } from "react";
 import { HoverImageFromCategoryContext, VisitedProjects } from "../Layout";
 
 const cmsBaseUrl = process.env.NEXT_PUBLIC_CMS_BASE_URL;
 
 type Props = {
-  projects: Project[];
+  projects?: Project[];
 };
 
 export function AllPage({ projects }: Props) {
@@ -41,6 +37,10 @@ export function AllPage({ projects }: Props) {
             const imageData = project.attributes.allPageImage.data;
 
             const category = project.attributes.category;
+
+            if (!imageData || !category) {
+              return;
+            }
 
             const visited = visitedProjects.includes(project.id);
 

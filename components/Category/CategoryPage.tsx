@@ -22,6 +22,10 @@ export function CategoryPage({ projects }: Props) {
 
             const category = project.attributes.category;
 
+            if (!imageData || !category) {
+              return;
+            }
+
             const {
               attributes: {
                 alternativeText,

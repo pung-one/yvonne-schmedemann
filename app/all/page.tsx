@@ -7,5 +7,5 @@ export default async function Page() {
 
   const projectsObject = await projectsResponse.json();
 
-  return <AllPage projects={projectsObject.data} />;
+  return <AllPage projects={projectsObject?.data} />;
 }
