@@ -43,13 +43,10 @@ export function ImageGallery({ title, imageData, fullscreen }: Props) {
   }>({ index: 0, direction: "right" });
 
   const {
-    attributes: {
-      alternativeText,
-      formats: {
-        large: { url, width, height },
-      },
-    },
+    attributes: { url, width, height, alternativeText },
   } = imageData[imageIndexAndDirection.index];
+
+  console.log(imageData[imageIndexAndDirection.index]);
 
   function prevImage() {
     if (buttonEnabled) {

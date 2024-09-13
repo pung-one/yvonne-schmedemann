@@ -10,6 +10,21 @@ import { HoverImageFromCategoryContext, VisitedProjects } from "../Layout";
 
 const cmsBaseUrl = process.env.NEXT_PUBLIC_CMS_BASE_URL;
 
+function generateSeededRandomPosition(seed: number) {
+  const randomMultiplier = Math.sin(seed) * 10000;
+  const rawPosition = (randomMultiplier - Math.floor(randomMultiplier)) * 100;
+  return 10 + (rawPosition % 80); // Ensures the position is between 10% and 90%
+}
+
+function hashStringToNumber(str: string) {
+  let hash = 0;
+  for (let i = 0; i < str.length; i++) {
+    hash = (hash << 5) - hash + str.charCodeAt(i);
+    hash = hash & hash;
+  }
+  return Math.abs(hash);
+}
+
 type Props = {
   projects?: Project[];
 };
@@ -19,15 +34,6 @@ export function AllPage({ projects }: Props) {
   const { setHoverImageFromCategory } = useContext(
     HoverImageFromCategoryContext
   );
-
-  function hashStringToNumber(str: string) {
-    let hash = 0;
-    for (let i = 0; i < str.length; i++) {
-      hash = (hash << 5) - hash + str.charCodeAt(i);
-      hash = hash & hash;
-    }
-    return Math.abs(hash);
-  }
 
   return (
     <Container>
@@ -45,17 +51,15 @@ export function AllPage({ projects }: Props) {
             const visited = visitedProjects.includes(project.id);
 
             const {
-              attributes: {
-                alternativeText,
-                formats: {
-                  medium: { url, width, height },
-                },
-              },
+              attributes: { alternativeText, url, width, height },
             } = imageData;
 
-            const hashValue = hashStringToNumber(project.attributes.Titel);
-            const positionTop = `${hashValue % 100}%`;
-            const positionLeft = `${(hashValue * 2) % 100}%`;
+            // Use the project id or title to generate a consistent seed for each image
+            const seed = hashStringToNumber(project.attributes.Beschreibung);
+
+            // Generate positions that are consistent but appear random
+            const positionTop = `${generateSeededRandomPosition(seed)}%`;
+            const positionLeft = `${generateSeededRandomPosition(seed * 2)}%`;
 
             return (
               <ImageWrapper

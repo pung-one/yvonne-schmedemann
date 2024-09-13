@@ -27,12 +27,7 @@ export function CategoryPage({ projects }: Props) {
             }
 
             const {
-              attributes: {
-                alternativeText,
-                formats: {
-                  medium: { url, width, height },
-                },
-              },
+              attributes: { alternativeText, url, width, height },
             } = imageData;
 
             return (
