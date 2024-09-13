@@ -23,9 +23,7 @@ export function LeftSection({ portrait, bio, studioImage }: Props) {
             height={portraitData.height}
             alt={portraitData.alternativeText || ""}
           />
-          <p>
-            Photo: <a href="https://melfholm.com/">Melf Holm</a>
-          </p>
+          <p>Photo: Melf Holm</p>
         </PortraitContainer>
       )}
 
@@ -58,8 +56,7 @@ const Container = styled.section`
 `;
 
 const PortraitContainer = styled.div`
-  p,
-  a {
+  p {
     text-align: right;
     font-size: 14px;
     color: black;

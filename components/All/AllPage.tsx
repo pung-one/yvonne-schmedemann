@@ -105,9 +105,12 @@ const Container = styled.article`
 const ImageSection = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 20px;
   width: 100%;
+  @media only screen and (max-width: 1350px) {
+    justify-content: center;
+  }
 `;
 
 const ImageWrapper = styled(Link)<{ $title: string; $cursorColor: string }>`

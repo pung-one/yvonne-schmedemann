@@ -68,9 +68,10 @@ const ImageSection = styled.div`
   flex-direction: column;
   gap: 50px;
   @media only screen and (min-width: 768px) {
+    gap: unset;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-gap: 20px;
+    grid-template-columns: repeat(4, 23%);
+    grid-gap: 2.6666%;
     .item1 {
       grid-row: 1 / span 1;
       grid-column: 1 / span 1;
@@ -90,22 +91,39 @@ const ImageSection = styled.div`
     .item5 {
       grid-row: 2 / span 2;
       grid-column: 2 / span 2;
+      aspect-ratio: 5 / 3;
     }
     .item6 {
       grid-row: 4 / span 2;
       grid-column: 1 / span 2;
+      aspect-ratio: 7 / 8;
+      * {
+        object-fit: cover;
+      }
     }
     .item7 {
       grid-row: 4 / span 1;
       grid-column: 3 / span 1;
+      * {
+        object-position: top;
+      }
     }
     .item8 {
       grid-row: 4 / span 1;
       grid-column: 4 / span 1;
+      * {
+        object-position: top;
+      }
     }
     .item9 {
       grid-row: 5 / span 1;
       grid-column: 3 / span 2;
+      aspect-ratio: 6 / 4;
+      justify-self: end;
+      * {
+        width: fit-content;
+        height: 100%;
+      }
     }
     .item10 {
       grid-row: 6 / span 1;
@@ -161,9 +179,7 @@ const ImageSection = styled.div`
 const ImageWrapper = styled(Link)<{ $title: string }>`
   position: relative;
   width: 100%;
-  @media only screen and (min-width: 768px) {
-    padding-top: 100%;
-  }
+  aspect-ratio: 4 / 5;
   &:after {
     position: absolute;
     content: "${({ $title }) => $title}";
@@ -188,11 +204,6 @@ const ImageWrapper = styled(Link)<{ $title: string }>`
 `;
 
 const StyledImage = styled(Image)`
-  @media only screen and (min-width: 768px) {
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
   width: 100%;
   height: 100%;
   object-fit: contain;
