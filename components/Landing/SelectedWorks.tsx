@@ -4,8 +4,8 @@ import Image from "next/image";
 import styled from "styled-components";
 import Link from "next/link";
 import { getCategoriesBlurDataUrl, getCategoryColor } from "@/lib/_utils";
-import { Category, Projects } from "@/lib/types";
-import { useContext, useState } from "react";
+import { Projects } from "@/lib/types";
+import { useContext } from "react";
 import { HoverImageFromCategoryContext } from "../Layout";
 
 const cmsBaseUrl = process.env.NEXT_PUBLIC_CMS_BASE_URL;
@@ -33,6 +33,10 @@ export function SelectedWorks({ projects }: Props) {
             const imageData = project.attributes.landingPageImage.data;
 
             const category = project.attributes.category;
+
+            if (!imageData || !category) {
+              return;
+            }
 
             const {
               attributes: {
