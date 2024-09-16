@@ -66,6 +66,7 @@ const ImageSection = styled.div`
   display: flex;
   flex-direction: column;
   gap: 50px;
+  padding-bottom: 500px;
   @media only screen and (min-width: 768px) {
     gap: unset;
     display: grid;
@@ -159,18 +160,6 @@ const ImageSection = styled.div`
     .item18 {
       grid-row: 9 / span 1;
       grid-column: 1 / span 1;
-    }
-    .item18 {
-      grid-row: 9 / span 1;
-      grid-column: 2 / span 1;
-    }
-    .item18 {
-      grid-row: 9 / span 1;
-      grid-column: 3 / span 1;
-    }
-    .item18 {
-      grid-row: 9 / span 1;
-      grid-column: 4 / span 1;
     }
   }
 `;
