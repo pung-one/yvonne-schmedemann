@@ -2,7 +2,7 @@ import styles from "./termsandconditions.module.css";
 
 export default function TermsAndConditionsGerman() {
   return (
-    <div className={styles.textContainer}>
+    <div>
       <h1 className={styles.headline}>
         ALLGEMEINE LIEFER- UND GESCHÄFTSBEDINGUNGEN
       </h1>
@@ -19,7 +19,6 @@ export default function TermsAndConditionsGerman() {
               folgenden Fotografin genannt) durchgeführten Aufträge, Angebote,
               Lieferungen und Leistungen.
             </li>
-
             <li>
               Sie gelten als vereinbart mit Entgegennahme der Lieferung oder
               Leistung bzw. des Angebots der Fotografin durch die Kund*innen,

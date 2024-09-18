@@ -2,7 +2,7 @@ import styles from "./termsandconditions.module.css";
 
 export default function TermsAndConditionsEnglish() {
   return (
-    <div className={styles.textContainer}>
+    <div>
       <h1 className={styles.headline}>
         GENERAL TERMS AND CONDITIONS OF DELIVERY AND BUSINESS
       </h1>

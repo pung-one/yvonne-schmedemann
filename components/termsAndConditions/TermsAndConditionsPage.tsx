@@ -12,14 +12,14 @@ export function TermsAndConditionsPage() {
       {language === "german" ? (
         <>
           <StyledButton onClick={() => setLanguage("english")}>
-            English Version
+            ENGLISH VERSION
           </StyledButton>
           <TermsAndConditionsGerman />
         </>
       ) : (
         <>
           <StyledButton onClick={() => setLanguage("german")}>
-            Deutsche Version
+            DEUTSCHE VERSION
           </StyledButton>
           <TermsAndConditionsEnglish />
         </>
@@ -29,10 +29,10 @@ export function TermsAndConditionsPage() {
 }
 
 const Container = styled.article`
-  margin: 170px 0px;
+  margin: 150px 0px;
   line-height: 25px;
   @media only screen and (max-width: 1350px) {
-    margin: 170px 20px;
+    margin: 150px 20px;
   }
   @media only screen and (max-width: 768px) {
     margin: 70px 20px;
