@@ -77,7 +77,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
   }, [menuOpen]);
 
   useEffect(() => {
-    if (["/", "/about", "/all", "/impressum"].includes(pathname)) {
+    if (
+      ["/", "/about", "/all", "/impressum", "/terms-conditions"].includes(
+        pathname
+      )
+    ) {
       setShowScrollableLogo(true);
     } else {
       setShowScrollableLogo(false);
@@ -177,7 +181,7 @@ const BodyContainer = styled.body<{ $cursorColor: string }>`
       "#",
       "%23"
     )}'/%3E%3C/svg%3E")  15 15, auto`} !important;
-  &:before {
+  /* &:before {
     cursor: inherit;
     content: "";
     z-index: 0;
@@ -186,7 +190,7 @@ const BodyContainer = styled.body<{ $cursorColor: string }>`
     left: 0;
     width: 100%;
     height: 100%;
-  }
+  } */
 `;
 
 const HeaderContainer = styled.header`
