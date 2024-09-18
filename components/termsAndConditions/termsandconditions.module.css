@@ -1,0 +1,22 @@
+.headline {
+  font-weight: 100;
+}
+
+.subTitle {
+  margin-bottom: 30px;
+}
+
+.mainList {
+  list-style-type: upper-roman;
+  list-style-position: inside;
+}
+
+.subList {
+  list-style-position: outside;
+  padding-left: 15px;
+  margin: 20px 0 40px;
+}
+
+.subList li {
+  padding-left: 20px;
+}
