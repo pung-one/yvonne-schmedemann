@@ -1,5 +1,6 @@
 .textContainer {
   margin: 170px 0px;
+  max-width: 675px;
   line-height: 25px;
   @media only screen and (max-width: 1350px) {
     margin: 170px 20px;
