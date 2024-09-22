@@ -133,6 +133,7 @@ export function ImageGallery({ title, imageData, fullscreen }: Props) {
           <StyledImage
             priority
             $fullscreen={fullscreen}
+            $landscapeFormat={width > height}
             alt={alternativeText || ""}
             src={cmsBaseUrl + url}
             width={width}
@@ -161,11 +162,19 @@ const Title = styled.h2`
   }
 `;
 
-const StyledImage = styled(Image)<{ $fullscreen: boolean }>`
+const StyledImage = styled(Image)<{
+  $fullscreen: boolean;
+  $landscapeFormat: boolean;
+}>`
   width: 100%;
   height: ${({ $fullscreen }) => ($fullscreen ? "100vh" : "fit-content")};
-  object-fit: ${({ $fullscreen }) => ($fullscreen ? "cover" : "contain")};
+  object-fit: ${({ $fullscreen, $landscapeFormat }) =>
+    $fullscreen && $landscapeFormat ? "cover" : "contain"};
   object-position: center;
+  @media only screen and (max-width: 768px) {
+    padding: 10px;
+    object-fit: contain;
+  }
 `;
 
 const Navigation = styled.div`
@@ -193,6 +202,8 @@ const StyledButton = styled.button<{
     }
     cursor: ${({ $cursor }) => $cursor};
   }
+  color: white;
+  mix-blend-mode: difference;
 `;
 
 const ImageCounter = styled.p`

@@ -87,7 +87,8 @@ const CloseButton = styled.button<{
   border: none;
   cursor: inherit;
   color: ${({ $fullscreen }) => ($fullscreen ? "white" : "black")};
-  //mix-blend-mode: difference;
+  mix-blend-mode: ${({ $fullscreen }) =>
+    $fullscreen ? "difference" : "unset"};
   transition: transform 0.2s;
   font-size: 18px;
   cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Cpath stroke='%23ff00cf' stroke-width='2' d='m0 0 32 32M0 32 32 0'/%3E%3C/svg%3E")
