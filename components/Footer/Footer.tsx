@@ -35,4 +35,9 @@ const Container = styled.footer`
       color: #9966ff;
     }
   }
+  @media only screen and (max-width: 768px) {
+    a {
+      margin-left: 20px;
+    }
+  }
 `;

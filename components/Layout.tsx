@@ -20,6 +20,8 @@ import { NavMobile } from "./Header/NavMobile";
 import { getCategoryColor } from "@/lib/_utils";
 import { Category } from "@/lib/types";
 
+export const ViewportWidthContext = createContext<number>(1079);
+
 export const VisitedProjects = createContext<{
   visitedProjects: number[];
   setVisitedProjects: Dispatch<SetStateAction<number[]>>;
@@ -120,6 +122,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
           {viewportWidth > 768 && showScrollableLogo ? (
             <motion.div
               style={{
+                height: "100%",
                 opacity: opacity,
                 pointerEvents: pointerEvents,
               }}
@@ -160,7 +163,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
               setVisitedProjects: setVisitedProjects,
             }}
           >
-            {children}
+            <ViewportWidthContext.Provider value={viewportWidth}>
+              {children}
+            </ViewportWidthContext.Provider>
           </VisitedProjects.Provider>
         </MainContainer>
       </HoverImageFromCategoryContext.Provider>
@@ -173,7 +178,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 const BodyContainer = styled.body<{ $cursorColor: string }>`
   position: relative;
   min-height: 100dvh;
-  max-width: 1350px;
+  max-width: 1440px;
   margin: 0 auto;
   overflow-x: hidden !important;
   cursor: ${({ $cursorColor }) =>
@@ -181,16 +186,6 @@ const BodyContainer = styled.body<{ $cursorColor: string }>`
       "#",
       "%23"
     )}'/%3E%3C/svg%3E")  15 15, auto`} !important;
-  /* &:before {
-    cursor: inherit;
-    content: "";
-    z-index: 0;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  } */
 `;
 
 const HeaderContainer = styled.header`
@@ -201,8 +196,9 @@ const HeaderContainer = styled.header`
   justify-content: space-between;
   height: 70px;
   width: 100%;
-  @media only screen and (max-width: 1350px) {
+  @media only screen and (max-width: 1440px) {
     padding: 0 20px;
+    align-items: center;
   }
 `;
 
@@ -213,7 +209,7 @@ const MenuButton = styled.button`
   align-items: center;
   justify-content: center;
   right: 0;
-  height: 6vh;
+  height: 100%;
   width: 6vh;
   margin: 0 20px;
   background: none;

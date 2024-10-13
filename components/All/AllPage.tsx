@@ -100,7 +100,7 @@ export function AllPage({ projects }: Props) {
 
 const Container = styled.article`
   position: relative;
-  padding-top: 200px;
+  padding-top: 120px;
   @media only screen and (max-width: 768px) {
     padding-top: 50px;
   }
@@ -112,15 +112,18 @@ const ImageSection = styled.div`
   justify-content: flex-start;
   gap: 20px;
   width: 100%;
-  @media only screen and (max-width: 1350px) {
+  @media only screen and (max-width: 1440px) {
     justify-content: center;
+  }
+  @media only screen and (max-width: 768px) {
+    gap: 10px;
   }
 `;
 
 const ImageWrapper = styled(Link)<{ $title: string; $cursorColor: string }>`
   position: relative;
-  width: 254px;
-  height: 317.5px;
+  width: 272px;
+  height: 340px;
   cursor: ${({ $cursorColor }) =>
     `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30'%3E%3Ccircle cx='12' cy='12' r='10' fill='${$cursorColor.replace(
       "#",
@@ -149,8 +152,8 @@ const ImageWrapper = styled(Link)<{ $title: string; $cursorColor: string }>`
     }
   }
   @media only screen and (max-width: 768px) {
-    width: 40vw;
-    height: 50vw;
+    width: 45vw;
+    height: 56.25vw;
   }
 `;
 

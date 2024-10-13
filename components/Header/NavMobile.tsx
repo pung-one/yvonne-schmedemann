@@ -17,25 +17,53 @@ export function NavMobile({
         <TfiClose />
       </CloseButton>
 
-      <StyledLink onClick={() => setMenuOpen(false)} href={"/portrait"}>
+      <StyledLink
+        $color={getCategoryColor("portrait")}
+        onClick={() => setMenuOpen(false)}
+        href={"/portrait"}
+      >
         PORTRAIT
       </StyledLink>
-      <StyledLink onClick={() => setMenuOpen(false)} href={"/corporate"}>
+      <StyledLink
+        $color={getCategoryColor("corporate")}
+        onClick={() => setMenuOpen(false)}
+        href={"/corporate"}
+      >
         CORPORATE
       </StyledLink>
-      <StyledLink onClick={() => setMenuOpen(false)} href={"/interior"}>
+      <StyledLink
+        $color={getCategoryColor("interior")}
+        onClick={() => setMenuOpen(false)}
+        href={"/interior"}
+      >
         INTERIOR
       </StyledLink>
-      <StyledLink onClick={() => setMenuOpen(false)} href={"/jewellery"}>
+      <StyledLink
+        $color={getCategoryColor("jewellery")}
+        onClick={() => setMenuOpen(false)}
+        href={"/jewellery"}
+      >
         JEWELLERY
       </StyledLink>
-      <StyledLink onClick={() => setMenuOpen(false)} href={"/all"}>
+      <StyledLink
+        $color={getCategoryColor("all")}
+        onClick={() => setMenuOpen(false)}
+        href={"/all"}
+      >
         ALL
       </StyledLink>
-      <StyledLink onClick={() => setMenuOpen(false)} href={"/about"}>
+      <StyledLink
+        $color={getCategoryColor("about")}
+        onClick={() => setMenuOpen(false)}
+        href={"/about"}
+      >
         ABOUT
       </StyledLink>
-      <StyledLink onClick={() => setMenuOpen(false)} href={"/about#contact"}>
+      <StyledLink
+        $color={"black"}
+        onClick={() => setMenuOpen(false)}
+        href={"/about#contact"}
+      >
         CONTACT
       </StyledLink>
     </Navigation>
@@ -75,7 +103,7 @@ const CloseButton = styled.button`
   }
 `;
 
-const StyledLink = styled(Link)`
+const StyledLink = styled(Link)<{ $color: string }>`
   text-decoration: none;
-  color: black;
+  color: ${({ $color }) => $color};
 `;

@@ -31,7 +31,7 @@ export function TermsAndConditionsPage() {
 const Container = styled.article`
   margin: 150px 0px;
   line-height: 25px;
-  @media only screen and (max-width: 1350px) {
+  @media only screen and (max-width: 1440px) {
     margin: 150px 20px;
   }
   @media only screen and (max-width: 768px) {
