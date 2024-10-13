@@ -199,7 +199,6 @@ const HeaderContainer = styled.header`
   position: sticky;
   top: 0;
   justify-content: space-between;
-  align-items: center;
   height: 70px;
   width: 100%;
   @media only screen and (max-width: 1350px) {

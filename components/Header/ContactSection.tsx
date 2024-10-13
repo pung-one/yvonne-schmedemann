@@ -34,7 +34,7 @@ const Container = styled.div`
 const ContactElement = styled.div`
   display: flex;
   flex-direction: column;
-
+  padding-top: 25.5px;
   h3 {
     font-size: 16px;
     font-weight: 500;
