@@ -3,6 +3,8 @@
 import styled from "styled-components";
 import Image from "next/image";
 import { LandingInfo } from "@/lib/types";
+import { useContext } from "react";
+import { ViewportWidthContext } from "../Layout";
 
 const cmsBaseUrl = process.env.NEXT_PUBLIC_CMS_BASE_URL;
 
@@ -11,21 +13,43 @@ type Props = {
 };
 
 export function Hero({ landingInfo }: Props) {
-  const imageData = landingInfo?.attributes.HeroImage.data.attributes;
+  const heroImageDesktopData =
+    landingInfo?.attributes.HeroImageDesktop.data.attributes;
+  const heroImageMobileData =
+    landingInfo?.attributes.HeroImageMobile.data.attributes;
 
   const description = landingInfo?.attributes.HeroText;
 
+  const viewPortWidth = useContext(ViewportWidthContext);
+
   return (
     <Container>
-      {imageData && cmsBaseUrl && (
-        <StyledImage
-          priority
-          unoptimized
-          src={cmsBaseUrl + imageData?.url}
-          width={imageData?.width}
-          height={imageData?.height}
-          alt={imageData?.alternativeText || ""}
-        />
+      {viewPortWidth > 768 ? (
+        <>
+          {heroImageDesktopData && cmsBaseUrl && (
+            <StyledImage
+              priority
+              unoptimized
+              src={cmsBaseUrl + heroImageDesktopData?.url}
+              width={heroImageDesktopData?.width}
+              height={heroImageDesktopData?.height}
+              alt={heroImageDesktopData?.alternativeText || ""}
+            />
+          )}
+        </>
+      ) : (
+        <>
+          {heroImageMobileData && cmsBaseUrl && (
+            <StyledImage
+              priority
+              unoptimized
+              src={cmsBaseUrl + heroImageMobileData?.url}
+              width={heroImageMobileData?.width}
+              height={heroImageMobileData?.height}
+              alt={heroImageMobileData?.alternativeText || ""}
+            />
+          )}
+        </>
       )}
 
       <HorizontalLine />

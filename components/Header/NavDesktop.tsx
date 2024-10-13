@@ -73,6 +73,7 @@ export function NavDesktop() {
 
 const Navigation = styled.nav`
   display: flex;
+  align-items: center;
   gap: 30px;
 `;
 

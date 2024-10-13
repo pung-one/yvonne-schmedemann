@@ -7,21 +7,22 @@ import { Project } from "@/lib/types";
 import { getCategoryColor } from "@/lib/_utils";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { TfiClose } from "react-icons/tfi";
 
 export function DetailPage({ project }: { project: Project }) {
   const router = useRouter();
   const [windowWidthOverflow, setWindowWidthOverflow] = useState(0);
 
   function handleResize() {
-    if (window.innerWidth > 1350) {
-      setWindowWidthOverflow((window.innerWidth - 1350) / 2);
+    if (window.innerWidth > 1440) {
+      setWindowWidthOverflow((window.innerWidth - 1440) / 2);
     }
   }
 
   useEffect(() => {
     if (typeof window !== undefined) {
-      if (window.innerWidth > 1350) {
-        setWindowWidthOverflow((window.innerWidth - 1350) / 2);
+      if (window.innerWidth > 1440) {
+        setWindowWidthOverflow((window.innerWidth - 1440) / 2);
       }
 
       window.addEventListener("resize", handleResize);
@@ -37,11 +38,10 @@ export function DetailPage({ project }: { project: Project }) {
         $fullscreen={project.attributes.fullscreen}
       >
         <CloseButton
-          $fullscreen={project.attributes.fullscreen}
           $windowWidthOverflow={windowWidthOverflow}
           onClick={() => router.back()}
         >
-          CLOSE
+          <TfiClose />
         </CloseButton>
         {project && (
           <>
@@ -74,27 +74,29 @@ const Container = styled.article<{
 `;
 
 const CloseButton = styled.button<{
-  $fullscreen: boolean;
   $windowWidthOverflow: number;
 }>`
-  position: ${({ $fullscreen }) => ($fullscreen ? "fixed" : "absolute")};
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   z-index: 9;
-  right: ${({ $windowWidthOverflow, $fullscreen }) =>
-    $fullscreen ? `${$windowWidthOverflow}px` : "0"};
+  right: ${({ $windowWidthOverflow }) => `${$windowWidthOverflow}px`};
   height: 70px;
-  top: ${({ $fullscreen }) => ($fullscreen ? "70px" : "0")};
+  top: 70px;
   background: none;
   border: none;
   cursor: inherit;
-  color: ${({ $fullscreen }) => ($fullscreen ? "white" : "black")};
-  mix-blend-mode: ${({ $fullscreen }) =>
-    $fullscreen ? "difference" : "unset"};
-  transition: transform 0.2s;
-  font-size: 18px;
-  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Cpath stroke='%23ff00cf' stroke-width='2' d='m0 0 32 32M0 32 32 0'/%3E%3C/svg%3E")
-      16 16,
-    auto;
-  @media only screen and (max-width: 1350px) {
+  color: white;
+  mix-blend-mode: difference;
+  @media only screen and (max-width: 1440px) {
     margin-right: 20px;
+  }
+  * {
+    font-size: 33px;
+  }
+  &:hover {
+    mix-blend-mode: unset;
+    color: #ff00cf;
   }
 `;

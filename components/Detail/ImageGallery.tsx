@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import Image from "next/image";
 import { PiArrowLeftThin, PiArrowRightThin } from "react-icons/pi";
@@ -36,6 +36,29 @@ type Props = {
 
 export function ImageGallery({ title, imageData, fullscreen }: Props) {
   const [buttonEnabled, setButtonEnabled] = useState<boolean>(true);
+  const [titleVisible, setTitleVisible] = useState<boolean>(true);
+
+  const timeoutRef = useRef<number | null>(null);
+
+  const handleMouseMove = () => {
+    setTitleVisible(false);
+
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+
+    timeoutRef.current = window.setTimeout(() => {
+      setTitleVisible(true);
+    }, 1000);
+  };
+
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, []);
 
   const [imageIndexAndDirection, setImageIndexAndDirection] = useState<{
     index: number;
@@ -45,8 +68,6 @@ export function ImageGallery({ title, imageData, fullscreen }: Props) {
   const {
     attributes: { url, width, height, alternativeText },
   } = imageData[imageIndexAndDirection.index];
-
-  console.log(imageData[imageIndexAndDirection.index]);
 
   function prevImage() {
     if (buttonEnabled) {
@@ -79,7 +100,7 @@ export function ImageGallery({ title, imageData, fullscreen }: Props) {
   }
 
   return (
-    <Container>
+    <Container onMouseMove={handleMouseMove}>
       <AnimatePresence
         initial={false}
         mode={"popLayout"}
@@ -100,14 +121,13 @@ export function ImageGallery({ title, imageData, fullscreen }: Props) {
             <AnimatePresence>
               <motion.div
                 style={{
-                  zIndex: "3",
                   position: "absolute",
                   top: "50%",
                   left: "50%",
                   transform: "translateX(-50%) translateY(-50%)",
                 }}
                 initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
+                animate={{ opacity: titleVisible ? 1 : 0 }}
                 transition={{ delay: 0.2, duration: 0.3 }}
               >
                 <Title>{title}</Title>
@@ -154,7 +174,12 @@ const Container = styled.section`
 `;
 
 const Title = styled.h2`
+  white-space: preserve-breaks;
+  word-spacing: 9999px;
+  letter-spacing: 1px;
   font-size: 30px;
+  line-height: 29px;
+  font-weight: 500;
   color: #ffff00;
   text-align: center;
   &:hover {
@@ -172,12 +197,13 @@ const StyledImage = styled(Image)<{
     $fullscreen && $landscapeFormat ? "cover" : "contain"};
   object-position: center;
   @media only screen and (max-width: 768px) {
-    padding: 10px;
+    padding: 0 10px;
     object-fit: contain;
   }
 `;
 
 const Navigation = styled.div`
+  z-index: 2;
   position: absolute;
   display: flex;
   width: 100%;

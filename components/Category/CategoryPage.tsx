@@ -161,6 +161,95 @@ const ImageSection = styled.div`
       grid-row: 9 / span 1;
       grid-column: 1 / span 1;
     }
+    .item19 {
+      grid-row: 10 / span 1;
+      grid-column: 1 / span 1;
+    }
+    .item20 {
+      grid-row: 10 / span 1;
+      grid-column: 2 / span 1;
+    }
+    .item21 {
+      grid-row: 10 / span 1;
+      grid-column: 3 / span 1;
+    }
+    .item22 {
+      grid-row: 10 / span 1;
+      grid-column: 4 / span 1;
+    }
+    .item23 {
+      grid-row: 11 / span 2;
+      grid-column: 2 / span 2;
+      aspect-ratio: 5 / 3;
+    }
+    .item24 {
+      grid-row: 13 / span 2;
+      grid-column: 1 / span 2;
+      aspect-ratio: 7 / 8;
+      * {
+        object-fit: cover;
+      }
+    }
+    .item25 {
+      grid-row: 13 / span 1;
+      grid-column: 3 / span 1;
+      * {
+        object-position: top;
+      }
+    }
+    .item26 {
+      grid-row: 13 / span 1;
+      grid-column: 4 / span 1;
+      * {
+        object-position: top;
+      }
+    }
+    .item27 {
+      grid-row: 14 / span 1;
+      grid-column: 3 / span 2;
+      aspect-ratio: 6 / 4;
+      justify-self: end;
+      * {
+        width: fit-content;
+        height: 100%;
+      }
+    }
+    .item28 {
+      grid-row: 15 / span 1;
+      grid-column: 1 / span 1;
+    }
+    .item29 {
+      grid-row: 15 / span 1;
+      grid-column: 2 / span 1;
+    }
+    .item30 {
+      grid-row: 15 / span 1;
+      grid-column: 3 / span 1;
+    }
+    .item31 {
+      grid-row: 15 / span 1;
+      grid-column: 4 / span 1;
+    }
+    .item32 {
+      grid-row: 16 / span 1;
+      grid-column: 2 / span 2;
+    }
+    .item33 {
+      grid-row: 17 / span 1;
+      grid-column: 1 / span 1;
+    }
+    .item34 {
+      grid-row: 17 / span 1;
+      grid-column: 2 / span 1;
+    }
+    .item35 {
+      grid-row: 17 / span 2;
+      grid-column: 3 / span 2;
+    }
+    .item36 {
+      grid-row: 18 / span 1;
+      grid-column: 1 / span 1;
+    }
   }
 `;
 
