@@ -270,6 +270,9 @@ const ImageSection = styled.div`
 const ImageWrapper = styled(Link)<{ $title: string }>`
   @media only screen and (max-width: 768px) {
     height: fit-content;
+    aspect-ratio: unset !important;
+    margin: 0 !important;
+    width: 100% !important;
   }
   position: relative;
   width: 100%;
