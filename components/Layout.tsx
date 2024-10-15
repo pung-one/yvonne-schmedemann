@@ -6,13 +6,12 @@ import {
   Dispatch,
   SetStateAction,
   useEffect,
-  useMemo,
   useState,
 } from "react";
 import { ContactSection } from "./Header/ContactSection";
 import { NavDesktop } from "./Header/NavDesktop";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { Footer } from "./Footer/Footer";
 import { CiMenuBurger } from "react-icons/ci";
@@ -178,14 +177,16 @@ export function Layout({ children }: { children: React.ReactNode }) {
 const BodyContainer = styled.body<{ $cursorColor: string }>`
   position: relative;
   min-height: 100dvh;
-  max-width: 1440px;
-  margin: 0 auto;
+  padding: 0 50px;
   overflow-x: hidden !important;
   cursor: ${({ $cursorColor }) =>
     `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30'%3E%3Ccircle cx='12' cy='12' r='10' fill='${$cursorColor.replace(
       "#",
       "%23"
     )}'/%3E%3C/svg%3E")  15 15, auto`} !important;
+  @media only screen and (max-width: 768px) {
+    padding: 0;
+  }
 `;
 
 const HeaderContainer = styled.header`
@@ -197,8 +198,10 @@ const HeaderContainer = styled.header`
   height: 70px;
   width: 100%;
   @media only screen and (max-width: 1440px) {
-    padding: 0 20px;
     align-items: center;
+  }
+  @media only screen and (max-width: 768px) {
+    padding: 0 20px;
   }
 `;
 

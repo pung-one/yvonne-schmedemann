@@ -102,28 +102,27 @@ const Container = styled.article`
   position: relative;
   padding-top: 120px;
   @media only screen and (max-width: 768px) {
-    padding-top: 50px;
+    padding: 50px 10px 0;
   }
 `;
 
 const ImageSection = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  gap: 20px;
+  display: grid;
   width: 100%;
-  @media only screen and (max-width: 1440px) {
-    justify-content: center;
-  }
+  grid-template-columns: repeat(5, calc(20vw - 28px));
+  gap: 10px;
   @media only screen and (max-width: 768px) {
-    gap: 10px;
+    grid-template-columns: repeat(3, calc(33.33vw - 13px));
   }
 `;
 
 const ImageWrapper = styled(Link)<{ $title: string; $cursorColor: string }>`
   position: relative;
-  width: 272px;
-  height: 340px;
+  width: 100%;
+  height: calc(25vw - 28px);
+  @media only screen and (max-width: 768px) {
+    height: calc(41.25vw - 13px);
+  }
   cursor: ${({ $cursorColor }) =>
     `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30'%3E%3Ccircle cx='12' cy='12' r='10' fill='${$cursorColor.replace(
       "#",
@@ -150,10 +149,6 @@ const ImageWrapper = styled(Link)<{ $title: string; $cursorColor: string }>`
     &:after {
       transform: translateY(-50%) scale(1);
     }
-  }
-  @media only screen and (max-width: 768px) {
-    width: 45vw;
-    height: 56.25vw;
   }
 `;
 

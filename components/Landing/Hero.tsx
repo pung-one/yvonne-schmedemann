@@ -66,7 +66,10 @@ const Container = styled.section`
 const StyledImage = styled(Image)`
   width: 100%;
   height: fit-content;
-  margin-bottom: 100px;
+  margin-bottom: 50px;
+  @media only screen and (max-width: 768px) {
+    margin-bottom: 100px;
+  }
 `;
 
 const HorizontalLine = styled.div`

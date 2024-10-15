@@ -55,9 +55,9 @@ export function CategoryPage({ projects }: Props) {
 
 const Container = styled.article`
   position: relative;
-  padding-top: 120px;
+  padding-top: 80px;
   @media only screen and (max-width: 768px) {
-    padding-top: 70px;
+    padding-top: 50px;
   }
 `;
 
@@ -257,6 +257,9 @@ const ImageWrapper = styled(Link)<{ $title: string }>`
   position: relative;
   width: 100%;
   aspect-ratio: 4 / 5;
+  @media only screen and (max-width: 768px) {
+    aspect-ratio: unset;
+  }
   &:after {
     position: absolute;
     content: "${({ $title }) => $title}";
@@ -281,6 +284,11 @@ const ImageWrapper = styled(Link)<{ $title: string }>`
 `;
 
 const StyledImage = styled(Image)`
+  @media only screen and (min-width: 768px) {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
   width: 100%;
   height: 100%;
   object-fit: contain;

@@ -77,6 +77,7 @@ const Navigation = styled.nav<{ $menuOpen: boolean }>`
   flex-direction: column;
   align-items: center;
   top: 0;
+  left: 0;
   gap: 30px;
   width: 100%;
   height: 100%;
