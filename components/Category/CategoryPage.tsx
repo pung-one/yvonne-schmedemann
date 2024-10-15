@@ -56,210 +56,224 @@ export function CategoryPage({ projects }: Props) {
 const Container = styled.article`
   position: relative;
   padding-top: 80px;
+  width: 100%;
   @media only screen and (max-width: 768px) {
     padding-top: 50px;
   }
 `;
 
 const ImageSection = styled.div`
+  @media only screen and (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+  }
+
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 50px;
-  padding-bottom: 500px;
-  @media only screen and (min-width: 768px) {
-    gap: unset;
-    display: grid;
-    grid-template-columns: repeat(4, 23%);
-    grid-gap: 2.6666%;
-    .item1 {
-      grid-row: 1 / span 1;
-      grid-column: 1 / span 1;
-    }
-    .item2 {
-      grid-row: 1 / span 1;
-      grid-column: 2 / span 1;
-    }
-    .item3 {
-      grid-row: 1 / span 1;
-      grid-column: 3 / span 1;
-    }
-    .item4 {
-      grid-row: 1 / span 1;
-      grid-column: 4 / span 1;
-    }
-    .item5 {
-      grid-row: 2 / span 2;
-      grid-column: 2 / span 2;
-      aspect-ratio: 5 / 3;
-    }
-    .item6 {
-      grid-row: 4 / span 2;
-      grid-column: 1 / span 2;
-      aspect-ratio: 7 / 8;
-      * {
-        object-fit: cover;
-      }
-    }
-    .item7 {
-      grid-row: 4 / span 1;
-      grid-column: 3 / span 1;
-      * {
-        object-position: top;
-      }
-    }
-    .item8 {
-      grid-row: 4 / span 1;
-      grid-column: 4 / span 1;
-      * {
-        object-position: top;
-      }
-    }
-    .item9 {
-      grid-row: 5 / span 1;
-      grid-column: 3 / span 2;
-      aspect-ratio: 6 / 4;
-      justify-self: end;
-      * {
-        width: fit-content;
-        height: 100%;
-      }
-    }
-    .item10 {
-      grid-row: 6 / span 1;
-      grid-column: 1 / span 1;
-    }
-    .item11 {
-      grid-row: 6 / span 1;
-      grid-column: 2 / span 1;
-    }
-    .item12 {
-      grid-row: 6 / span 1;
-      grid-column: 3 / span 1;
-    }
-    .item13 {
-      grid-row: 6 / span 1;
-      grid-column: 4 / span 1;
-    }
-    .item14 {
-      grid-row: 7 / span 1;
-      grid-column: 2 / span 2;
-    }
-    .item15 {
-      grid-row: 8 / span 1;
-      grid-column: 1 / span 1;
-    }
-    .item16 {
-      grid-row: 8 / span 1;
-      grid-column: 2 / span 1;
-    }
-    .item17 {
-      grid-row: 8 / span 2;
-      grid-column: 3 / span 2;
-    }
-    .item18 {
-      grid-row: 9 / span 1;
-      grid-column: 1 / span 1;
-    }
-    .item19 {
-      grid-row: 10 / span 1;
-      grid-column: 1 / span 1;
-    }
-    .item20 {
-      grid-row: 10 / span 1;
-      grid-column: 2 / span 1;
-    }
-    .item21 {
-      grid-row: 10 / span 1;
-      grid-column: 3 / span 1;
-    }
-    .item22 {
-      grid-row: 10 / span 1;
-      grid-column: 4 / span 1;
-    }
-    .item23 {
-      grid-row: 11 / span 2;
-      grid-column: 2 / span 2;
-      aspect-ratio: 5 / 3;
-    }
-    .item24 {
-      grid-row: 13 / span 2;
-      grid-column: 1 / span 2;
-      aspect-ratio: 7 / 8;
-      * {
-        object-fit: cover;
-      }
-    }
-    .item25 {
-      grid-row: 13 / span 1;
-      grid-column: 3 / span 1;
-      * {
-        object-position: top;
-      }
-    }
-    .item26 {
-      grid-row: 13 / span 1;
-      grid-column: 4 / span 1;
-      * {
-        object-position: top;
-      }
-    }
-    .item27 {
-      grid-row: 14 / span 1;
-      grid-column: 3 / span 2;
-      aspect-ratio: 6 / 4;
-      justify-self: end;
-      * {
-        width: fit-content;
-        height: 100%;
-      }
-    }
-    .item28 {
-      grid-row: 15 / span 1;
-      grid-column: 1 / span 1;
-    }
-    .item29 {
-      grid-row: 15 / span 1;
-      grid-column: 2 / span 1;
-    }
-    .item30 {
-      grid-row: 15 / span 1;
-      grid-column: 3 / span 1;
-    }
-    .item31 {
-      grid-row: 15 / span 1;
-      grid-column: 4 / span 1;
-    }
-    .item32 {
-      grid-row: 16 / span 1;
-      grid-column: 2 / span 2;
-    }
-    .item33 {
-      grid-row: 17 / span 1;
-      grid-column: 1 / span 1;
-    }
-    .item34 {
-      grid-row: 17 / span 1;
-      grid-column: 2 / span 1;
-    }
-    .item35 {
-      grid-row: 17 / span 2;
-      grid-column: 3 / span 2;
-    }
-    .item36 {
-      grid-row: 18 / span 1;
-      grid-column: 1 / span 1;
-    }
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-column-gap: 20px;
+  grid-row-gap: 40px;
+
+  .item1 {
+    grid-row: 1 / span 1;
+    grid-column: 1 / span 1;
+    aspect-ratio: 4 / 5;
+  }
+  .item2 {
+    grid-row: 1 / span 1;
+    grid-column: 2 / span 1;
+    aspect-ratio: 4 / 5;
+  }
+  .item3 {
+    grid-row: 1 / span 1;
+    grid-column: 3 / span 1;
+    aspect-ratio: 4 / 5;
+  }
+  .item4 {
+    grid-row: 1 / span 1;
+    grid-column: 4 / span 1;
+    aspect-ratio: 4 / 5;
+  }
+  .item5 {
+    grid-row: 2 / span 1;
+    grid-column: 2 / span 2;
+    aspect-ratio: 5 / 3;
+  }
+  .item6 {
+    grid-row: 3 / span 2;
+    grid-column: 1 / span 2;
+    aspect-ratio: 7 / 8;
+  }
+  .item7 {
+    grid-row: 3 / span 1;
+    grid-column: 3 / span 1;
+    aspect-ratio: 4 / 5;
+  }
+  .item8 {
+    grid-row: 3 / span 1;
+    grid-column: 4 / span 1;
+    aspect-ratio: 4 / 5;
+  }
+  .item9 {
+    grid-row: 4 / span 1;
+    grid-column: 3 / span 2;
+    margin-top: -20px;
+    width: 74%;
+    aspect-ratio: 6 / 4;
+    justify-self: end;
+  }
+  .item10 {
+    grid-row: 5 / span 1;
+    grid-column: 1 / span 1;
+    aspect-ratio: 4 / 5;
+  }
+  .item11 {
+    grid-row: 5 / span 1;
+    grid-column: 2 / span 1;
+    aspect-ratio: 4 / 5;
+  }
+  .item12 {
+    grid-row: 5 / span 1;
+    grid-column: 3 / span 1;
+    aspect-ratio: 4 / 5;
+  }
+  .item13 {
+    grid-row: 5 / span 1;
+    grid-column: 4 / span 1;
+    aspect-ratio: 4 / 5;
+  }
+  .item14 {
+    grid-row: 6 / span 1;
+    grid-column: 2 / span 2;
+    aspect-ratio: 5 / 3;
+  }
+  .item15 {
+    grid-row: 7 / span 1;
+    grid-column: 1 / span 1;
+    aspect-ratio: 4 / 5;
+  }
+  .item16 {
+    grid-row: 7 / span 1;
+    grid-column: 2 / span 1;
+    aspect-ratio: 4 / 5;
+  }
+  .item17 {
+    grid-row: 7 / span 2;
+    grid-column: 3 / span 2;
+    aspect-ratio: 7 / 8;
+  }
+  .item18 {
+    grid-row: 8 / span 1;
+    grid-column: 1 / span 2;
+    margin-top: -20px;
+    width: 74%;
+    aspect-ratio: 6 / 4;
+  }
+  .item19 {
+    grid-row: 9 / span 1;
+    grid-column: 1 / span 1;
+    aspect-ratio: 4 / 5;
+  }
+  .item20 {
+    grid-row: 9 / span 1;
+    grid-column: 2 / span 1;
+    aspect-ratio: 4 / 5;
+  }
+  .item21 {
+    grid-row: 9 / span 1;
+    grid-column: 3 / span 1;
+    aspect-ratio: 4 / 5;
+  }
+  .item22 {
+    grid-row: 9 / span 1;
+    grid-column: 4 / span 1;
+    aspect-ratio: 4 / 5;
+  }
+  .item23 {
+    grid-row: 10 / span 1;
+    grid-column: 2 / span 2;
+    aspect-ratio: 5 / 3;
+  }
+  .item24 {
+    grid-row: 11 / span 2;
+    grid-column: 1 / span 2;
+    aspect-ratio: 7 / 8;
+  }
+  .item25 {
+    grid-row: 11 / span 1;
+    grid-column: 3 / span 1;
+    aspect-ratio: 4 / 5;
+  }
+  .item26 {
+    grid-row: 11 / span 1;
+    grid-column: 4 / span 1;
+    aspect-ratio: 4 / 5;
+  }
+  .item27 {
+    grid-row: 12 / span 1;
+    grid-column: 3 / span 2;
+    margin-top: -20px;
+    width: 74%;
+    aspect-ratio: 6 / 4;
+    justify-self: end;
+  }
+  .item28 {
+    grid-row: 13 / span 1;
+    grid-column: 1 / span 1;
+    aspect-ratio: 4 / 5;
+  }
+  .item29 {
+    grid-row: 13 / span 1;
+    grid-column: 2 / span 1;
+    aspect-ratio: 4 / 5;
+  }
+  .item30 {
+    grid-row: 13 / span 1;
+    grid-column: 3 / span 1;
+    aspect-ratio: 4 / 5;
+  }
+  .item31 {
+    grid-row: 13 / span 1;
+    grid-column: 4 / span 1;
+    aspect-ratio: 4 / 5;
+  }
+  .item32 {
+    grid-row: 14 / span 1;
+    grid-column: 2 / span 2;
+    aspect-ratio: 5 / 3;
+  }
+  .item33 {
+    grid-row: 15 / span 1;
+    grid-column: 1 / span 1;
+    aspect-ratio: 4 / 5;
+  }
+  .item34 {
+    grid-row: 15 / span 1;
+    grid-column: 2 / span 1;
+    aspect-ratio: 4 / 5;
+  }
+  .item35 {
+    grid-row: 15 / span 2;
+    grid-column: 3 / span 2;
+    aspect-ratio: 7 / 8;
+  }
+  .item36 {
+    grid-row: 16 / span 1;
+    grid-column: 1 / span 2;
+    margin-top: -20px;
+    width: 74%;
+    aspect-ratio: 6 / 4;
   }
 `;
 
 const ImageWrapper = styled(Link)<{ $title: string }>`
+  @media only screen and (max-width: 768px) {
+    height: fit-content;
+  }
   position: relative;
   width: 100%;
-  aspect-ratio: 4 / 5;
-  @media only screen and (max-width: 768px) {
-    aspect-ratio: unset;
-  }
+
   &:after {
     position: absolute;
     content: "${({ $title }) => $title}";
@@ -284,12 +298,10 @@ const ImageWrapper = styled(Link)<{ $title: string }>`
 `;
 
 const StyledImage = styled(Image)`
-  @media only screen and (min-width: 768px) {
-    position: absolute;
-    top: 0;
-    left: 0;
+  @media only screen and (max-width: 768px) {
+    object-fit: contain;
   }
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
 `;
