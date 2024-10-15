@@ -197,9 +197,7 @@ const HeaderContainer = styled.header`
   justify-content: space-between;
   height: 70px;
   width: 100%;
-  @media only screen and (max-width: 1440px) {
-    align-items: center;
-  }
+  align-items: center;
   @media only screen and (max-width: 768px) {
     padding: 0 20px;
   }
@@ -214,7 +212,6 @@ const MenuButton = styled.button`
   right: 0;
   height: 100%;
   width: 6vh;
-  margin: 0 20px;
   background: none;
   border: none;
   cursor: inherit;
