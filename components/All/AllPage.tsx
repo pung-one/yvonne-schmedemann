@@ -109,17 +109,17 @@ const Container = styled.article`
 const ImageSection = styled.div`
   display: grid;
   width: 100%;
-  grid-template-columns: repeat(5, calc(20vw - 28px));
+  grid-template-columns: repeat(5, 1fr);
   gap: 10px;
   @media only screen and (max-width: 768px) {
-    grid-template-columns: repeat(3, calc(33.33vw - 13px));
+    grid-template-columns: repeat(3, 1fr);
   }
 `;
 
 const ImageWrapper = styled(Link)<{ $title: string; $cursorColor: string }>`
   position: relative;
   width: 100%;
-  height: calc(25vw - 28px);
+  padding-top: 125%; //to get the 4:5 dimensions. also notice StyledImage position
   @media only screen and (max-width: 768px) {
     height: calc(41.25vw - 13px);
   }
@@ -168,6 +168,9 @@ const CategoryDot = styled.div<{
 `;
 
 const StyledImage = styled(Image)<{ $visited: boolean }>`
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
