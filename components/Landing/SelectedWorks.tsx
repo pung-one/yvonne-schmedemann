@@ -76,7 +76,7 @@ const Headline = styled.div`
   position: relative;
   display: flex;
   align-items: center;
-  margin-bottom: 100px;
+  margin-bottom: 80px;
   h2 {
     font-weight: normal;
     font-size: 20px;
@@ -91,111 +91,152 @@ const Headline = styled.div`
 `;
 
 const ImageSection = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 50px;
-  @media only screen and (min-width: 768px) {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    grid-gap: 20px;
+  @media only screen and (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+  }
 
-    .item1 {
-      grid-row: 1 / span 3;
-      grid-column: 1 / span 2;
-      height: 40vh;
-    }
-    .item2 {
-      grid-row: 1 / span 3;
-      grid-column: 3 / span 2;
-      height: 50vh;
-    }
-    .item3 {
-      grid-row: 1 / span 3;
-      grid-column: 5 / span 2;
-    }
-    .item4 {
-      grid-row: 4 / span 1;
-      grid-column: 1 / span 3;
-      padding: 0;
-      * {
-        position: relative;
-      }
-    }
-    .item5 {
-      grid-row: 4 / span 3;
-      grid-column: 4 / span 3;
-    }
-    .item6 {
-      grid-row: 5 / span 1;
-      grid-column: 1 / span 3;
-    }
-    .item7 {
-      grid-row: 6 / span 2;
-      grid-column: 1 / span 1;
-    }
-    .item8 {
-      grid-row: 6 / span 2;
-      grid-column: 2 / span 2;
-    }
-    .item9 {
-      grid-row: 7 / span 2;
-      grid-column: 4 / span 3;
-    }
-    .item10 {
-      grid-row: 8 / span 3;
-      grid-column: 1 / span 3;
-    }
-    .item11 {
-      grid-row: 9 / span 2;
-      grid-column: 4 / span 3;
-    }
-    .item12 {
-      grid-row: 11 / span 3;
-      grid-column: 1 / span 2;
-    }
-    .item13 {
-      grid-row: 11 / span 2;
-      grid-column: 3 / span 2;
-      * {
-        object-fit: cover;
-      }
-    }
-    .item14 {
-      grid-row: 11 / span 2;
-      grid-column: 5 / span 2;
-      * {
-        object-fit: cover;
-      }
-    }
-    .item15 {
-      grid-row: 13 / span 1;
-      grid-column: 4 / span 2;
-    }
-    .item16 {
-      grid-row: 14 / span 3;
-      grid-column: 1 / span 3;
-    }
-    .item17 {
-      grid-row: 15 / span 1;
-      grid-column: 4 / span 1;
-      * {
-        object-fit: cover;
-      }
-    }
-    .item18 {
-      grid-row: 14 / span 2;
-      grid-column: 5 / span 2;
-    }
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-column-gap: 20px;
+  grid-row-gap: 40px;
+
+  .item1 {
+    grid-row: 1 / span 2;
+    grid-column: 1 / span 2;
+    aspect-ratio: 15 / 22;
+    width: 80%;
+    justify-self: center;
+  }
+  .item2 {
+    grid-row: 1 / span 2;
+    grid-column: 3 / span 2;
+    aspect-ratio: 5 / 7;
+    margin-top: 5%;
+  }
+  .item3 {
+    grid-row: 1 / span 2;
+    grid-column: 5 / span 2;
+    aspect-ratio: 11 / 14;
+    width: 80%;
+    justify-self: end;
+    align-self: center;
+  }
+  .item4 {
+    grid-row: 3 / span 1;
+    grid-column: 1 / span 3;
+    aspect-ratio: 17 / 6;
+  }
+  .item5 {
+    grid-row: 3 / span 3;
+    grid-column: 4 / span 3;
+    aspect-ratio: 27 / 40;
+    width: 90%;
+    justify-self: end;
+    margin-top: 5%;
+  }
+  .item6 {
+    grid-row: 4 / span 1;
+    grid-column: 1 / span 3;
+    aspect-ratio: 35 / 23;
+    width: 70%;
+    justify-self: center;
+  }
+  .item7 {
+    grid-row: 5 / span 2;
+    grid-column: 1 / span 2;
+    aspect-ratio: 15 / 22;
+    width: 50%;
+    margin-left: 10%;
+  }
+  .item8 {
+    grid-row: 5 / span 2;
+    grid-column: 3 / span 1;
+    aspect-ratio: 4 / 6;
+    margin-top: 5%;
+    min-width: 17vw;
+    justify-self: end;
+  }
+  .item9 {
+    grid-row: 6 / span 2;
+    grid-column: 4 / span 3;
+    aspect-ratio: 5 / 3;
+    width: 75%;
+    justify-self: center;
+    margin-top: 10%;
+  }
+  .item10 {
+    grid-row: 7 / span 2;
+    grid-column: 1 / span 2;
+    aspect-ratio: 4 / 5;
+    width: 90%;
+    justify-self: end;
+    align-self: center;
+  }
+  .item11 {
+    grid-row: 8 / span 2;
+    grid-column: 3 / span 4;
+    aspect-ratio: 4 / 5;
+    width: 90%;
+    justify-self: end;
+  }
+  .item12 {
+    grid-row: 9 / span 2;
+    grid-column: 1 / span 2;
+    aspect-ratio: 5 / 4;
+  }
+  .item13 {
+    grid-row: 10 / span 1;
+    grid-column: 1 / span 3;
+    aspect-ratio: 5 / 3;
+    width: 90%;
+    justify-self: center;
+  }
+  .item14 {
+    grid-row: 10 / span 2;
+    grid-column: 4 / span 3;
+    aspect-ratio: 4 / 5;
+    width: 90%;
+    justify-self: center;
+    margin-top: 5%;
+  }
+  .item15 {
+    grid-row: 11 / span 2;
+    grid-column: 1 / span 3;
+    aspect-ratio: 4 / 5;
+    width: 80%;
+  }
+  .item16 {
+    grid-row: 12 / span 2;
+    grid-column: 4 / span 1;
+    aspect-ratio: 4 / 5;
+  }
+  .item17 {
+    grid-row: 12 / span 2;
+    grid-column: 5 / span 2;
+    aspect-ratio: 3 / 5;
+    width: 80%;
+    justify-self: end;
+  }
+  .item18 {
+    grid-row: 13 / span 1;
+    grid-column: 2 / span 3;
+    aspect-ratio: 5 / 4;
   }
 `;
 
 const ImageWrapper = styled(Link)<{ $title: string; $cursorColor: string }>`
+  @media only screen and (max-width: 768px) {
+    height: fit-content;
+    aspect-ratio: unset !important;
+    margin: 0 !important;
+    width: 100% !important;
+  }
   position: relative;
   width: 100%;
-  @media only screen and (min-width: 768px) {
-    padding-top: 100%;
-  }
+
   cursor: ${({ $cursorColor }) =>
     `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30'%3E%3Ccircle cx='12' cy='12' r='10' fill='${$cursorColor.replace(
       "#",
@@ -225,12 +266,10 @@ const ImageWrapper = styled(Link)<{ $title: string; $cursorColor: string }>`
 `;
 
 const StyledImage = styled(Image)`
-  @media only screen and (min-width: 768px) {
-    position: absolute;
-    top: 0;
-    left: 0;
+  @media only screen and (max-width: 768px) {
+    object-fit: contain;
   }
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
 `;
