@@ -134,22 +134,26 @@ export function ImageGallery({ title, imageData, fullscreen }: Props) {
               </motion.div>
             </AnimatePresence>
           )}
-          <Navigation>
-            <StyledButton
-              $direction="left"
-              $cursor={getCursor("left")}
-              onClick={() => prevImage()}
-            >
-              <PiArrowLeftThin />
-            </StyledButton>
-            <StyledButton
-              $direction="right"
-              $cursor={getCursor("right")}
-              onClick={() => nextImage()}
-            >
-              <PiArrowRightThin />
-            </StyledButton>
-          </Navigation>
+
+          {imageData.length > 1 && (
+            <Navigation>
+              <StyledButton
+                $direction="left"
+                $cursor={getCursor("left")}
+                onClick={() => prevImage()}
+              >
+                <PiArrowLeftThin />
+              </StyledButton>
+              <StyledButton
+                $direction="right"
+                $cursor={getCursor("right")}
+                onClick={() => nextImage()}
+              >
+                <PiArrowRightThin />
+              </StyledButton>
+            </Navigation>
+          )}
+
           <StyledImage
             priority
             $fullscreen={fullscreen}
@@ -177,13 +181,17 @@ const Title = styled.h2`
   white-space: preserve-breaks;
   word-spacing: 9999px;
   letter-spacing: 1px;
-  font-size: 30px;
-  line-height: 29px;
+  font-size: 48px;
+  line-height: 48px;
   font-weight: 500;
   color: #ffff00;
   text-align: center;
   &:hover {
     opacity: 0;
+  }
+  @media only screen and (max-width: 768px) {
+    font-size: 30px;
+    line-height: 30px;
   }
 `;
 

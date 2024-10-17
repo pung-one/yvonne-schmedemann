@@ -269,6 +269,7 @@ const StyledLink = styled(Link)<{ $showWhiteLogo: boolean }>`
     color: #9966ff;
   }
   @media only screen and (max-width: 768px) {
+    color: black;
     font-size: 30px;
     transform: translateY(0);
   }
