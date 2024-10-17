@@ -21,6 +21,12 @@ import { Category } from "@/lib/types";
 
 export const ViewportWidthContext = createContext<number>(1079);
 
+export const DetailPageIsFullscreenContext = createContext<{
+  setDetailPageIsFullscreen: Dispatch<SetStateAction<boolean>>;
+}>({
+  setDetailPageIsFullscreen: () => {},
+});
+
 export const VisitedProjects = createContext<{
   visitedProjects: number[];
   setVisitedProjects: Dispatch<SetStateAction<number[]>>;
@@ -42,6 +48,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
   const [visitedProjects, setVisitedProjects] = useState<number[]>([]);
   const [viewportWidth, setViewportWidth] = useState(1079);
   const [showScrollableLogo, setShowScrollableLogo] = useState<boolean>(true);
+  const [detailPageIsFullscreen, setDetailPageIsFullscreen] =
+    useState<boolean>(false);
 
   const [hoverImageFromCategory, setHoverImageFromCategory] = useState<
     Category | "none"
@@ -111,7 +119,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
               SCHMEDEMANN
             </StyledLinkScrollEffect>
           ) : (
-            <StyledLink href={"/"}>
+            <StyledLink href={"/"} $showWhiteLogo={detailPageIsFullscreen}>
               YVONNE
               <br />
               SCHMEDEMANN
@@ -162,9 +170,15 @@ export function Layout({ children }: { children: React.ReactNode }) {
               setVisitedProjects: setVisitedProjects,
             }}
           >
-            <ViewportWidthContext.Provider value={viewportWidth}>
-              {children}
-            </ViewportWidthContext.Provider>
+            <DetailPageIsFullscreenContext.Provider
+              value={{
+                setDetailPageIsFullscreen: setDetailPageIsFullscreen,
+              }}
+            >
+              <ViewportWidthContext.Provider value={viewportWidth}>
+                {children}
+              </ViewportWidthContext.Provider>
+            </DetailPageIsFullscreenContext.Provider>
           </VisitedProjects.Provider>
         </MainContainer>
       </HoverImageFromCategoryContext.Provider>
@@ -243,13 +257,13 @@ const BorderBottom = styled.div`
   }
 `;
 
-const StyledLink = styled(Link)`
+const StyledLink = styled(Link)<{ $showWhiteLogo: boolean }>`
   position: absolute;
   font-family: "LogoFont";
   font-size: 50px;
   line-height: 0.6;
   text-decoration: none;
-  color: black;
+  color: ${({ $showWhiteLogo }) => ($showWhiteLogo ? "white" : "black")};
   transform: translateY(20px);
   &:hover {
     color: #9966ff;

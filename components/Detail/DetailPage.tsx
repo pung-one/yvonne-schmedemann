@@ -6,11 +6,22 @@ import { Description } from "./Description";
 import { Project } from "@/lib/types";
 import { getCategoryColor } from "@/lib/_utils";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
 import { TfiClose } from "react-icons/tfi";
+import { useContext, useEffect } from "react";
+import { DetailPageIsFullscreenContext } from "../Layout";
 
 export function DetailPage({ project }: { project: Project }) {
   const router = useRouter();
+
+  const { setDetailPageIsFullscreen } = useContext(
+    DetailPageIsFullscreenContext
+  );
+
+  useEffect(() => {
+    if (setDetailPageIsFullscreen) {
+      setDetailPageIsFullscreen(project.attributes.fullscreen);
+    }
+  }, [setDetailPageIsFullscreen]);
 
   return (
     <>
