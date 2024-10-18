@@ -95,6 +95,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
     } else {
       setShowScrollableLogo(false);
     }
+    setDetailPageIsFullscreen(false);
   }, [pathname]);
 
   return (
@@ -191,7 +192,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 const BodyContainer = styled.body<{ $cursorColor: string }>`
   position: relative;
   min-height: 100dvh;
-  margin: 0 50px;
+  margin: 0 75px;
   overflow-x: hidden !important;
   cursor: ${({ $cursorColor }) =>
     `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30'%3E%3Ccircle cx='12' cy='12' r='10' fill='${$cursorColor.replace(

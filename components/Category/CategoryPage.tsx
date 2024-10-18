@@ -72,8 +72,12 @@ const ImageSection = styled.div`
   width: 100%;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  grid-column-gap: 20px;
-  grid-row-gap: 40px;
+  grid-column-gap: 40px;
+  grid-row-gap: 80px;
+  @media only screen and (max-width: 1140px) {
+    grid-column-gap: 20px;
+    grid-row-gap: 40px;
+  }
 
   .item1 {
     grid-row: 1 / span 1;
@@ -118,10 +122,13 @@ const ImageSection = styled.div`
   .item9 {
     grid-row: 4 / span 1;
     grid-column: 3 / span 2;
-    margin-top: -20px;
-    width: 74%;
+    margin-top: -50px;
+    width: 75%;
     aspect-ratio: 6 / 4;
     justify-self: end;
+    @media only screen and (max-width: 1140px) {
+      margin-top: -25px;
+    }
   }
   .item10 {
     grid-row: 5 / span 1;
@@ -166,9 +173,12 @@ const ImageSection = styled.div`
   .item18 {
     grid-row: 8 / span 1;
     grid-column: 1 / span 2;
-    margin-top: -20px;
-    width: 74%;
+    margin-top: -50px;
+    width: 75%;
     aspect-ratio: 6 / 4;
+    @media only screen and (max-width: 1140px) {
+      margin-top: -25px;
+    }
   }
   .item19 {
     grid-row: 9 / span 1;
@@ -213,10 +223,13 @@ const ImageSection = styled.div`
   .item27 {
     grid-row: 12 / span 1;
     grid-column: 3 / span 2;
-    margin-top: -20px;
-    width: 74%;
+    margin-top: -50px;
+    width: 75%;
     aspect-ratio: 6 / 4;
     justify-self: end;
+    @media only screen and (max-width: 1140px) {
+      margin-top: -25px;
+    }
   }
   .item28 {
     grid-row: 13 / span 1;
@@ -261,9 +274,12 @@ const ImageSection = styled.div`
   .item36 {
     grid-row: 16 / span 1;
     grid-column: 1 / span 2;
-    margin-top: -20px;
-    width: 74%;
+    margin-top: -50px;
+    width: 75%;
     aspect-ratio: 6 / 4;
+    @media only screen and (max-width: 1140px) {
+      margin-top: -25px;
+    }
   }
 `;
 
@@ -287,11 +303,15 @@ const ImageWrapper = styled(Link)<{ $title: string }>`
     left: 0;
     width: 100%;
     text-align: center;
-    font-size: 30px;
-    line-height: 29px;
+    font-size: 2.3vw;
+    line-height: 2.3vw;
     font-weight: 500;
     color: #ffff00;
     transform: translateY(-50%) scale(0);
+    @media only screen and (max-width: 768px) {
+      font-size: 40px;
+      line-height: 40px;
+    }
   }
   &:hover {
     &:after {

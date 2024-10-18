@@ -48,7 +48,7 @@ const Container = styled.section`
   flex-direction: column;
   justify-content: space-between;
   padding: 0 50px;
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 1140px) {
     padding: 100px 20px;
   }
 `;
@@ -57,7 +57,7 @@ const Text = styled.p`
   column-count: 4;
   column-gap: 20px;
   white-space: pre-line;
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 850px) {
     column-count: 1;
   }
 `;

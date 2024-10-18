@@ -35,6 +35,10 @@ export default async function Page() {
       <br />
       Juliane van Treeck
       <br />
+      TEXTE VITA:
+      <br />
+      Markus Gölzer
+      <br />
       <br />
       <br />
       <br />

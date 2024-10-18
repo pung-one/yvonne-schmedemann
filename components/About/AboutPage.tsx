@@ -28,7 +28,7 @@ const Container = styled.div`
   position: relative;
   display: flex;
   padding-top: 120px;
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 1140px) {
     padding-top: 100px;
     flex-direction: column;
   }
