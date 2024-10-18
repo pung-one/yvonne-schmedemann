@@ -21,7 +21,7 @@ export function DetailPage({ project }: { project: Project }) {
     if (setDetailPageIsFullscreen) {
       setDetailPageIsFullscreen(project.attributes.fullscreen);
     }
-  }, [setDetailPageIsFullscreen]);
+  }, [setDetailPageIsFullscreen, project.attributes.fullscreen]);
 
   return (
     <>
