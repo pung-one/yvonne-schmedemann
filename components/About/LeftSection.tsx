@@ -77,6 +77,7 @@ const Bio = styled.p`
   border-top: 1px solid black;
   border-bottom: 1px solid black;
   line-height: 24px;
+  letter-spacing: 0.6pt;
   span {
     font-family: "LogoFont";
     font-size: 20px;

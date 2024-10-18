@@ -31,7 +31,9 @@ const Container = styled.section`
   }
 `;
 
-const Text = styled.p``;
+const Text = styled.p`
+  letter-spacing: 0.6pt;
+`;
 
 const Credits = styled.div`
   display: flex;

@@ -9,6 +9,7 @@
 .mainList {
   list-style-type: upper-roman;
   list-style-position: inside;
+  letter-spacing: 0.6pt;
 }
 
 .subList {

@@ -81,5 +81,5 @@ const Description = styled.p`
   max-width: 990px;
   margin: 80px auto;
   padding: 0 20px;
-  letter-spacing: 1px;
+  letter-spacing: 0.6pt;
 `;

@@ -120,7 +120,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
               SCHMEDEMANN
             </StyledLinkScrollEffect>
           ) : (
-            <StyledLink href={"/"} $showWhiteLogo={detailPageIsFullscreen}>
+            <StyledLink
+              key={pathname}
+              href={"/"}
+              $showWhiteLogo={detailPageIsFullscreen}
+            >
               YVONNE
               <br />
               SCHMEDEMANN
