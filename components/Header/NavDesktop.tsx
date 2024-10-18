@@ -11,7 +11,7 @@ export function NavDesktop() {
   const { hoverImageFromCategory } = useContext(HoverImageFromCategoryContext);
 
   return (
-    <Navigation>
+    <Navigation key={pathname}>
       <StyledLink
         $isActive={
           pathname.includes("portrait") ||
