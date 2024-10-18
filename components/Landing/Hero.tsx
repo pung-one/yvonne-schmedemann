@@ -78,7 +78,8 @@ const HorizontalLine = styled.div`
 `;
 
 const Description = styled.p`
-  max-width: 800px;
+  max-width: 990px;
   margin: 80px auto;
   padding: 0 20px;
+  letter-spacing: 1px;
 `;

@@ -139,11 +139,15 @@ const ImageWrapper = styled(Link)<{ $title: string; $cursorColor: string }>`
     left: 0;
     width: 100%;
     text-align: center;
-    font-size: 30px;
-    line-height: 29px;
+    font-size: 2.3vw;
+    line-height: 2.3vw;
     font-weight: 500;
     color: #ffff00;
     transform: translateY(-50%) scale(0);
+    @media only screen and (max-width: 768px) {
+      font-size: 30px;
+      line-height: 30px;
+    }
   }
   &:hover {
     &:after {

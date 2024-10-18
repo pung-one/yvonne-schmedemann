@@ -57,7 +57,7 @@ const Container = styled.article<{
   width: ${({ $fullscreen }) => ($fullscreen ? "100vw" : "unset")};
   margin-top: ${({ $fullscreen }) => ($fullscreen ? "-71px" : "unset")};
   padding-top: ${({ $fullscreen }) => ($fullscreen ? "unset" : "70px")};
-  margin-left: ${({ $fullscreen }) => ($fullscreen ? `-50px` : "unset")};
+  margin-left: ${({ $fullscreen }) => ($fullscreen ? `-75px` : "unset")};
   @media only screen and (max-width: 768px) {
     margin-left: 0;
   }
@@ -68,7 +68,7 @@ const CategorySign = styled.p<{ $color: string }>`
   display: none;
   position: fixed;
   top: 70px;
-  left: 50px;
+  left: 75px;
   line-height: 70px;
   color: ${({ $color }) => $color};
   @media only screen and (max-width: 768px) {
@@ -85,7 +85,7 @@ const CloseButton = styled.button`
   z-index: 9;
   height: 70px;
   top: 70px;
-  right: 50px;
+  right: 75px;
   background: none;
   border: none;
   cursor: inherit;

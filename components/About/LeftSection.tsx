@@ -50,7 +50,7 @@ const Container = styled.section`
   flex-direction: column;
   gap: 100px;
   align-items: center;
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 1140px) {
     width: 100%;
   }
 `;
@@ -81,7 +81,7 @@ const Bio = styled.p`
     font-family: "LogoFont";
     font-size: 20px;
   }
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 1140px) {
     padding: 100px 20px;
   }
 `;

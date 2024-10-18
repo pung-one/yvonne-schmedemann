@@ -79,7 +79,7 @@ const Headline = styled.div`
   margin-bottom: 80px;
   h2 {
     font-weight: normal;
-    font-size: 20px;
+    font-size: 25px;
     padding: 0 5vw;
   }
   div {
@@ -172,8 +172,8 @@ const ImageSection = styled.div`
     grid-column: 1 / span 2;
     aspect-ratio: 4 / 5;
     width: 90%;
+    margin-top: 10%;
     justify-self: end;
-    align-self: center;
   }
   .item11 {
     grid-row: 8 / span 2;
@@ -186,6 +186,7 @@ const ImageSection = styled.div`
     grid-row: 9 / span 2;
     grid-column: 1 / span 2;
     aspect-ratio: 5 / 4;
+    margin-top: -20%;
   }
   .item13 {
     grid-row: 10 / span 1;
@@ -212,6 +213,8 @@ const ImageSection = styled.div`
     grid-row: 12 / span 2;
     grid-column: 4 / span 1;
     aspect-ratio: 4 / 5;
+    min-width: 18vw;
+    justify-self: end;
   }
   .item17 {
     grid-row: 12 / span 2;
@@ -224,6 +227,7 @@ const ImageSection = styled.div`
     grid-row: 13 / span 1;
     grid-column: 2 / span 3;
     aspect-ratio: 5 / 4;
+    margin-top: 3%;
   }
 `;
 
@@ -252,11 +256,15 @@ const ImageWrapper = styled(Link)<{ $title: string; $cursorColor: string }>`
     left: 0;
     width: 100%;
     text-align: center;
-    font-size: 30px;
-    line-height: 29px;
+    font-size: 2.3vw;
+    line-height: 2.3vw;
     font-weight: 500;
     color: #ffff00;
     transform: translateY(-50%) scale(0);
+    @media only screen and (max-width: 768px) {
+      font-size: 40px;
+      line-height: 40px;
+    }
   }
   &:hover {
     &:after {
