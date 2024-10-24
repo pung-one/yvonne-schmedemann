@@ -145,8 +145,8 @@ const ImageWrapper = styled(Link)<{ $title: string; $cursorColor: string }>`
     color: #ffff00;
     transform: translateY(-50%) scale(0);
     @media only screen and (max-width: 768px) {
-      font-size: 30px;
-      line-height: 30px;
+      font-size: 4.5vw;
+      line-height: 4.5vw;
     }
   }
   &:hover {

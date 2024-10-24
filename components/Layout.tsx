@@ -237,6 +237,9 @@ const MenuButton = styled.button`
   * {
     font-size: 30px;
   }
+  @media only screen and (max-width: 768px) {
+    margin: 0 20px;
+  }
 `;
 
 const BorderBottomScrollEffect = styled(motion.div)`
@@ -267,6 +270,7 @@ const StyledLink = styled(Link)<{ $showWhiteLogo: boolean }>`
   font-family: "LogoFont";
   font-size: 50px;
   line-height: 0.6;
+  padding-left: 5px;
   text-decoration: none;
   color: ${({ $showWhiteLogo }) => ($showWhiteLogo ? "white" : "black")};
   transform: translateY(20px);
@@ -285,6 +289,7 @@ const StyledLinkScrollEffect = styled(motion(Link))`
   font-family: "LogoFont";
   font-size: 50px;
   line-height: 0.6;
+  padding-left: 5px;
   text-decoration: none;
   color: black;
   &:hover {

@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, PanInfo } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import Image from "next/image";
@@ -99,6 +99,16 @@ export function ImageGallery({ title, imageData, fullscreen }: Props) {
     }
   }
 
+  function dragEndHandler(dragInfo: PanInfo) {
+    const draggedDistance = dragInfo.offset.x;
+    const swipeThreshold = 50;
+    if (draggedDistance > swipeThreshold) {
+      nextImage();
+    } else if (draggedDistance < -swipeThreshold) {
+      prevImage();
+    }
+  }
+
   return (
     <Container onMouseMove={handleMouseMove}>
       <AnimatePresence
@@ -114,6 +124,10 @@ export function ImageGallery({ title, imageData, fullscreen }: Props) {
           initial="enter"
           animate="center"
           exit="exit"
+          drag="x"
+          dragConstraints={{ left: 0, right: 0 }}
+          dragElastic={0}
+          onDragEnd={(_, dragInfo) => dragEndHandler(dragInfo)}
           onAnimationStart={() => setButtonEnabled(false)}
           onAnimationComplete={() => setButtonEnabled(true)}
         >
