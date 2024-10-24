@@ -23,10 +23,20 @@ export function Customers({ customers }: Props) {
               </a>
             </p>
             <span>
-              <a href="linkedin.com">linkedIn</a>
+              <a
+                href="https://www.linkedin.com/in/yvonne-schmedemann-069765b1/"
+                target="_blank"
+              >
+                linkedIn
+              </a>
             </span>
             <span>
-              <a href="instagram.com">instagram</a>
+              <a
+                href="https://www.instagram.com/yvonneschmedemann/"
+                target="_blank"
+              >
+                instagram
+              </a>
             </span>
           </Links>
         </Contact>
