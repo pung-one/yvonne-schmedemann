@@ -19,7 +19,7 @@ import { NavMobile } from "./Header/NavMobile";
 import { getCategoryColor } from "@/lib/_utils";
 import { Category } from "@/lib/types";
 
-export const ViewportWidthContext = createContext<number>(1079);
+export const ViewportWidthContext = createContext<number>(767);
 
 export const DetailPageIsFullscreenContext = createContext<{
   setDetailPageIsFullscreen: Dispatch<SetStateAction<boolean>>;
@@ -46,7 +46,7 @@ export const HoverImageFromCategoryContext = createContext<{
 export function Layout({ children }: { children: React.ReactNode }) {
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
   const [visitedProjects, setVisitedProjects] = useState<number[]>([]);
-  const [viewportWidth, setViewportWidth] = useState(1079);
+  const [viewportWidth, setViewportWidth] = useState(767);
   const [showScrollableLogo, setShowScrollableLogo] = useState<boolean>(true);
   const [detailPageIsFullscreen, setDetailPageIsFullscreen] =
     useState<boolean>(false);
@@ -100,11 +100,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
   return (
     <BodyContainer
-      $cursorColor={
-        pathname === "/"
-          ? "#00ff00"
-          : getCategoryColor(pathname.replace("/", "") as Category)
-      }
+      $cursorColor={pathname === "/" ? "#00ff00" : getCategoryColor(pathname)}
     >
       <HoverImageFromCategoryContext.Provider
         value={{
@@ -120,11 +116,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
               SCHMEDEMANN
             </StyledLinkScrollEffect>
           ) : (
-            <StyledLink
-              key={pathname}
-              href={"/"}
-              $showWhiteLogo={detailPageIsFullscreen}
-            >
+            <StyledLink href={"/"} $showWhiteLogo={detailPageIsFullscreen}>
               YVONNE
               <br />
               SCHMEDEMANN
