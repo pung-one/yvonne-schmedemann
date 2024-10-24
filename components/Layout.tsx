@@ -16,10 +16,12 @@ import Link from "next/link";
 import { Footer } from "./Footer/Footer";
 import { CiMenuBurger } from "react-icons/ci";
 import { NavMobile } from "./Header/NavMobile";
-import { getCategoryColor } from "@/lib/_utils";
+import {
+  getCategoryColor,
+  useLockBodyScroll,
+  useViewportWidth,
+} from "@/lib/_utils";
 import { Category } from "@/lib/types";
-
-export const ViewportWidthContext = createContext<number>(767);
 
 export const DetailPageIsFullscreenContext = createContext<{
   setDetailPageIsFullscreen: Dispatch<SetStateAction<boolean>>;
@@ -46,7 +48,6 @@ export const HoverImageFromCategoryContext = createContext<{
 export function Layout({ children }: { children: React.ReactNode }) {
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
   const [visitedProjects, setVisitedProjects] = useState<number[]>([]);
-  const [viewportWidth, setViewportWidth] = useState(767);
   const [showScrollableLogo, setShowScrollableLogo] = useState<boolean>(true);
   const [detailPageIsFullscreen, setDetailPageIsFullscreen] =
     useState<boolean>(false);
@@ -69,21 +70,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
     value === 0 ? "none" : "auto"
   );
 
-  function handleResize() {
-    setViewportWidth(window.innerWidth);
-  }
-
-  useEffect(() => {
-    if (typeof window !== undefined) {
-      setViewportWidth(window.innerWidth);
-      window.addEventListener("resize", handleResize);
-      return () => window.removeEventListener("resize", handleResize);
-    }
-  }, []);
-
-  useEffect(() => {
-    document.body.style.overflow = menuOpen ? "hidden" : "initial";
-  }, [menuOpen]);
+  useLockBodyScroll(menuOpen);
 
   useEffect(() => {
     if (
@@ -97,6 +84,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
     }
     setDetailPageIsFullscreen(false);
   }, [pathname]);
+
+  const viewportWidth = useViewportWidth();
 
   return (
     <BodyContainer
@@ -137,7 +126,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
             <div />
           )}
 
-          {viewportWidth > 1140 ? (
+          {viewportWidth > 1280 ? (
             <NavDesktop />
           ) : (
             <>
@@ -172,9 +161,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 setDetailPageIsFullscreen: setDetailPageIsFullscreen,
               }}
             >
-              <ViewportWidthContext.Provider value={viewportWidth}>
-                {children}
-              </ViewportWidthContext.Provider>
+              {children}
             </DetailPageIsFullscreenContext.Provider>
           </VisitedProjects.Provider>
         </MainContainer>

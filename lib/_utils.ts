@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Category } from "./types";
 
 export function getCategoriesBlurDataUrl(category: Category) {
@@ -29,4 +30,31 @@ export function getCategoryColor(category: string) {
   } else {
     return "black";
   }
+}
+
+export function useViewportWidth(initialWidth: number = 1079) {
+  const [viewportWidth, setViewportWidth] = useState<number>(initialWidth);
+
+  useEffect(() => {
+    function handleResize() {
+      setViewportWidth(window.innerWidth);
+    }
+
+    if (typeof window !== "undefined") {
+      setViewportWidth(window.innerWidth);
+      window.addEventListener("resize", handleResize);
+      return () => window.removeEventListener("resize", handleResize);
+    }
+  }, []);
+
+  return viewportWidth;
+}
+
+export function useLockBodyScroll(lock: boolean) {
+  useEffect(() => {
+    document.body.style.overflow = lock ? "hidden" : "initial";
+    return () => {
+      document.body.style.overflow = "initial";
+    };
+  }, [lock]);
 }

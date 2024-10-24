@@ -4,7 +4,7 @@ import styled from "styled-components";
 import Image from "next/image";
 import { LandingInfo } from "@/lib/types";
 import { useContext } from "react";
-import { ViewportWidthContext } from "../Layout";
+import { useViewportWidth } from "@/lib/_utils";
 
 const cmsBaseUrl = process.env.NEXT_PUBLIC_CMS_BASE_URL;
 
@@ -20,7 +20,7 @@ export function Hero({ landingInfo }: Props) {
 
   const description = landingInfo?.attributes.HeroText;
 
-  const viewPortWidth = useContext(ViewportWidthContext);
+  const viewPortWidth = useViewportWidth();
 
   return (
     <Container>
@@ -29,7 +29,6 @@ export function Hero({ landingInfo }: Props) {
           {heroImageDesktopData && cmsBaseUrl && (
             <StyledImage
               priority
-              unoptimized
               src={cmsBaseUrl + heroImageDesktopData?.url}
               width={heroImageDesktopData?.width}
               height={heroImageDesktopData?.height}
@@ -42,7 +41,6 @@ export function Hero({ landingInfo }: Props) {
           {heroImageMobileData && cmsBaseUrl && (
             <StyledImage
               priority
-              unoptimized
               src={cmsBaseUrl + heroImageMobileData?.url}
               width={heroImageMobileData?.width}
               height={heroImageMobileData?.height}

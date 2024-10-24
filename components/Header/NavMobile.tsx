@@ -91,16 +91,18 @@ const CloseButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  right: 0;
+  right: 75px;
   top: 0;
   height: 70px;
   width: 6vh;
-  margin: 0 20px 0;
   background: none;
   border: none;
   cursor: inherit;
   * {
     font-size: 30px;
+  }
+  @media only screen and (max-width: 768px) {
+    right: 20px;
   }
 `;
 
