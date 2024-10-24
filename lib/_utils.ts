@@ -15,35 +15,18 @@ export function getCategoriesBlurDataUrl(category: Category) {
   }
 }
 
-export function getCategoriesCursorDataUrl(category: Category | "all") {
-  switch (category) {
-    case "portrait":
-      return 'data:image/svg+xml;utf8,<svg width="30px" height="30px" viewBox="-1.6 -1.6 19.20 19.20" xmlns="http://www.w3.org/2000/svg" fill="#ff00cf"><path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"></path> </g></svg>';
-    case "corporate":
-      return 'data:image/svg+xml;utf8,<svg width="30px" height="30px" viewBox="-1.6 -1.6 19.20 19.20" xmlns="http://www.w3.org/2000/svg" fill="#00ff00"><path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"></path> </g></svg>';
-    case "interior":
-      return 'data:image/svg+xml;utf8,<svg width="30px" height="30px" viewBox="-1.6 -1.6 19.20 19.20" xmlns="http://www.w3.org/2000/svg" fill="#ff4600"><path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"></path> </g></svg>';
-    case "jewellery":
-      return 'data:image/svg+xml;utf8,<svg width="30px" height="30px" viewBox="-1.6 -1.6 19.20 19.20" xmlns="http://www.w3.org/2000/svg" fill="#42c6f2"><path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"></path> </g></svg>';
-    case "all":
-      return 'data:image/svg+xml;utf8,<svg width="30px" height="30px" viewBox="-1.6 -1.6 19.20 19.20" xmlns="http://www.w3.org/2000/svg" fill="#9966ff"><path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"></path> </g></svg>';
-  }
-}
-
-export function getCategoryColor(category: Category | "all" | "about") {
-  switch (category) {
-    case "portrait":
-    case "about":
-      return "#ff00cf";
-    case "corporate":
-      return "#00ff00";
-    case "interior":
-      return "#ff4600";
-    case "jewellery":
-      return "#42c6f2";
-    case "all":
-      return "#9966ff";
-    default:
-      return "black";
+export function getCategoryColor(category: string) {
+  if (category.includes("portrait") || category.includes("about")) {
+    return "#ff00cf";
+  } else if (category.includes("corporate")) {
+    return "#00ff00";
+  } else if (category.includes("interior")) {
+    return "#ff4600";
+  } else if (category.includes("jewellery")) {
+    return "#42c6f2";
+  } else if (category.includes("all")) {
+    return "#9966ff";
+  } else {
+    return "black";
   }
 }

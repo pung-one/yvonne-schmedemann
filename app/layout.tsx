@@ -15,7 +15,17 @@ ReactDOM.preload("/fonts/logoFont.woff2", {
   crossOrigin: "",
 });
 
+ReactDOM.preload("/fonts/logoFont.woff", {
+  as: "font",
+  crossOrigin: "",
+});
+
 ReactDOM.preload("/fonts/IvarDisplay-Regular.woff2", {
+  as: "font",
+  crossOrigin: "",
+});
+
+ReactDOM.preload("/fonts/IvarDisplay-Regular.woff", {
   as: "font",
   crossOrigin: "",
 });

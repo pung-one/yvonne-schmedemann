@@ -93,9 +93,9 @@ const CloseButton = styled.button`
   justify-content: center;
   right: 0;
   top: 0;
-  height: 6vh;
+  height: 70px;
   width: 6vh;
-  margin: 10px 20px 0;
+  margin: 0 20px 0;
   background: none;
   border: none;
   cursor: inherit;

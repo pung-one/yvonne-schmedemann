@@ -72,11 +72,9 @@ const ImageSection = styled.div`
   width: 100%;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  grid-column-gap: 40px;
-  grid-row-gap: 80px;
+  gap: 40px;
   @media only screen and (max-width: 1140px) {
-    grid-column-gap: 20px;
-    grid-row-gap: 40px;
+    gap: 20px;
   }
 
   .item1 {
@@ -100,185 +98,165 @@ const ImageSection = styled.div`
     aspect-ratio: 4 / 5;
   }
   .item5 {
-    grid-row: 2 / span 1;
-    grid-column: 2 / span 2;
-    aspect-ratio: 5 / 3;
-  }
-  .item6 {
-    grid-row: 3 / span 2;
+    grid-row: 2 / span 2;
     grid-column: 1 / span 2;
     aspect-ratio: 7 / 8;
   }
-  .item7 {
-    grid-row: 3 / span 1;
+  .item6 {
+    grid-row: 2 / span 1;
     grid-column: 3 / span 1;
+    aspect-ratio: 4 / 5;
+  }
+  .item7 {
+    grid-row: 2 / span 1;
+    grid-column: 4 / span 1;
     aspect-ratio: 4 / 5;
   }
   .item8 {
     grid-row: 3 / span 1;
-    grid-column: 4 / span 1;
-    aspect-ratio: 4 / 5;
+    grid-column: 3 / span 2;
+    width: 70%;
+    margin-top: -20px;
+    aspect-ratio: 6 / 4;
+    justify-self: end;
+    @media only screen and (max-width: 768px) {
+      margin-top: 0;
+    }
   }
   .item9 {
     grid-row: 4 / span 1;
-    grid-column: 3 / span 2;
-    margin-top: -50px;
-    width: 75%;
-    aspect-ratio: 6 / 4;
-    justify-self: end;
-    @media only screen and (max-width: 1140px) {
-      margin-top: -25px;
-    }
-  }
-  .item10 {
-    grid-row: 5 / span 1;
     grid-column: 1 / span 1;
     aspect-ratio: 4 / 5;
   }
-  .item11 {
-    grid-row: 5 / span 1;
+  .item10 {
+    grid-row: 4 / span 1;
     grid-column: 2 / span 1;
     aspect-ratio: 4 / 5;
   }
-  .item12 {
-    grid-row: 5 / span 1;
+  .item11 {
+    grid-row: 4 / span 1;
     grid-column: 3 / span 1;
+    aspect-ratio: 4 / 5;
+  }
+  .item12 {
+    grid-row: 4 / span 1;
+    grid-column: 4 / span 1;
     aspect-ratio: 4 / 5;
   }
   .item13 {
     grid-row: 5 / span 1;
-    grid-column: 4 / span 1;
+    grid-column: 1 / span 1;
     aspect-ratio: 4 / 5;
   }
   .item14 {
-    grid-row: 6 / span 1;
-    grid-column: 2 / span 2;
-    aspect-ratio: 5 / 3;
+    grid-row: 5 / span 1;
+    grid-column: 2 / span 1;
+    aspect-ratio: 4 / 5;
   }
   .item15 {
+    grid-row: 5 / span 2;
+    grid-column: 3 / span 2;
+    aspect-ratio: 7 / 8;
+  }
+  .item16 {
+    grid-row: 6 / span 1;
+    grid-column: 1 / span 2;
+    width: 75%;
+    margin-top: -20px;
+    aspect-ratio: 6 / 4;
+    @media only screen and (max-width: 768px) {
+      margin-top: 0;
+    }
+  }
+  .item17 {
     grid-row: 7 / span 1;
     grid-column: 1 / span 1;
     aspect-ratio: 4 / 5;
   }
-  .item16 {
+  .item18 {
     grid-row: 7 / span 1;
     grid-column: 2 / span 1;
     aspect-ratio: 4 / 5;
   }
-  .item17 {
-    grid-row: 7 / span 2;
-    grid-column: 3 / span 2;
-    aspect-ratio: 7 / 8;
-  }
-  .item18 {
-    grid-row: 8 / span 1;
-    grid-column: 1 / span 2;
-    margin-top: -50px;
-    width: 75%;
-    aspect-ratio: 6 / 4;
-    @media only screen and (max-width: 1140px) {
-      margin-top: -25px;
-    }
-  }
   .item19 {
-    grid-row: 9 / span 1;
-    grid-column: 1 / span 1;
+    grid-row: 7 / span 1;
+    grid-column: 3 / span 1;
     aspect-ratio: 4 / 5;
   }
   .item20 {
-    grid-row: 9 / span 1;
-    grid-column: 2 / span 1;
+    grid-row: 7 / span 1;
+    grid-column: 4 / span 1;
     aspect-ratio: 4 / 5;
   }
   .item21 {
-    grid-row: 9 / span 1;
-    grid-column: 3 / span 1;
-    aspect-ratio: 4 / 5;
+    grid-row: 8 / span 2;
+    grid-column: 1 / span 2;
+    aspect-ratio: 7 / 8;
   }
   .item22 {
-    grid-row: 9 / span 1;
-    grid-column: 4 / span 1;
+    grid-row: 8 / span 1;
+    grid-column: 3 / span 1;
     aspect-ratio: 4 / 5;
   }
   .item23 {
-    grid-row: 10 / span 1;
-    grid-column: 2 / span 2;
-    aspect-ratio: 5 / 3;
+    grid-row: 8 / span 1;
+    grid-column: 4 / span 1;
+    aspect-ratio: 4 / 5;
   }
   .item24 {
-    grid-row: 11 / span 2;
-    grid-column: 1 / span 2;
-    aspect-ratio: 7 / 8;
+    grid-row: 9 / span 1;
+    grid-column: 3 / span 2;
+    width: 70%;
+    margin-top: -20px;
+    aspect-ratio: 6 / 4;
+    justify-self: end;
+    @media only screen and (max-width: 768px) {
+      margin-top: 0;
+    }
   }
   .item25 {
-    grid-row: 11 / span 1;
-    grid-column: 3 / span 1;
+    grid-row: 10 / span 1;
+    grid-column: 1 / span 1;
     aspect-ratio: 4 / 5;
   }
   .item26 {
-    grid-row: 11 / span 1;
-    grid-column: 4 / span 1;
+    grid-row: 10 / span 1;
+    grid-column: 2 / span 1;
     aspect-ratio: 4 / 5;
   }
   .item27 {
-    grid-row: 12 / span 1;
-    grid-column: 3 / span 2;
-    margin-top: -50px;
-    width: 75%;
-    aspect-ratio: 6 / 4;
-    justify-self: end;
-    @media only screen and (max-width: 1140px) {
-      margin-top: -25px;
-    }
-  }
-  .item28 {
-    grid-row: 13 / span 1;
-    grid-column: 1 / span 1;
-    aspect-ratio: 4 / 5;
-  }
-  .item29 {
-    grid-row: 13 / span 1;
-    grid-column: 2 / span 1;
-    aspect-ratio: 4 / 5;
-  }
-  .item30 {
-    grid-row: 13 / span 1;
+    grid-row: 10 / span 1;
     grid-column: 3 / span 1;
     aspect-ratio: 4 / 5;
   }
-  .item31 {
-    grid-row: 13 / span 1;
+  .item28 {
+    grid-row: 10 / span 1;
     grid-column: 4 / span 1;
     aspect-ratio: 4 / 5;
   }
-  .item32 {
-    grid-row: 14 / span 1;
-    grid-column: 2 / span 2;
-    aspect-ratio: 5 / 3;
-  }
-  .item33 {
-    grid-row: 15 / span 1;
+  .item29 {
+    grid-row: 11 / span 1;
     grid-column: 1 / span 1;
     aspect-ratio: 4 / 5;
   }
-  .item34 {
-    grid-row: 15 / span 1;
+  .item30 {
+    grid-row: 11 / span 1;
     grid-column: 2 / span 1;
     aspect-ratio: 4 / 5;
   }
-  .item35 {
-    grid-row: 15 / span 2;
+  .item31 {
+    grid-row: 11 / span 2;
     grid-column: 3 / span 2;
     aspect-ratio: 7 / 8;
   }
-  .item36 {
-    grid-row: 16 / span 1;
+  .item32 {
+    grid-row: 12 / span 1;
     grid-column: 1 / span 2;
-    margin-top: -50px;
     width: 75%;
+    margin-top: -20px;
     aspect-ratio: 6 / 4;
-    @media only screen and (max-width: 1140px) {
-      margin-top: -25px;
+    @media only screen and (max-width: 768px) {
+      margin-top: 0;
     }
   }
 `;

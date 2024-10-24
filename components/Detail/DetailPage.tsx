@@ -68,12 +68,11 @@ const CategorySign = styled.p<{ $color: string }>`
   display: none;
   position: fixed;
   top: 70px;
-  left: 75px;
+  left: 22px;
   line-height: 70px;
   color: ${({ $color }) => $color};
   @media only screen and (max-width: 768px) {
     display: unset;
-    left: 10px;
   }
 `;
 
@@ -85,14 +84,14 @@ const CloseButton = styled.button`
   z-index: 9;
   height: 70px;
   top: 70px;
-  right: 75px;
+  right: 90px;
   background: none;
   border: none;
   cursor: inherit;
   color: white;
   mix-blend-mode: difference;
   @media only screen and (max-width: 768px) {
-    right: 10px;
+    right: 35px;
   }
   * {
     font-size: 33px;
