@@ -66,13 +66,16 @@ const StyledImage = styled(Image)`
   height: fit-content;
   margin-bottom: 50px;
   @media only screen and (max-width: 768px) {
-    margin-bottom: 100px;
+    margin-bottom: 0px;
   }
 `;
 
 const HorizontalLine = styled.div`
   height: 1px;
   background-color: black;
+  @media only screen and (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const Description = styled.p`
