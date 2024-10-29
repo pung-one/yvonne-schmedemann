@@ -3,6 +3,7 @@ import StyledComponentsRegistry from "@/lib/registry";
 import { GlobalStyles } from "@/globalStyles/global_styles";
 import { Layout } from "@/components/Layout";
 import ReactDOM from "react-dom";
+import { Placeholder } from "@/components/Landing/Placeholder";
 
 export const metadata: Metadata = {
   title: "Yvonne Schmedemann",
@@ -30,6 +31,8 @@ ReactDOM.preload("/fonts/IvarDisplay-Regular.woff", {
   crossOrigin: "",
 });
 
+const showPlaceholder = process.env.SHOW_PLACEHOLDER;
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -40,7 +43,11 @@ export default function RootLayout({
       <StyledComponentsRegistry>
         <GlobalStyles />
 
-        <Layout>{children}</Layout>
+        {showPlaceholder === "true" ? (
+          <Placeholder />
+        ) : (
+          <Layout>{children}</Layout>
+        )}
       </StyledComponentsRegistry>
     </html>
   );
