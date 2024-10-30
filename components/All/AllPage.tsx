@@ -18,7 +18,6 @@ type Props = {
 };
 
 export function AllPage({ projects }: Props) {
-  const [, forceUpdate] = useState(0);
   const [dotPositions, setDotPositions] = useState<DotPositions>({});
   const { setHoverImageFromCategory } = useContext(
     HoverImageFromCategoryContext

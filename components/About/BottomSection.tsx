@@ -1,13 +1,26 @@
 import styled from "styled-components";
+import { ImageData } from "@/lib/types";
+import Image from "next/image";
 
 type Props = {
-  customers: string;
+  studioImage: ImageData;
 };
 
-export function Customers({ customers }: Props) {
+const cmsBaseUrl = process.env.NEXT_PUBLIC_CMS_BASE_URL;
+
+export function BottomSection({ studioImage }: Props) {
+  const studioImageData = studioImage?.attributes;
+
   return (
     <Container>
-      <Text>{customers}</Text>
+      {studioImageData && (
+        <StudioImage
+          src={cmsBaseUrl + studioImageData.url}
+          width={studioImageData.width}
+          height={studioImageData.height}
+          alt={studioImageData.alternativeText || ""}
+        />
+      )}
 
       <StudioInfo id="contact">
         <h3>Studio</h3>
@@ -52,23 +65,22 @@ export function Customers({ customers }: Props) {
 }
 
 const Container = styled.section`
-  position: relative;
-  flex: 1;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 0 50px;
+  align-items: flex-end;
+  gap: 50px;
+  padding: 100px 0 0;
   @media only screen and (max-width: 1140px) {
-    padding: 100px 20px;
+    flex-direction: column-reverse;
+    align-items: flex-start;
   }
 `;
 
-const Text = styled.p`
-  column-count: 4;
-  column-gap: 20px;
-  white-space: pre-line;
-  @media only screen and (max-width: 850px) {
-    column-count: 1;
+const StudioImage = styled(Image)`
+  width: 30%;
+  height: fit-content;
+  object-fit: contain;
+  @media only screen and (max-width: 1140px) {
+    width: 100%;
   }
 `;
 
@@ -76,7 +88,10 @@ const StudioInfo = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
-  padding-top: 100px;
+  padding: 100px 0 0;
+  @media only screen and (max-width: 1140px) {
+    padding: 100px 20px 0;
+  }
   h3 {
     font-size: 30px;
     font-weight: 100;
