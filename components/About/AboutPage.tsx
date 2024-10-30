@@ -2,8 +2,8 @@
 
 import { AboutData } from "@/lib/types";
 import styled from "styled-components";
-import { LeftSection } from "./LeftSection";
-import { Customers } from "./Customers";
+import { TopSection } from "./TopSection";
+import { BottomSection } from "./BottomSection";
 
 type Props = {
   aboutData: AboutData;
@@ -13,23 +13,21 @@ export function AboutPage({ aboutData }: Props) {
   const info = aboutData?.attributes;
   return (
     <Container>
-      <LeftSection
+      <TopSection
         portrait={info?.portrait.data}
         bio={info?.bio}
-        studioImage={info?.studioImage.data}
+        customers={info?.customers}
       />
 
-      <Customers customers={info?.customers} />
+      <BottomSection studioImage={info?.studioImage.data} />
     </Container>
   );
 }
 
 const Container = styled.div`
   position: relative;
-  display: flex;
   padding-top: 120px;
   @media only screen and (max-width: 1140px) {
     padding-top: 100px;
-    flex-direction: column;
   }
 `;

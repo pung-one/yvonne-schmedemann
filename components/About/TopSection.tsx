@@ -6,50 +6,52 @@ const cmsBaseUrl = process.env.NEXT_PUBLIC_CMS_BASE_URL;
 
 type Props = {
   portrait?: ImageData;
-  studioImage?: ImageData;
   bio?: string;
+  customers: string;
 };
 
-export function LeftSection({ portrait, bio, studioImage }: Props) {
+export function TopSection({ portrait, bio, customers }: Props) {
   const portraitData = portrait?.attributes;
-  const studioImageData = studioImage?.attributes;
   return (
     <Container>
-      {portraitData && (
-        <PortraitContainer>
-          <PortraitImage
-            src={cmsBaseUrl + portraitData.url}
-            width={portraitData.width}
-            height={portraitData.height}
-            alt={portraitData.alternativeText || ""}
-          />
-          <p>Photo: Melf Holm</p>
-        </PortraitContainer>
-      )}
+      <LeftSection>
+        {portraitData && (
+          <PortraitContainer>
+            <PortraitImage
+              src={cmsBaseUrl + portraitData.url}
+              width={portraitData.width}
+              height={portraitData.height}
+              alt={portraitData.alternativeText || ""}
+            />
+            <p>Photo: Melf Holm</p>
+          </PortraitContainer>
+        )}
 
-      <Bio>
-        <span>YVONNE SCHMEDEMANN</span> {bio}
-      </Bio>
+        <Bio>
+          <span>YVONNE SCHMEDEMANN</span> {bio}
+        </Bio>
+      </LeftSection>
 
-      {studioImageData && (
-        <StudioImage
-          src={cmsBaseUrl + studioImageData.url}
-          width={studioImageData.width}
-          height={studioImageData.height}
-          alt={studioImageData.alternativeText || ""}
-        />
-      )}
+      <Customers>{customers}</Customers>
     </Container>
   );
 }
 
 const Container = styled.section`
   position: relative;
+  display: flex;
+  gap: 50px;
+  @media only screen and (max-width: 1140px) {
+    flex-direction: column;
+  }
+`;
+
+const LeftSection = styled.div`
   width: 30%;
   display: flex;
   flex-direction: column;
-  gap: 100px;
   align-items: center;
+  gap: 100px;
   @media only screen and (max-width: 1140px) {
     width: 100%;
   }
@@ -87,8 +89,13 @@ const Bio = styled.p`
   }
 `;
 
-const StudioImage = styled(Image)`
-  width: 100%;
-  height: fit-content;
-  object-fit: contain;
+const Customers = styled.p`
+  flex: 1;
+  column-count: 4;
+  column-gap: 20px;
+  white-space: pre-line;
+  @media only screen and (max-width: 850px) {
+    column-count: 1;
+    padding: 0 20px;
+  }
 `;
