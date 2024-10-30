@@ -89,8 +89,14 @@ export function Layout({ children }: { children: React.ReactNode }) {
         }}
       >
         <HeaderContainer>
-          {showScrollableLogo ? (
-            <StyledLinkScrollEffect href={"/"} style={{ y: y }}>
+          {viewportWidth > 768 && showScrollableLogo ? (
+            <StyledLinkScrollEffect
+              initial={{ opacity: 0, y: 0 }}
+              animate={{ opacity: 1, y: 85 }}
+              transition={{ duration: 0.4 }}
+              href={"/"}
+              style={{ y: y }}
+            >
               YVONNE
               <br />
               SCHMEDEMANN
@@ -238,15 +244,15 @@ const StyledLink = styled(Link)<{ $showWhiteLogo: boolean }>`
   line-height: 0.6;
   padding-left: 5px;
   text-decoration: none;
-  color: ${({ $showWhiteLogo }) => ($showWhiteLogo ? "white" : "black")};
   transform: translateY(20px);
+  color: ${({ $showWhiteLogo }) => ($showWhiteLogo ? "white" : "black")};
   &:hover {
     color: #9966ff;
   }
   @media only screen and (max-width: 768px) {
     color: black;
     font-size: 30px;
-    transform: translateY(0);
+    transform: translateY(0) !important;
   }
 `;
 
