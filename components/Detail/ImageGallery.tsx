@@ -179,9 +179,9 @@ export function ImageGallery({ title, imageData, fullscreen }: Props) {
           />
         </motion.div>
       </AnimatePresence>
-      <ImageCounter>{`${imageIndexAndDirection.index + 1}/${
-        imageData.length
-      }`}</ImageCounter>
+      <ImageCounter>
+        {`${imageIndexAndDirection.index + 1}/${imageData.length}`}
+      </ImageCounter>
     </Container>
   );
 }
@@ -244,6 +244,7 @@ const StyledButton = styled.button<{
   background: none;
   border: none;
   padding: 0 20px;
+  cursor: inherit;
   @media only screen and (min-width: 768px) {
     * {
       display: none;

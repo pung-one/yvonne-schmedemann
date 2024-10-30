@@ -29,14 +29,6 @@ export const DetailPageIsFullscreenContext = createContext<{
   setDetailPageIsFullscreen: () => {},
 });
 
-export const VisitedProjects = createContext<{
-  visitedProjects: number[];
-  setVisitedProjects: Dispatch<SetStateAction<number[]>>;
-}>({
-  visitedProjects: [],
-  setVisitedProjects: () => {},
-});
-
 export const HoverImageFromCategoryContext = createContext<{
   hoverImageFromCategory: Category | "none";
   setHoverImageFromCategory: Dispatch<SetStateAction<Category | "none">>;
@@ -47,7 +39,6 @@ export const HoverImageFromCategoryContext = createContext<{
 
 export function Layout({ children }: { children: React.ReactNode }) {
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
-  const [visitedProjects, setVisitedProjects] = useState<number[]>([]);
   const [showScrollableLogo, setShowScrollableLogo] = useState<boolean>(true);
   const [detailPageIsFullscreen, setDetailPageIsFullscreen] =
     useState<boolean>(false);
@@ -114,6 +105,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
           {viewportWidth > 768 && showScrollableLogo ? (
             <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.4 }}
               style={{
                 height: "100%",
                 opacity: opacity,
@@ -150,20 +144,13 @@ export function Layout({ children }: { children: React.ReactNode }) {
         )}
 
         <MainContainer>
-          <VisitedProjects.Provider
+          <DetailPageIsFullscreenContext.Provider
             value={{
-              visitedProjects: visitedProjects,
-              setVisitedProjects: setVisitedProjects,
+              setDetailPageIsFullscreen: setDetailPageIsFullscreen,
             }}
           >
-            <DetailPageIsFullscreenContext.Provider
-              value={{
-                setDetailPageIsFullscreen: setDetailPageIsFullscreen,
-              }}
-            >
-              {children}
-            </DetailPageIsFullscreenContext.Provider>
-          </VisitedProjects.Provider>
+            {children}
+          </DetailPageIsFullscreenContext.Provider>
         </MainContainer>
       </HoverImageFromCategoryContext.Provider>
 

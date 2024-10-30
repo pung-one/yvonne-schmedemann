@@ -1,39 +1,49 @@
 "use client";
 
 import { Project } from "@/lib/types";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import Image from "next/image";
 import Link from "next/link";
 import { getCategoriesBlurDataUrl, getCategoryColor } from "@/lib/_utils";
-import { useContext } from "react";
-import { HoverImageFromCategoryContext, VisitedProjects } from "../Layout";
+import { useContext, useEffect, useState } from "react";
+import { HoverImageFromCategoryContext } from "../Layout";
 
 const cmsBaseUrl = process.env.NEXT_PUBLIC_CMS_BASE_URL;
 
-function generateSeededRandomPosition(seed: number) {
-  const randomMultiplier = Math.sin(seed) * 10000;
-  const rawPosition = (randomMultiplier - Math.floor(randomMultiplier)) * 100;
-  return 10 + (rawPosition % 80); // Ensures the position is between 10% and 90%
-}
-
-function hashStringToNumber(str: string) {
-  let hash = 0;
-  for (let i = 0; i < str.length; i++) {
-    hash = (hash << 5) - hash + str.charCodeAt(i);
-    hash = hash & hash;
-  }
-  return Math.abs(hash);
-}
+type DotPosition = { x: string; y: string };
+type DotPositions = { [key: string]: DotPosition };
 
 type Props = {
   projects?: Project[];
 };
 
 export function AllPage({ projects }: Props) {
-  const { visitedProjects, setVisitedProjects } = useContext(VisitedProjects);
+  const [, forceUpdate] = useState(0);
+  const [dotPositions, setDotPositions] = useState<DotPositions>({});
   const { setHoverImageFromCategory } = useContext(
     HoverImageFromCategoryContext
   );
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const positions: DotPositions = {};
+      projects?.forEach((project) => {
+        const localStorageDotPosition = localStorage.getItem(
+          project.id.toString()
+        );
+        if (localStorageDotPosition) {
+          const dotPosition = JSON.parse(localStorageDotPosition);
+          positions[project.id.toString()] = dotPosition;
+        }
+      });
+      setDotPositions(positions);
+    }
+  }, [projects]);
+
+  function resetVisitedProjects() {
+    localStorage.clear();
+    setDotPositions({});
+  }
 
   return (
     <Container>
@@ -48,18 +58,20 @@ export function AllPage({ projects }: Props) {
               return;
             }
 
-            const visited = visitedProjects.includes(project.id);
+            function saveDotPosition(e: React.MouseEvent<HTMLAnchorElement>) {
+              const dotPosition = JSON.stringify({
+                x: `${Math.round(e.nativeEvent.offsetX)}px`,
+                y: `${Math.round(e.nativeEvent.offsetY)}px`,
+              });
+
+              localStorage.setItem(project.id.toString(), dotPosition);
+            }
+
+            const dotPosition = dotPositions[project.id.toString()];
 
             const {
               attributes: { alternativeText, url, width, height },
             } = imageData;
-
-            // Use the project id or title to generate a consistent seed for each image
-            const seed = hashStringToNumber(project.attributes.Beschreibung);
-
-            // Generate positions that are consistent but appear random
-            const positionTop = `${generateSeededRandomPosition(seed)}%`;
-            const positionLeft = `${generateSeededRandomPosition(seed * 2)}%`;
 
             return (
               <ImageWrapper
@@ -70,20 +82,18 @@ export function AllPage({ projects }: Props) {
                 $cursorColor={getCategoryColor(category)}
                 onMouseEnter={() => setHoverImageFromCategory(category)}
                 onMouseLeave={() => setHoverImageFromCategory("none")}
-                onClick={() =>
-                  setVisitedProjects((prev) => [...prev, project.id])
-                }
+                onClick={saveDotPosition}
               >
-                {visited && (
+                {dotPosition !== undefined && (
                   <CategoryDot
                     $categoryColor={getCategoryColor(category)}
-                    $positionTop={positionTop}
-                    $positionLeft={positionLeft}
+                    $positionTop={dotPosition.y}
+                    $positionLeft={dotPosition.x}
                   />
                 )}
                 <StyledImage
                   placeholder="blur"
-                  $visited={visited}
+                  $visited={dotPosition !== undefined}
                   blurDataURL={getCategoriesBlurDataUrl(category)}
                   src={cmsBaseUrl + url}
                   width={width}
@@ -94,6 +104,10 @@ export function AllPage({ projects }: Props) {
             );
           })}
       </ImageSection>
+
+      <ResetButton onClick={() => resetVisitedProjects()}>
+        reset visited projects
+      </ResetButton>
     </Container>
   );
 }
@@ -165,6 +179,7 @@ const CategoryDot = styled.div<{
   position: absolute;
   top: ${({ $positionTop }) => $positionTop};
   left: ${({ $positionLeft }) => $positionLeft};
+  transform: translate(-50%, -50%);
   height: 20px;
   width: 20px;
   border-radius: 50%;
@@ -179,4 +194,17 @@ const StyledImage = styled(Image)<{ $visited: boolean }>`
   height: 100%;
   object-fit: cover;
   filter: ${({ $visited }) => ($visited ? "brightness(40%)" : "none")};
+`;
+
+const ResetButton = styled.button`
+  position: absolute;
+  bottom: -50px;
+  background: none;
+  border: none;
+  cursor: inherit;
+  font-size: 14px;
+  color: black;
+  &:hover {
+    color: #9966ff;
+  }
 `;
