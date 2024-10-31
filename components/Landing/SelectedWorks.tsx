@@ -30,7 +30,8 @@ export function SelectedWorks({ projects }: Props) {
       <ImageSection>
         {cmsBaseUrl &&
           projects?.map((project, index) => {
-            const imageData = project.attributes.landingPageImage.data;
+            const imageData =
+              project.attributes.landingPageImage.data.attributes;
 
             const category = project.attributes.category;
 
@@ -38,9 +39,7 @@ export function SelectedWorks({ projects }: Props) {
               return;
             }
 
-            const {
-              attributes: { alternativeText, url, width, height },
-            } = imageData;
+            const { alternativeText, url, width, height } = imageData;
 
             return (
               <ImageWrapper
@@ -59,6 +58,7 @@ export function SelectedWorks({ projects }: Props) {
                   width={width}
                   height={height}
                   alt={alternativeText || ""}
+                  loading="lazy"
                 />
               </ImageWrapper>
             );

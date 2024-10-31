@@ -49,7 +49,7 @@ export function AllPage({ projects }: Props) {
       <ImageSection>
         {cmsBaseUrl &&
           projects?.map((project, index) => {
-            const imageData = project.attributes.allPageImage.data;
+            const imageData = project.attributes.allPageImage.data.attributes;
 
             const category = project.attributes.category;
 
@@ -68,9 +68,9 @@ export function AllPage({ projects }: Props) {
 
             const dotPosition = dotPositions[project.id.toString()];
 
-            const {
-              attributes: { alternativeText, url, width, height },
-            } = imageData;
+            const { alternativeText, formats } = imageData;
+
+            const { url, width, height } = formats.large ?? imageData;
 
             return (
               <ImageWrapper
@@ -98,6 +98,7 @@ export function AllPage({ projects }: Props) {
                   width={width}
                   height={height}
                   alt={alternativeText || ""}
+                  loading="lazy"
                 />
               </ImageWrapper>
             );

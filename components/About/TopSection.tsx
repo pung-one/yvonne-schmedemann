@@ -28,7 +28,9 @@ export function TopSection({ portrait, bio, customers }: Props) {
         )}
 
         <Bio>
-          <span>YVONNE SCHMEDEMANN</span> {bio}
+          <span>YVONNE SCHMEDEMANN</span>
+          <br />
+          {bio}
         </Bio>
       </LeftSection>
 
@@ -80,6 +82,7 @@ const Bio = styled.p`
   border-bottom: 1px solid black;
   line-height: 24px;
   letter-spacing: 0.6pt;
+  white-space: pre-line;
   span {
     font-family: "LogoFont";
     font-size: 20px;

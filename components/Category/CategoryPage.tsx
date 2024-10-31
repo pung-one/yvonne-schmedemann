@@ -18,7 +18,8 @@ export function CategoryPage({ projects }: Props) {
       <ImageSection>
         {cmsBaseUrl &&
           projects?.map((project, index) => {
-            const imageData = project.attributes.landingPageImage.data;
+            const imageData =
+              project.attributes.landingPageImage.data.attributes;
 
             const category = project.attributes.category;
 
@@ -26,9 +27,9 @@ export function CategoryPage({ projects }: Props) {
               return;
             }
 
-            const {
-              attributes: { alternativeText, url, width, height },
-            } = imageData;
+            const { alternativeText, formats } = imageData;
+
+            const { url, width, height } = formats.large ?? imageData;
 
             return (
               <ImageWrapper
@@ -44,6 +45,7 @@ export function CategoryPage({ projects }: Props) {
                   width={width}
                   height={height}
                   alt={alternativeText || ""}
+                  loading="lazy"
                 />
               </ImageWrapper>
             );
