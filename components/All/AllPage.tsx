@@ -68,9 +68,7 @@ export function AllPage({ projects }: Props) {
 
             const dotPosition = dotPositions[project.id.toString()];
 
-            const { alternativeText, formats } = imageData;
-
-            const { url, width, height } = formats.large ?? imageData;
+            const { alternativeText, url, width, height } = imageData;
 
             return (
               <ImageWrapper
@@ -97,6 +95,8 @@ export function AllPage({ projects }: Props) {
                   src={cmsBaseUrl + url}
                   width={width}
                   height={height}
+                  quality={100}
+                  sizes="(max-width: 768px) 33vw, 25vw"
                   alt={alternativeText || ""}
                   loading="lazy"
                 />

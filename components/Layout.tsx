@@ -170,7 +170,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 const BodyContainer = styled.body<{ $cursorColor: string }>`
   position: relative;
   min-height: 100dvh;
-  margin: 0 75px;
+  padding: 0 75px;
   overflow-x: hidden !important;
   cursor: ${({ $cursorColor }) =>
     `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30'%3E%3Ccircle cx='12' cy='12' r='10' fill='${$cursorColor.replace(
@@ -178,7 +178,7 @@ const BodyContainer = styled.body<{ $cursorColor: string }>`
       "%23"
     )}'/%3E%3C/svg%3E")  15 15, auto`} !important;
   @media only screen and (max-width: 768px) {
-    margin: 0;
+    padding: 0;
   }
 `;
 

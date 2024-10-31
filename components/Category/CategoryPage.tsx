@@ -27,9 +27,7 @@ export function CategoryPage({ projects }: Props) {
               return;
             }
 
-            const { alternativeText, formats } = imageData;
-
-            const { url, width, height } = formats.large ?? imageData;
+            const { alternativeText, url, width, height } = imageData;
 
             return (
               <ImageWrapper
@@ -44,6 +42,8 @@ export function CategoryPage({ projects }: Props) {
                   src={cmsBaseUrl + url}
                   width={width}
                   height={height}
+                  quality={100}
+                  sizes="(max-width: 768px) 100vw, 70vw"
                   alt={alternativeText || ""}
                   loading="lazy"
                 />
