@@ -89,7 +89,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         }}
       >
         <HeaderContainer>
-          {viewportWidth > 768 && showScrollableLogo ? (
+          {viewportWidth && viewportWidth > 768 && showScrollableLogo ? (
             <StyledLinkScrollEffect
               initial={{ opacity: 0, y: 0 }}
               animate={{ opacity: 1, y: 85 }}
@@ -102,14 +102,16 @@ export function Layout({ children }: { children: React.ReactNode }) {
               SCHMEDEMANN
             </StyledLinkScrollEffect>
           ) : (
-            <StyledLink href={"/"} $showWhiteLogo={detailPageIsFullscreen}>
-              YVONNE
-              <br />
-              SCHMEDEMANN
-            </StyledLink>
+            viewportWidth && (
+              <StyledLink href={"/"} $showWhiteLogo={detailPageIsFullscreen}>
+                YVONNE
+                <br />
+                SCHMEDEMANN
+              </StyledLink>
+            )
           )}
 
-          {viewportWidth > 768 && showScrollableLogo ? (
+          {viewportWidth && viewportWidth > 768 && showScrollableLogo ? (
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -126,14 +128,14 @@ export function Layout({ children }: { children: React.ReactNode }) {
             <div />
           )}
 
-          {viewportWidth > 1280 ? (
+          {viewportWidth && viewportWidth > 1280 ? (
             <NavDesktop />
           ) : (
-            <>
+            viewportWidth && (
               <MenuButton onClick={() => setMenuOpen(!menuOpen)}>
                 <CiMenuBurger />
               </MenuButton>
-            </>
+            )
           )}
         </HeaderContainer>
 

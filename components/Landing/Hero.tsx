@@ -1,9 +1,9 @@
 "use client";
 
 import styled from "styled-components";
-import Image from "next/image";
+import Image, { getImageProps } from "next/image";
 import { LandingInfo } from "@/lib/types";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useViewportWidth } from "@/lib/_utils";
 
 const cmsBaseUrl = process.env.NEXT_PUBLIC_CMS_BASE_URL;
@@ -13,42 +13,48 @@ type Props = {
 };
 
 export function Hero({ landingInfo }: Props) {
+  const [imageData, setImageData] = useState<{
+    url: string;
+    width: number;
+    height: number;
+    alt: string;
+  }>();
   const heroImageDesktopData =
-    landingInfo?.attributes.HeroImageDesktop.data.attributes;
+    landingInfo.attributes.HeroImageDesktop.data.attributes;
   const heroImageMobileData =
-    landingInfo?.attributes.HeroImageMobile.data.attributes;
+    landingInfo.attributes.HeroImageMobile.data.attributes;
 
   const description = landingInfo?.attributes.HeroText;
 
-  const viewPortWidth = useViewportWidth();
+  const common = { sizes: "100vw" };
+  const {
+    props: { srcSet: desktop },
+  } = getImageProps({
+    ...common,
+    alt: heroImageDesktopData.alternativeText,
+    width: heroImageDesktopData.width,
+    height: heroImageDesktopData.height,
+    quality: 100,
+    src: cmsBaseUrl + heroImageDesktopData.url,
+  });
+  const {
+    props: { srcSet: mobile, ...rest },
+  } = getImageProps({
+    ...common,
+    alt: heroImageMobileData.alternativeText,
+    width: heroImageMobileData.width,
+    height: heroImageMobileData.height,
+    quality: 80,
+    src: cmsBaseUrl + heroImageMobileData.url,
+  });
 
   return (
     <Container>
-      {viewPortWidth > 768 ? (
-        <>
-          {heroImageDesktopData && cmsBaseUrl && (
-            <StyledImage
-              priority
-              src={cmsBaseUrl + heroImageDesktopData?.url}
-              width={heroImageDesktopData?.width}
-              height={heroImageDesktopData?.height}
-              alt={heroImageDesktopData?.alternativeText || ""}
-            />
-          )}
-        </>
-      ) : (
-        <>
-          {heroImageMobileData && cmsBaseUrl && (
-            <StyledImage
-              priority
-              src={cmsBaseUrl + heroImageMobileData?.url}
-              width={heroImageMobileData?.width}
-              height={heroImageMobileData?.height}
-              alt={heroImageMobileData?.alternativeText || ""}
-            />
-          )}
-        </>
-      )}
+      <picture>
+        <source media="(min-width: 768px)" srcSet={desktop} />
+        <source media="(max-width: 768px)" srcSet={mobile} />
+        <StyledImage {...rest} />
+      </picture>
 
       <HorizontalLine />
 
@@ -61,7 +67,7 @@ const Container = styled.section`
   position: relative;
 `;
 
-const StyledImage = styled(Image)`
+const StyledImage = styled.img`
   width: 100%;
   height: fit-content;
   margin-bottom: 50px;

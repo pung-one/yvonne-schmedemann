@@ -32,8 +32,8 @@ export function getCategoryColor(category: string) {
   }
 }
 
-export function useViewportWidth(initialWidth: number = 1079) {
-  const [viewportWidth, setViewportWidth] = useState<number>(initialWidth);
+export function useViewportWidth() {
+  const [viewportWidth, setViewportWidth] = useState<number>();
 
   useEffect(() => {
     function handleResize() {
