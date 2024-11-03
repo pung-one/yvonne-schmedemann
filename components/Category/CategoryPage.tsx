@@ -289,8 +289,8 @@ const ImageWrapper = styled(Link)<{ $title: string }>`
     color: #ffff00;
     transform: translateY(-50%) scale(0);
     @media only screen and (max-width: 768px) {
-      font-size: 40px;
-      line-height: 40px;
+      font-size: 25px;
+      line-height: 25px;
     }
   }
   &:hover {
