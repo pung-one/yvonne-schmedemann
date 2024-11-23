@@ -1,9 +1,10 @@
 import { AnimatePresence, motion, PanInfo } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import Image from "next/image";
 import { PiArrowLeftThin, PiArrowRightThin } from "react-icons/pi";
 import { ImageData } from "@/lib/types";
+import { ShowWhiteLogoContext } from "../Layout";
 
 const cmsBaseUrl = process.env.NEXT_PUBLIC_CMS_BASE_URL;
 
@@ -23,7 +24,7 @@ const variants = {
     return {
       x: slideDirection === "right" ? "30%" : "-30%",
       opacity: 0,
-      transition: { duration: 0.3 },
+      transition: { duration: 0.2 },
     };
   },
 };
@@ -40,17 +41,16 @@ export function ImageGallery({ title, imageData, fullscreen }: Props) {
 
   const timeoutRef = useRef<number | null>(null);
 
-  const handleMouseMove = () => {
-    setTitleVisible(false);
+  const [imageIndexAndDirection, setImageIndexAndDirection] = useState<{
+    index: number;
+    direction: "left" | "right";
+  }>({ index: 0, direction: "right" });
 
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-    }
+  const { setShowWhiteLogo } = useContext(ShowWhiteLogoContext);
 
-    timeoutRef.current = window.setTimeout(() => {
-      setTitleVisible(true);
-    }, 1000);
-  };
+  const {
+    attributes: { url, width, height, alternativeText },
+  } = imageData[imageIndexAndDirection.index];
 
   useEffect(() => {
     return () => {
@@ -60,14 +60,11 @@ export function ImageGallery({ title, imageData, fullscreen }: Props) {
     };
   }, []);
 
-  const [imageIndexAndDirection, setImageIndexAndDirection] = useState<{
-    index: number;
-    direction: "left" | "right";
-  }>({ index: 0, direction: "right" });
-
-  const {
-    attributes: { url, width, height, alternativeText },
-  } = imageData[imageIndexAndDirection.index];
+  useEffect(() => {
+    if (setShowWhiteLogo) {
+      setShowWhiteLogo(fullscreen && width > height);
+    }
+  }, [setShowWhiteLogo, fullscreen, imageIndexAndDirection]);
 
   function prevImage() {
     if (buttonEnabled) {
@@ -108,6 +105,18 @@ export function ImageGallery({ title, imageData, fullscreen }: Props) {
       prevImage();
     }
   }
+
+  const handleMouseMove = () => {
+    setTitleVisible(false);
+
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+
+    timeoutRef.current = window.setTimeout(() => {
+      setTitleVisible(true);
+    }, 1000);
+  };
 
   return (
     <Container onMouseMove={handleMouseMove}>
@@ -176,6 +185,7 @@ export function ImageGallery({ title, imageData, fullscreen }: Props) {
             src={cmsBaseUrl + url}
             width={width}
             height={height}
+            quality={100}
           />
         </motion.div>
       </AnimatePresence>
@@ -214,7 +224,8 @@ const StyledImage = styled(Image)<{
   $landscapeFormat: boolean;
 }>`
   width: 100%;
-  height: ${({ $fullscreen }) => ($fullscreen ? "100vh" : "fit-content")};
+  height: ${({ $fullscreen }) => ($fullscreen ? "100dvh" : "fit-content")};
+  max-height: ${({ $fullscreen }) => ($fullscreen ? "auto" : "80dvh")};
   object-fit: ${({ $fullscreen, $landscapeFormat }) =>
     $fullscreen && $landscapeFormat ? "cover" : "contain"};
   object-position: center;

@@ -1,14 +1,29 @@
 import { getCategoryColor } from "@/lib/_utils";
+import { emitter } from "@/lib/hoverEvents";
+import { Category } from "@/lib/types";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { useContext } from "react";
-import { HoverImageFromCategoryContext } from "../Layout";
 
 export function NavDesktop() {
   const pathname = usePathname();
 
-  const { hoverImageFromCategory } = useContext(HoverImageFromCategoryContext);
+  const [hoverImageFromCategory, setHoverImageFromCategory] = useState<
+    Category | "none"
+  >("none");
+
+  useEffect(() => {
+    function handler(category: Category | "none") {
+      setHoverImageFromCategory(category);
+    }
+
+    emitter.on("hoverImageFromCategory", handler);
+
+    return () => {
+      emitter.off("hoverImageFromCategory", handler);
+    };
+  }, []);
 
   return (
     <Navigation>

@@ -1,10 +1,8 @@
 "use client";
 
 import styled from "styled-components";
-import Image, { getImageProps } from "next/image";
+import { getImageProps } from "next/image";
 import { LandingInfo } from "@/lib/types";
-import { useContext, useEffect, useState } from "react";
-import { useViewportWidth } from "@/lib/_utils";
 
 const cmsBaseUrl = process.env.NEXT_PUBLIC_CMS_BASE_URL;
 
@@ -13,12 +11,6 @@ type Props = {
 };
 
 export function Hero({ landingInfo }: Props) {
-  const [imageData, setImageData] = useState<{
-    url: string;
-    width: number;
-    height: number;
-    alt: string;
-  }>();
   const heroImageDesktopData =
     landingInfo.attributes.HeroImageDesktop.data.attributes;
   const heroImageMobileData =

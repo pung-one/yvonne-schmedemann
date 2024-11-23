@@ -8,20 +8,10 @@ import { getCategoryColor } from "@/lib/_utils";
 import { useRouter } from "next/navigation";
 import { TfiClose } from "react-icons/tfi";
 import { useContext, useEffect } from "react";
-import { DetailPageIsFullscreenContext } from "../Layout";
+import { ShowWhiteLogoContext } from "../Layout";
 
 export function DetailPage({ project }: { project: Project }) {
   const router = useRouter();
-
-  const { setDetailPageIsFullscreen } = useContext(
-    DetailPageIsFullscreenContext
-  );
-
-  useEffect(() => {
-    if (setDetailPageIsFullscreen) {
-      setDetailPageIsFullscreen(project.attributes.fullscreen);
-    }
-  }, [setDetailPageIsFullscreen, project.attributes.fullscreen]);
 
   return (
     <>
