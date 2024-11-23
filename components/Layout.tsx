@@ -22,17 +22,16 @@ import {
   useViewportWidth,
 } from "@/lib/_utils";
 
-export const DetailPageIsFullscreenContext = createContext<{
-  setDetailPageIsFullscreen: Dispatch<SetStateAction<boolean>>;
+export const ShowWhiteLogoContext = createContext<{
+  setShowWhiteLogo: Dispatch<SetStateAction<boolean>>;
 }>({
-  setDetailPageIsFullscreen: () => {},
+  setShowWhiteLogo: () => {},
 });
 
 export function Layout({ children }: { children: React.ReactNode }) {
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
   const [showScrollableLogo, setShowScrollableLogo] = useState<boolean>(true);
-  const [detailPageIsFullscreen, setDetailPageIsFullscreen] =
-    useState<boolean>(false);
+  const [showWhiteLogo, setShowWhiteLogo] = useState<boolean>(false);
 
   const pathname = usePathname();
 
@@ -60,7 +59,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
     } else {
       setShowScrollableLogo(false);
     }
-    setDetailPageIsFullscreen(false);
+    setShowWhiteLogo(false);
   }, [pathname]);
 
   const viewportWidth = useViewportWidth();
@@ -84,7 +83,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
           </StyledLinkScrollEffect>
         ) : (
           viewportWidth && (
-            <StyledLink href={"/"} $showWhiteLogo={detailPageIsFullscreen}>
+            <StyledLink href={"/"} $showWhiteLogo={showWhiteLogo}>
               YVONNE
               <br />
               SCHMEDEMANN
@@ -133,13 +132,13 @@ export function Layout({ children }: { children: React.ReactNode }) {
       )}
 
       <MainContainer>
-        <DetailPageIsFullscreenContext.Provider
+        <ShowWhiteLogoContext.Provider
           value={{
-            setDetailPageIsFullscreen: setDetailPageIsFullscreen,
+            setShowWhiteLogo: setShowWhiteLogo,
           }}
         >
           {children}
-        </DetailPageIsFullscreenContext.Provider>
+        </ShowWhiteLogoContext.Provider>
       </MainContainer>
 
       <Footer />

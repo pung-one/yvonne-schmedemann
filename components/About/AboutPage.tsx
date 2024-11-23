@@ -11,7 +11,6 @@ type Props = {
 
 export function AboutPage({ aboutData }: Props) {
   const info = aboutData?.attributes;
-  console.log(aboutData);
   return (
     <Container>
       <TopSection
