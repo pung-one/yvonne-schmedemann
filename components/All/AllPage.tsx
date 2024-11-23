@@ -5,8 +5,8 @@ import styled from "styled-components";
 import Image from "next/image";
 import Link from "next/link";
 import { getCategoriesBlurDataUrl, getCategoryColor } from "@/lib/_utils";
-import { useContext, useEffect, useState } from "react";
-import { HoverImageFromCategoryContext } from "../Layout";
+import { useEffect, useState } from "react";
+import { emitter } from "@/lib/hoverEvents";
 
 const cmsBaseUrl = process.env.NEXT_PUBLIC_CMS_BASE_URL;
 
@@ -19,9 +19,6 @@ type Props = {
 
 export function AllPage({ projects }: Props) {
   const [dotPositions, setDotPositions] = useState<DotPositions>({});
-  const { setHoverImageFromCategory } = useContext(
-    HoverImageFromCategoryContext
-  );
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -77,8 +74,12 @@ export function AllPage({ projects }: Props) {
                 className={`item${index + 1}`}
                 $title={`${project.attributes.Titel} \\A \\A ${category}\\A+${project.attributes.Bilder.data.length}`}
                 $cursorColor={getCategoryColor(category)}
-                onMouseEnter={() => setHoverImageFromCategory(category)}
-                onMouseLeave={() => setHoverImageFromCategory("none")}
+                onMouseEnter={() =>
+                  emitter.emit("hoverImageFromCategory", category)
+                }
+                onMouseLeave={() =>
+                  emitter.emit("hoverImageFromCategory", "none")
+                }
                 onClick={saveDotPosition}
               >
                 {dotPosition !== undefined && (

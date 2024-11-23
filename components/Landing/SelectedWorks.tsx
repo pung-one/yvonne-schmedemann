@@ -5,8 +5,7 @@ import styled from "styled-components";
 import Link from "next/link";
 import { getCategoriesBlurDataUrl, getCategoryColor } from "@/lib/_utils";
 import { Projects } from "@/lib/types";
-import { useContext } from "react";
-import { HoverImageFromCategoryContext } from "../Layout";
+import { emitter } from "@/lib/hoverEvents";
 
 const cmsBaseUrl = process.env.NEXT_PUBLIC_CMS_BASE_URL;
 
@@ -15,10 +14,6 @@ type Props = {
 };
 
 export function SelectedWorks({ projects }: Props) {
-  const { setHoverImageFromCategory } = useContext(
-    HoverImageFromCategoryContext
-  );
-
   return (
     <Container>
       <Headline>
@@ -47,8 +42,12 @@ export function SelectedWorks({ projects }: Props) {
                 key={project.id}
                 className={`item${index + 1}`}
                 $title={`${project.attributes.Titel} \\A \\A ${category}\\A+${project.attributes.Bilder.data.length}`}
-                onMouseEnter={() => setHoverImageFromCategory(category)}
-                onMouseLeave={() => setHoverImageFromCategory("none")}
+                onMouseEnter={() =>
+                  emitter.emit("hoverImageFromCategory", category)
+                }
+                onMouseLeave={() =>
+                  emitter.emit("hoverImageFromCategory", "none")
+                }
                 $cursorColor={getCategoryColor(category)}
               >
                 <StyledImage

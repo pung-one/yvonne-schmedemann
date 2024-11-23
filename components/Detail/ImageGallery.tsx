@@ -23,7 +23,7 @@ const variants = {
     return {
       x: slideDirection === "right" ? "30%" : "-30%",
       opacity: 0,
-      transition: { duration: 0.3 },
+      transition: { duration: 0.2 },
     };
   },
 };
@@ -176,6 +176,7 @@ export function ImageGallery({ title, imageData, fullscreen }: Props) {
             src={cmsBaseUrl + url}
             width={width}
             height={height}
+            quality={100}
           />
         </motion.div>
       </AnimatePresence>

@@ -21,7 +21,6 @@ import {
   useLockBodyScroll,
   useViewportWidth,
 } from "@/lib/_utils";
-import { Category } from "@/lib/types";
 
 export const DetailPageIsFullscreenContext = createContext<{
   setDetailPageIsFullscreen: Dispatch<SetStateAction<boolean>>;
@@ -29,23 +28,11 @@ export const DetailPageIsFullscreenContext = createContext<{
   setDetailPageIsFullscreen: () => {},
 });
 
-export const HoverImageFromCategoryContext = createContext<{
-  hoverImageFromCategory: Category | "none";
-  setHoverImageFromCategory: Dispatch<SetStateAction<Category | "none">>;
-}>({
-  hoverImageFromCategory: "none",
-  setHoverImageFromCategory: () => {},
-});
-
 export function Layout({ children }: { children: React.ReactNode }) {
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
   const [showScrollableLogo, setShowScrollableLogo] = useState<boolean>(true);
   const [detailPageIsFullscreen, setDetailPageIsFullscreen] =
     useState<boolean>(false);
-
-  const [hoverImageFromCategory, setHoverImageFromCategory] = useState<
-    Category | "none"
-  >("none");
 
   const pathname = usePathname();
 
@@ -82,85 +69,78 @@ export function Layout({ children }: { children: React.ReactNode }) {
     <BodyContainer
       $cursorColor={pathname === "/" ? "#00ff00" : getCategoryColor(pathname)}
     >
-      <HoverImageFromCategoryContext.Provider
-        value={{
-          hoverImageFromCategory: hoverImageFromCategory,
-          setHoverImageFromCategory: setHoverImageFromCategory,
-        }}
-      >
-        <HeaderContainer>
-          {viewportWidth && viewportWidth > 768 && showScrollableLogo ? (
-            <StyledLinkScrollEffect
-              initial={{ opacity: 0, y: 0 }}
-              animate={{ opacity: 1, y: 85 }}
-              transition={{ duration: 0.4 }}
-              href={"/"}
-              style={{ y: y }}
-            >
+      <HeaderContainer>
+        {viewportWidth && viewportWidth > 768 && showScrollableLogo ? (
+          <StyledLinkScrollEffect
+            initial={{ opacity: 0, y: 0 }}
+            animate={{ opacity: 1, y: 85 }}
+            transition={{ duration: 0.4 }}
+            href={"/"}
+            style={{ y: y }}
+          >
+            YVONNE
+            <br />
+            SCHMEDEMANN
+          </StyledLinkScrollEffect>
+        ) : (
+          viewportWidth && (
+            <StyledLink href={"/"} $showWhiteLogo={detailPageIsFullscreen}>
               YVONNE
               <br />
               SCHMEDEMANN
-            </StyledLinkScrollEffect>
-          ) : (
-            viewportWidth && (
-              <StyledLink href={"/"} $showWhiteLogo={detailPageIsFullscreen}>
-                YVONNE
-                <br />
-                SCHMEDEMANN
-              </StyledLink>
-            )
-          )}
-
-          {viewportWidth && viewportWidth > 768 && showScrollableLogo ? (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.4 }}
-              style={{
-                height: "100%",
-                opacity: opacity,
-                pointerEvents: pointerEvents,
-              }}
-            >
-              <ContactSection />
-            </motion.div>
-          ) : (
-            <div />
-          )}
-
-          {viewportWidth && viewportWidth > 1280 ? (
-            <NavDesktop />
-          ) : (
-            viewportWidth && (
-              <MenuButton onClick={() => setMenuOpen(!menuOpen)}>
-                <CiMenuBurger />
-              </MenuButton>
-            )
-          )}
-        </HeaderContainer>
-
-        <NavMobile menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-
-        {showScrollableLogo ? (
-          <BorderBottomScrollEffect
-            style={{
-              marginLeft: borderMargin,
-            }}
-          />
-        ) : (
-          <BorderBottom />
+            </StyledLink>
+          )
         )}
 
-        <MainContainer>
-          <DetailPageIsFullscreenContext.Provider
-            value={{
-              setDetailPageIsFullscreen: setDetailPageIsFullscreen,
+        {viewportWidth && viewportWidth > 768 && showScrollableLogo ? (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.4 }}
+            style={{
+              height: "100%",
+              opacity: opacity,
+              pointerEvents: pointerEvents,
             }}
           >
-            {children}
-          </DetailPageIsFullscreenContext.Provider>
-        </MainContainer>
-      </HoverImageFromCategoryContext.Provider>
+            <ContactSection />
+          </motion.div>
+        ) : (
+          <div />
+        )}
+
+        {viewportWidth && viewportWidth > 1280 ? (
+          <NavDesktop />
+        ) : (
+          viewportWidth && (
+            <MenuButton onClick={() => setMenuOpen(!menuOpen)}>
+              <CiMenuBurger />
+            </MenuButton>
+          )
+        )}
+      </HeaderContainer>
+
+      <NavMobile menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+
+      {showScrollableLogo ? (
+        <BorderBottomScrollEffect
+          style={{
+            marginLeft: borderMargin,
+          }}
+        />
+      ) : (
+        <BorderBottom />
+      )}
+
+      <MainContainer>
+        <DetailPageIsFullscreenContext.Provider
+          value={{
+            setDetailPageIsFullscreen: setDetailPageIsFullscreen,
+          }}
+        >
+          {children}
+        </DetailPageIsFullscreenContext.Provider>
+      </MainContainer>
 
       <Footer />
     </BodyContainer>
