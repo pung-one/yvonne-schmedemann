@@ -68,8 +68,7 @@ const ImageSection = styled.div`
   @media only screen and (max-width: 768px) {
     display: flex;
     flex-direction: column;
-    gap: 50px;
-    padding: 0 20px;
+    padding: 0 10px;
   }
 
   width: 100%;

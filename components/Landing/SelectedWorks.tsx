@@ -69,9 +69,6 @@ export function SelectedWorks({ projects }: Props) {
 
 const Container = styled.section`
   position: relative;
-  @media only screen and (max-width: 768px) {
-    padding: 0 20px;
-  }
 `;
 
 const Headline = styled.div`
@@ -96,7 +93,9 @@ const ImageSection = styled.div`
   @media only screen and (max-width: 768px) {
     display: flex;
     flex-direction: column;
-    gap: 50px;
+    grid-row-gap: 0;
+    gap: 20px;
+    padding: 0 10px;
   }
 
   width: 100%;
