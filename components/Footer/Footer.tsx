@@ -15,7 +15,7 @@ export function Footer() {
 
 const Container = styled.footer`
   z-index: 4;
-  position: absolute;
+  position: relative;
   bottom: 0;
   display: flex;
   justify-content: flex-end;
