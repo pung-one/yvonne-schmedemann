@@ -69,6 +69,9 @@ export function SelectedWorks({ projects }: Props) {
 
 const Container = styled.section`
   position: relative;
+  @media only screen and (max-width: 768px) {
+    padding: 0 20px;
+  }
 `;
 
 const Headline = styled.div`

@@ -43,7 +43,7 @@ export function CategoryPage({ projects }: Props) {
                   width={width}
                   height={height}
                   quality={100}
-                  sizes="(max-width: 768px) 100vw, 70vw"
+                  sizes="(max-width: 768px) 100vw, 85vw"
                   alt={alternativeText || ""}
                   loading="lazy"
                 />
@@ -69,6 +69,7 @@ const ImageSection = styled.div`
     display: flex;
     flex-direction: column;
     gap: 50px;
+    padding: 0 20px;
   }
 
   width: 100%;
