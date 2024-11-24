@@ -10,7 +10,7 @@ export default async function Home() {
 
   const projectsResponse = await fetch(
     cmsBaseUrl +
-      "/api/projekts?filters[positionOnLandingPage][$notNull]=true&populate=*&sort=positionOnLandingPage:asc",
+      "/api/projekts?filters[positionOnLandingPage][$notNull]=true&populate=*&sort=positionOnLandingPage:asc&pagination[pageSize]=100",
     { next: { tags: ["landing-page"] } }
   );
   const projectsObject = await projectsResponse.json();
