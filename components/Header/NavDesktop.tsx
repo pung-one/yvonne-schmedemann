@@ -1,3 +1,5 @@
+"use client";
+
 import { getCategoryColor } from "@/lib/_utils";
 import { emitter } from "@/lib/hoverEvents";
 import { Category } from "@/lib/types";

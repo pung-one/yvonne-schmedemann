@@ -1,3 +1,5 @@
+"use client";
+
 import styled from "styled-components";
 import { ImageData } from "@/lib/types";
 import Image from "next/image";

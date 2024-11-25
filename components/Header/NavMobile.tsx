@@ -1,7 +1,8 @@
+"use client";
+
 import { getCategoryColor } from "@/lib/_utils";
 import Link from "next/link";
 import styled from "styled-components";
-import { ContactSection } from "./ContactSection";
 import { TfiClose } from "react-icons/tfi";
 
 export function NavMobile({

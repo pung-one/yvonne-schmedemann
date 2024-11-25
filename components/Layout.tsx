@@ -146,7 +146,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
   );
 }
 
-const BodyContainer = styled.body<{ $cursorColor: string }>`
+const BodyContainer = styled.div<{ $cursorColor: string }>`
   position: relative;
   min-height: 100dvh;
   padding: 0 75px;

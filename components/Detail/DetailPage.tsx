@@ -7,8 +7,6 @@ import { Project } from "@/lib/types";
 import { getCategoryColor } from "@/lib/_utils";
 import { useRouter } from "next/navigation";
 import { TfiClose } from "react-icons/tfi";
-import { useContext, useEffect } from "react";
-import { ShowWhiteLogoContext } from "../Layout";
 
 export function DetailPage({ project }: { project: Project }) {
   const router = useRouter();

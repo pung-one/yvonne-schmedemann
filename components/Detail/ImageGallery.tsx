@@ -1,3 +1,5 @@
+"use client";
+
 import { AnimatePresence, motion, PanInfo } from "framer-motion";
 import { useContext, useEffect, useRef, useState } from "react";
 import styled from "styled-components";
