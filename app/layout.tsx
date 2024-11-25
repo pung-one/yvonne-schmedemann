@@ -3,6 +3,14 @@ import { GlobalStyles } from "@/globalStyles/global_styles";
 import { Layout } from "@/components/Layout";
 import ReactDOM from "react-dom";
 import { Placeholder } from "@/components/Landing/Placeholder";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  metadataBase: new URL("https://www.yvonneschmedemann.com/"),
+  alternates: {
+    canonical: "/",
+  },
+};
 
 ReactDOM.preload("/fonts/logoFont.woff2", {
   as: "font",

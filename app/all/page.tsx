@@ -5,10 +5,6 @@ const cmsBaseUrl = process.env.NEXT_PUBLIC_CMS_BASE_URL;
 
 export const metadata: Metadata = {
   title: "All Projects | Yvonne Schmedemann Photography",
-  metadataBase: new URL("https://www.yvonneschmedemann.com/all"),
-  alternates: {
-    canonical: "/",
-  },
   description: "See all projects by photographer Yvonne Schmedemann.",
   category: "photography",
   authors: [

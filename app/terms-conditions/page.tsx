@@ -5,10 +5,6 @@ const cmsBaseUrl = process.env.NEXT_PUBLIC_CMS_BASE_URL;
 
 export const metadata: Metadata = {
   title: "Datenschutz | Yvonne Schmedemann Photography",
-  metadataBase: new URL("https://www.yvonneschmedemann.com/terms-conditions"),
-  alternates: {
-    canonical: "/",
-  },
   description: "Datenschutz",
   category: "photography",
   authors: [

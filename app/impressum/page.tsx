@@ -1,14 +1,8 @@
 import styles from "./page.module.css";
 import { Metadata } from "next";
 
-const cmsBaseUrl = process.env.NEXT_PUBLIC_CMS_BASE_URL;
-
 export const metadata: Metadata = {
   title: "Impressum | Yvonne Schmedemann Photography",
-  metadataBase: new URL("https://www.yvonneschmedemann.com/impressum"),
-  alternates: {
-    canonical: "/",
-  },
   description: "Impressum",
   category: "photography",
   authors: [
