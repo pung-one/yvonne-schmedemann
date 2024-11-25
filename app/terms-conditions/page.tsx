@@ -1,6 +1,5 @@
 import { TermsAndConditionsPage } from "@/components/termsAndConditions/TermsAndConditionsPage";
 import { Metadata } from "next";
-import metadataImage from "@/public/metadata/metadataImage.png";
 
 const cmsBaseUrl = process.env.NEXT_PUBLIC_CMS_BASE_URL;
 
@@ -41,11 +40,6 @@ export const metadata: Metadata = {
     siteName: "Yvonne Schmedemann",
     type: "website",
     description: "Datenschutz",
-    images: [
-      {
-        url: metadataImage.src,
-      },
-    ],
   },
 };
 

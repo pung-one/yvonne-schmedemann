@@ -1,5 +1,4 @@
 import { AllPage } from "@/components/All/AllPage";
-import metadataImage from "@/public/metadata/metadataImage.png";
 import { Metadata } from "next";
 
 const cmsBaseUrl = process.env.NEXT_PUBLIC_CMS_BASE_URL;
@@ -41,11 +40,6 @@ export const metadata: Metadata = {
     siteName: "Yvonne Schmedemann",
     type: "website",
     description: "See all projects by photographer Yvonne Schmedemann.",
-    images: [
-      {
-        url: metadataImage.src,
-      },
-    ],
   },
 };
 

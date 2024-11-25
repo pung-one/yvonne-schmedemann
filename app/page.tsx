@@ -1,6 +1,5 @@
 import { Landing } from "@/components/Landing/Landing";
 import { Metadata } from "next";
-import metadataImage from "@/public/metadata/metadataImage.png";
 
 const cmsBaseUrl = process.env.NEXT_PUBLIC_CMS_BASE_URL;
 
@@ -43,11 +42,6 @@ export const metadata: Metadata = {
     type: "website",
     description:
       "Explore the work of Hamburg based photographer Yvonne Schmedemann.",
-    images: [
-      {
-        url: metadataImage.src,
-      },
-    ],
   },
 };
 
