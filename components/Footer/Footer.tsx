@@ -6,7 +6,7 @@ export function Footer() {
     <Container>
       <p>
         copyright @ 2024 all rights reserved{" "}
-        <Link href={"/terms-conditions"}>AGB</Link>
+        <Link href={"/terms-conditions"}>Datenschutz</Link>
         <Link href={"/impressum"}>Imprint</Link>
       </p>
     </Container>
