@@ -1,17 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  async rewrites() {
-    return [
-      {
-        source: "/:category",
-        destination: "/category?category=:category",
-      },
-      {
-        source: "/:category/:id",
-        destination: "/category/item?category=:category&id=:id",
-      },
-    ];
-  },
   compiler: {
     styledComponents: true,
   },

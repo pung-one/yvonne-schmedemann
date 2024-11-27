@@ -1,7 +1,6 @@
 import { DetailPage } from "@/components/Detail/DetailPage";
 import { Metadata } from "next";
 import metadataImage from "@/public/metadata/metadataImage.png";
-import { useSearchParams } from "next/navigation";
 
 const cmsBaseUrl = process.env.NEXT_PUBLIC_CMS_BASE_URL;
 
@@ -43,22 +42,11 @@ export const metadata: Metadata = {
   },
 };
 
-export const dynamic = "force-dynamic";
-
-export default async function Page({
-  searchParams,
-}: {
-  searchParams: { category?: string; id?: string };
-}) {
-  const { id } = searchParams;
-
-  // Fetch data using the id parameter
-  const cmsBaseUrl = process.env.NEXT_PUBLIC_CMS_BASE_URL;
+export default async function Page({ params }: { params: { id: string } }) {
   const projectsResponse = await fetch(
-    `${cmsBaseUrl}/api/projekts/${id}?populate=*`,
-    { cache: "no-store" }
+    cmsBaseUrl + `/api/projekts/${params.id}?populate=*`
   );
-  const projectsObject = await projectsResponse.json();
 
+  const projectsObject = await projectsResponse.json();
   return <DetailPage project={projectsObject.data} />;
 }

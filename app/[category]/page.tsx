@@ -2,7 +2,6 @@ import { CategoryPage } from "@/components/Category/CategoryPage";
 import { Category } from "@/lib/types";
 import { Metadata } from "next";
 import metadataImage from "@/public/metadata/metadataImage.png";
-import { useSearchParams } from "next/navigation";
 
 const cmsBaseUrl = process.env.NEXT_PUBLIC_CMS_BASE_URL;
 
@@ -44,18 +43,14 @@ export const metadata: Metadata = {
   },
 };
 
-export const dynamic = "force-dynamic";
-
 export default async function Page({
-  searchParams,
+  params,
 }: {
-  searchParams: { category?: string };
+  params: { category: Category };
 }) {
-  const category = searchParams.category;
-
   const projectsResponse = await fetch(
-    `${cmsBaseUrl}/api/projekts?filters[category][$eq]=${category}&sort=positionOnCategoryPage:asc&populate=*&pagination[pageSize]=100`,
-    { cache: "no-store" }
+    cmsBaseUrl +
+      `/api/projekts?filters[category][$eq]=${params.category}&sort=positionOnCategoryPage:asc&populate=*&pagination[pageSize]=100`
   );
 
   const projectsObject = await projectsResponse.json();
