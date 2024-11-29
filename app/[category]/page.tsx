@@ -43,17 +43,21 @@ export const metadata: Metadata = {
   },
 };
 
+export const dynamicParams = false;
+
+export async function generateStaticParams() {
+  return [
+    { category: "portrait" },
+    { category: "corporate" },
+    { category: "interior" },
+    { category: "jewellery" },
+  ];
+}
+
 export default async function Page({
   params,
 }: {
   params: { category: Category };
 }) {
-  const projectsResponse = await fetch(
-    cmsBaseUrl +
-      `/api/projekts?filters[category][$eq]=${params.category}&sort=positionOnCategoryPage:asc&populate=*&pagination[pageSize]=100`
-  );
-
-  const projectsObject = await projectsResponse.json();
-
-  return <CategoryPage projects={projectsObject.data} />;
+  return <CategoryPage category={params.category} />;
 }

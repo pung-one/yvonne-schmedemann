@@ -1,6 +1,7 @@
 import { DetailPage } from "@/components/Detail/DetailPage";
 import { Metadata } from "next";
 import metadataImage from "@/public/metadata/metadataImage.png";
+import { Category } from "@/lib/types";
 
 const cmsBaseUrl = process.env.NEXT_PUBLIC_CMS_BASE_URL;
 
@@ -42,11 +43,21 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function Page({ params }: { params: { id: string } }) {
-  const projectsResponse = await fetch(
-    cmsBaseUrl + `/api/projekts/${params.id}?populate=*`
-  );
+export const dynamicParams = false;
 
-  const projectsObject = await projectsResponse.json();
-  return <DetailPage project={projectsObject.data} />;
+export async function generateStaticParams() {
+  return [
+    { category: "portrait" },
+    { category: "corporate" },
+    { category: "interior" },
+    { category: "jewellery" },
+  ];
+}
+
+export default async function Page({
+  params,
+}: {
+  params: { category: Category };
+}) {
+  return <DetailPage />;
 }

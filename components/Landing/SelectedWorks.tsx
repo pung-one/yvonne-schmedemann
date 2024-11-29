@@ -38,7 +38,7 @@ export function SelectedWorks({ projects }: Props) {
 
             return (
               <ImageWrapper
-                href={`${category}/${project.id}`}
+                href={`${category}/detail?id=${project.id}`}
                 key={project.id}
                 className={`item${index + 1}`}
                 $title={`${project.attributes.Titel} \\A \\A ${category}\\A+${project.attributes.Bilder.data.length}`}

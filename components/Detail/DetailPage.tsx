@@ -5,35 +5,59 @@ import { ImageGallery } from "./ImageGallery";
 import { Description } from "./Description";
 import { Project } from "@/lib/types";
 import { getCategoryColor } from "@/lib/_utils";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { TfiClose } from "react-icons/tfi";
+import { useEffect, useState } from "react";
+import { LoadingOverlay } from "../LoadingOverlay";
 
-export function DetailPage({ project }: { project: Project }) {
+const cmsBaseUrl = process.env.NEXT_PUBLIC_CMS_BASE_URL;
+
+export function DetailPage() {
   const router = useRouter();
 
-  return (
-    <>
-      <Container $fullscreen={project.attributes.fullscreen}>
-        <CategorySign $color={getCategoryColor(project.attributes.category)}>
-          {project.attributes.category.toLocaleUpperCase()}
-        </CategorySign>
+  const searchParams = useSearchParams();
 
-        <CloseButton onClick={() => router.back()}>
-          <TfiClose />
-        </CloseButton>
-        {project && (
-          <>
-            <ImageGallery
-              title={project.attributes.Titel}
-              imageData={project.attributes.Bilder.data}
-              fullscreen={project.attributes.fullscreen}
-            />
+  const id = searchParams.get("id");
 
-            <Description project={project} />
-          </>
-        )}
-      </Container>
-    </>
+  const [project, setPoject] = useState<Project>();
+
+  useEffect(() => {
+    async function getProjects() {
+      const projectResponse = await fetch(
+        cmsBaseUrl + `/api/projekts/${id}?populate=*`
+      );
+
+      const projectObject = await projectResponse.json();
+
+      setPoject(projectObject.data);
+    }
+
+    getProjects();
+  }, [id]);
+
+  return !project ? (
+    <LoadingOverlay />
+  ) : (
+    <Container $fullscreen={project.attributes.fullscreen}>
+      <CategorySign $color={getCategoryColor(project.attributes.category)}>
+        {project.attributes.category.toLocaleUpperCase()}
+      </CategorySign>
+
+      <CloseButton onClick={() => router.back()}>
+        <TfiClose />
+      </CloseButton>
+      {project && (
+        <>
+          <ImageGallery
+            title={project.attributes.Titel}
+            imageData={project.attributes.Bilder.data}
+            fullscreen={project.attributes.fullscreen}
+          />
+
+          <Description project={project} />
+        </>
+      )}
+    </Container>
   );
 }
 

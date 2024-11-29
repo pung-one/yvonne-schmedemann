@@ -1,56 +1,78 @@
 "use client";
 
-import { Project } from "@/lib/types";
+import { Category, Project } from "@/lib/types";
 import styled from "styled-components";
 import Image from "next/image";
 import Link from "next/link";
 import { getCategoriesBlurDataUrl } from "@/lib/_utils";
+import { useEffect, useState } from "react";
+import { LoadingOverlay } from "../LoadingOverlay";
 
 const cmsBaseUrl = process.env.NEXT_PUBLIC_CMS_BASE_URL;
 
 type Props = {
-  projects: Project[];
+  category: Category;
 };
 
-export function CategoryPage({ projects }: Props) {
+export function CategoryPage({ category }: Props) {
+  const [projects, setPojects] = useState<Project[]>();
+
+  useEffect(() => {
+    async function getProjects() {
+      const projectsResponse = await fetch(
+        cmsBaseUrl +
+          `/api/projekts?filters[category][$eq]=${category}&sort=positionOnCategoryPage:asc&populate=*&pagination[pageSize]=100`
+      );
+
+      const projectsObject = await projectsResponse.json();
+
+      setPojects(projectsObject.data);
+    }
+
+    getProjects();
+  }, [category]);
   return (
     <Container>
-      <ImageSection>
-        {cmsBaseUrl &&
-          projects?.map((project, index) => {
-            const imageData =
-              project.attributes.landingPageImage.data.attributes;
+      {!projects ? (
+        <LoadingOverlay />
+      ) : (
+        <ImageSection>
+          {cmsBaseUrl &&
+            projects.map((project, index) => {
+              const imageData =
+                project.attributes.landingPageImage.data.attributes;
 
-            const category = project.attributes.category;
+              const category = project.attributes.category;
 
-            if (!imageData || !category) {
-              return;
-            }
+              if (!imageData || !category) {
+                return;
+              }
 
-            const { alternativeText, url, width, height } = imageData;
+              const { alternativeText, url, width, height } = imageData;
 
-            return (
-              <ImageWrapper
-                href={`${category}/${project.id}`}
-                key={project.id}
-                className={`item${index + 1}`}
-                $title={`${project.attributes.Titel} \\A \\A ${category}\\A+${project.attributes.Bilder?.data?.length}`}
-              >
-                <StyledImage
-                  placeholder="blur"
-                  blurDataURL={getCategoriesBlurDataUrl(category)}
-                  src={cmsBaseUrl + url}
-                  width={width}
-                  height={height}
-                  quality={100}
-                  sizes="(max-width: 768px) 100vw, 85vw"
-                  alt={alternativeText || ""}
-                  loading="lazy"
-                />
-              </ImageWrapper>
-            );
-          })}
-      </ImageSection>
+              return (
+                <ImageWrapper
+                  href={`${category}/detail?id=${project.id}`}
+                  key={project.id}
+                  className={`item${index + 1}`}
+                  $title={`${project.attributes.Titel} \\A \\A ${category}\\A+${project.attributes.Bilder?.data?.length}`}
+                >
+                  <StyledImage
+                    placeholder="blur"
+                    blurDataURL={getCategoriesBlurDataUrl(category)}
+                    src={cmsBaseUrl + url}
+                    width={width}
+                    height={height}
+                    quality={100}
+                    sizes="(max-width: 768px) 100vw, 85vw"
+                    alt={alternativeText || ""}
+                    loading="lazy"
+                  />
+                </ImageWrapper>
+              );
+            })}
+        </ImageSection>
+      )}
     </Container>
   );
 }
@@ -59,6 +81,7 @@ const Container = styled.article`
   position: relative;
   padding-top: 80px;
   width: 100%;
+  min-height: 100vh;
   @media only screen and (max-width: 768px) {
     padding-top: 50px;
   }

@@ -1,8 +1,6 @@
 import { TermsAndConditionsPage } from "@/components/termsAndConditions/TermsAndConditionsPage";
 import { Metadata } from "next";
 
-const cmsBaseUrl = process.env.NEXT_PUBLIC_CMS_BASE_URL;
-
 export const metadata: Metadata = {
   title: "Datenschutz | Yvonne Schmedemann Photography",
   description: "Datenschutz",
