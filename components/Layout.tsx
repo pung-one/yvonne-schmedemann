@@ -257,4 +257,5 @@ const StyledLinkScrollEffect = styled(motion(Link))`
 const MainContainer = styled.main`
   z-index: 3;
   padding-bottom: 150px;
+  min-height: 100dvh;
 `;
