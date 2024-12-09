@@ -38,6 +38,7 @@ const Container = styled.footer`
     }
   }
   @media only screen and (max-width: 768px) {
+    padding-right: 20px;
     a {
       margin-left: 20px;
     }
