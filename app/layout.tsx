@@ -41,17 +41,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
-        <StyledComponentsRegistry>
-          <GlobalStyles />
+      <StyledComponentsRegistry>
+        <GlobalStyles />
 
-          {showPlaceholder === "true" ? (
-            <Placeholder />
-          ) : (
-            <Layout>{children}</Layout>
-          )}
-        </StyledComponentsRegistry>
-      </body>
+        {showPlaceholder === "true" ? (
+          <Placeholder />
+        ) : (
+          <Layout>{children}</Layout>
+        )}
+      </StyledComponentsRegistry>
     </html>
   );
 }
