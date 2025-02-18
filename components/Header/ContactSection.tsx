@@ -20,7 +20,7 @@ export function ContactSection() {
 
         <p>
           <a href="https://www.instagram.com/yvonneschmedemann" target="_blank">
-            @vvonneschmedemann
+            @yvonneschmedemann
           </a>
         </p>
       </ContactElement>

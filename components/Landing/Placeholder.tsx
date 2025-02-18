@@ -81,6 +81,7 @@ const ContactElement = styled.div`
   }
 
   a {
+    cursor: pointer;
     font-size: 16px;
     color: black;
     text-decoration: none;
