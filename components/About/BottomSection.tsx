@@ -33,8 +33,8 @@ export function BottomSection({ studioImage }: Props) {
           <Links>
             <p>
               <a href="tel:+491792304580">+491792304580</a> •{" "}
-              <a href="mailto:mail@vvonneschmedemann.com">
-                mail@vvonneschmedemann.com
+              <a href="mailto:mail@yvonneschmedemann.com">
+                mail@yvonneschmedemann.com
               </a>
             </p>
             <span>

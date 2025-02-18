@@ -18,7 +18,7 @@ export function Placeholder() {
           <h3>CONTACT</h3>
           <p>
             <a href="tel:+491792304580">+491792304580</a> •{" "}
-            <a href="mailto:mail@vvonneschmedemann.com">
+            <a href="mailto:mail@yvonneschmedemann.com">
               mail@yvonneschmedemann.com
             </a>
           </p>
@@ -32,7 +32,7 @@ export function Placeholder() {
               href="https://www.instagram.com/yvonneschmedemann"
               target="_blank"
             >
-              @vvonneschmedemann
+              @yvonneschmedemann
             </a>
           </p>
         </ContactElement>

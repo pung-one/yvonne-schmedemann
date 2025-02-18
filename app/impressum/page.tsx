@@ -67,9 +67,9 @@ export default async function Page() {
         <a
           className={styles.externalLink}
           target="_blank"
-          href="mailto:mail@vvonneschmedemann.com"
+          href="mailto:mail@yvonneschmedemann.com"
         >
-          mail@vvonneschmedemann.com
+          mail@yvonneschmedemann.com
         </a>
         <br />
       </i>
