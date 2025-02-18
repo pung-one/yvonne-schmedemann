@@ -19,7 +19,7 @@ export function Placeholder() {
           <p>
             <a href="tel:+491792304580">+491792304580</a> •{" "}
             <a href="mailto:mail@vvonneschmedemann.com">
-              mail@vvonneschmedemann.com
+              mail@yvonneschmedemann.com
             </a>
           </p>
         </ContactElement>
