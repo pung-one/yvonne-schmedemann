@@ -13,17 +13,16 @@ type Props = {
 };
 
 export function TopSection({ portrait, bio, customers }: Props) {
-  const portraitData = portrait?.attributes;
   return (
     <Container>
       <LeftSection>
-        {portraitData && (
+        {portrait && (
           <PortraitContainer>
             <PortraitImage
-              src={cmsBaseUrl + portraitData.url}
-              width={portraitData.width}
-              height={portraitData.height}
-              alt={portraitData.alternativeText || ""}
+              src={cmsBaseUrl + portrait.url}
+              width={portrait.width}
+              height={portrait.height}
+              alt={portrait.alternativeText || ""}
             />
             <p>Photo: Melf Holm</p>
           </PortraitContainer>

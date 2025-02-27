@@ -11,16 +11,14 @@ type Props = {
 const cmsBaseUrl = process.env.NEXT_PUBLIC_CMS_BASE_URL;
 
 export function BottomSection({ studioImage }: Props) {
-  const studioImageData = studioImage?.attributes;
-
   return (
     <Container>
-      {studioImageData && (
+      {studioImage && (
         <StudioImage
-          src={cmsBaseUrl + studioImageData.url}
-          width={studioImageData.width}
-          height={studioImageData.height}
-          alt={studioImageData.alternativeText || ""}
+          src={cmsBaseUrl + studioImage.url}
+          width={studioImage.width}
+          height={studioImage.height}
+          alt={studioImage.alternativeText || ""}
         />
       )}
 

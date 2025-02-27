@@ -10,16 +10,15 @@ type Props = {
 };
 
 export function AboutPage({ aboutData }: Props) {
-  const info = aboutData?.attributes;
   return (
     <Container>
       <TopSection
-        portrait={info?.portrait.data}
-        bio={info?.bio}
-        customers={info?.customers}
+        portrait={aboutData?.portrait}
+        bio={aboutData?.bio}
+        customers={aboutData?.customers}
       />
 
-      <BottomSection studioImage={info?.studioImage.data} />
+      <BottomSection studioImage={aboutData?.studioImage} />
     </Container>
   );
 }

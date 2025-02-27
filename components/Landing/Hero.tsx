@@ -11,12 +11,10 @@ type Props = {
 };
 
 export function Hero({ landingInfo }: Props) {
-  const heroImageDesktopData =
-    landingInfo.attributes.HeroImageDesktop.data.attributes;
-  const heroImageMobileData =
-    landingInfo.attributes.HeroImageMobile.data.attributes;
+  const heroImageDesktopData = landingInfo?.HeroImageDesktop;
+  const heroImageMobileData = landingInfo?.HeroImageMobile;
 
-  const description = landingInfo?.attributes.HeroText;
+  const description = landingInfo?.HeroText;
 
   const common = { sizes: "100vw" };
   const {
