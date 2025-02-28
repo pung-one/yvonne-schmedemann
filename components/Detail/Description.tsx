@@ -12,7 +12,7 @@ export function Description({ project }: { project: Project }) {
 
       <Credits>
         {involved.map((inv) => (
-          <Partner key={inv.documentId}>
+          <Partner key={inv.id}>
             {inv.Rolle}
             <br />
             {inv.Name}
