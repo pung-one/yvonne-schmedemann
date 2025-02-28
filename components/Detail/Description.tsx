@@ -4,7 +4,7 @@ import { Project } from "@/lib/types";
 import styled from "styled-components";
 
 export function Description({ project }: { project: Project }) {
-  const { Beschreibung, involved } = project.attributes;
+  const { Beschreibung, involved } = project;
 
   return (
     <Container>
@@ -12,7 +12,7 @@ export function Description({ project }: { project: Project }) {
 
       <Credits>
         {involved.map((inv) => (
-          <Partner key={inv.id}>
+          <Partner key={inv.documentId}>
             {inv.Rolle}
             <br />
             {inv.Name}

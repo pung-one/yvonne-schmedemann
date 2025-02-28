@@ -13,9 +13,9 @@ export function DetailPage({ project }: { project: Project }) {
 
   return (
     <>
-      <Container $fullscreen={project.attributes.fullscreen}>
-        <CategorySign $color={getCategoryColor(project.attributes.category)}>
-          {project.attributes.category.toLocaleUpperCase()}
+      <Container $fullscreen={project.fullscreen}>
+        <CategorySign $color={getCategoryColor(project.category)}>
+          {project.category.toLocaleUpperCase()}
         </CategorySign>
 
         <CloseButton onClick={() => router.back()}>
@@ -24,9 +24,9 @@ export function DetailPage({ project }: { project: Project }) {
         {project && (
           <>
             <ImageGallery
-              title={project.attributes.Titel}
-              imageData={project.attributes.Bilder.data}
-              fullscreen={project.attributes.fullscreen}
+              title={project.Titel}
+              imageData={project.Bilder}
+              fullscreen={project.fullscreen}
             />
 
             <Description project={project} />

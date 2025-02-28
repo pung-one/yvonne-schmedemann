@@ -25,10 +25,9 @@ export function SelectedWorks({ projects }: Props) {
       <ImageSection>
         {cmsBaseUrl &&
           projects?.map((project, index) => {
-            const imageData =
-              project.attributes.landingPageImage.data.attributes;
+            const imageData = project.landingPageImage;
 
-            const category = project.attributes.category;
+            const category = project.category;
 
             if (!imageData || !category) {
               return;
@@ -38,10 +37,10 @@ export function SelectedWorks({ projects }: Props) {
 
             return (
               <ImageWrapper
-                href={`${category}/${project.id}`}
-                key={project.id}
+                href={`${category}/${project.documentId}`}
+                key={project.documentId}
                 className={`item${index + 1}`}
-                $title={`${project.attributes.Titel} \\A \\A ${category}\\A+${project.attributes.Bilder.data.length}`}
+                $title={`${project.Titel} \\A \\A ${category}\\A+${project.Bilder.length}`}
                 onMouseEnter={() =>
                   emitter.emit("hoverImageFromCategory", category)
                 }

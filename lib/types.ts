@@ -69,15 +69,9 @@ export type Project = {
     Name: string;
     Rolle: string;
   }[];
-  landingPageImage: {
-    data: ImageData;
-  };
-  allPageImage: {
-    data: ImageData;
-  };
-  Bilder: {
-    data: ImageData[];
-  };
+  landingPageImage: ImageData;
+  allPageImage: ImageData;
+  Bilder: ImageData[];
 };
 
 export type AboutData = {

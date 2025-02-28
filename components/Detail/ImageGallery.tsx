@@ -50,9 +50,8 @@ export function ImageGallery({ title, imageData, fullscreen }: Props) {
 
   const { setShowWhiteLogo } = useContext(ShowWhiteLogoContext);
 
-  const {
-    attributes: { url, width, height, alternativeText },
-  } = imageData[imageIndexAndDirection.index];
+  const { url, width, height, alternativeText } =
+    imageData[imageIndexAndDirection.index];
 
   useEffect(() => {
     return () => {

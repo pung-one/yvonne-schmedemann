@@ -25,11 +25,11 @@ export function AllPage({ projects }: Props) {
       const positions: DotPositions = {};
       projects?.forEach((project) => {
         const localStorageDotPosition = localStorage.getItem(
-          project.id.toString()
+          project.documentId
         );
         if (localStorageDotPosition) {
           const dotPosition = JSON.parse(localStorageDotPosition);
-          positions[project.id.toString()] = dotPosition;
+          positions[project.documentId] = dotPosition;
         }
       });
       setDotPositions(positions);
@@ -46,9 +46,9 @@ export function AllPage({ projects }: Props) {
       <ImageSection>
         {cmsBaseUrl &&
           projects?.map((project, index) => {
-            const imageData = project.attributes.allPageImage.data.attributes;
+            const imageData = project.allPageImage;
 
-            const category = project.attributes.category;
+            const category = project.category;
 
             if (!imageData || !category) {
               return;
@@ -60,19 +60,19 @@ export function AllPage({ projects }: Props) {
                 y: `${Math.round(e.nativeEvent.offsetY)}px`,
               });
 
-              localStorage.setItem(project.id.toString(), dotPosition);
+              localStorage.setItem(project.documentId, dotPosition);
             }
 
-            const dotPosition = dotPositions[project.id.toString()];
+            const dotPosition = dotPositions[project.documentId];
 
             const { alternativeText, url, width, height } = imageData;
 
             return (
               <ImageWrapper
-                href={`${category}/${project.id}`}
-                key={project.id}
+                href={`${category}/${project.documentId}`}
+                key={project.documentId}
                 className={`item${index + 1}`}
-                $title={`${project.attributes.Titel} \\A \\A ${category}\\A+${project.attributes.Bilder.data.length}`}
+                $title={`${project.Titel} \\A \\A ${category}\\A+${project.Bilder.length}`}
                 $cursorColor={getCategoryColor(category)}
                 onMouseEnter={() =>
                   emitter.emit("hoverImageFromCategory", category)
