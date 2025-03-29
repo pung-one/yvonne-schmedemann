@@ -138,11 +138,6 @@ export default async function Page() {
       Juliane van Treeck
       <br />
       <br />
-      TEXTE VITA:
-      <br />
-      Markus Gölzer
-      <br />
-      <br />
       URHEBERRECHT:
       <br />
       Urheberrechtsschutz: Alle Rechte vorbehalten. Inhalt und Aufbau dieser
