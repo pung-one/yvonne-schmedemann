@@ -14,6 +14,7 @@ export function TermsAndConditionsPage() {
 const Container = styled.article`
   line-height: 25px;
   padding: 150px 20px;
+  letter-spacing: 0.6pt;
   @media only screen and (max-width: 768px) {
     padding: 70px 20px;
   }

@@ -90,7 +90,7 @@ const StudioInfo = styled.div`
   gap: 20px;
   padding: 100px 0 0;
   @media only screen and (max-width: 1140px) {
-    padding: 100px 20px 0;
+    padding: 0 20px 0;
   }
   h3 {
     font-size: 30px;
