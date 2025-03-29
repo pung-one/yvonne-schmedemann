@@ -138,11 +138,6 @@ export default async function Page() {
       Juliane van Treeck
       <br />
       <br />
-      TEXTE VITA:
-      <br />
-      Markus Gölzer
-      <br />
-      <br />
       URHEBERRECHT:
       <br />
       Urheberrechtsschutz: Alle Rechte vorbehalten. Inhalt und Aufbau dieser
@@ -159,7 +154,7 @@ export default async function Page() {
       wir derartige Inhalte umgehend entfernen.
       <br />
       <br />
-      <br />© 2024 - all pictures: YVONNE SCHMEDEMANN
+      <br />© 2025 - all pictures: YVONNE SCHMEDEMANN
     </p>
   );
 }
