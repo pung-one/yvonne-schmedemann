@@ -159,7 +159,7 @@ export default async function Page() {
       wir derartige Inhalte umgehend entfernen.
       <br />
       <br />
-      <br />© 2024 - all pictures: YVONNE SCHMEDEMANN
+      <br />© 2025 - all pictures: YVONNE SCHMEDEMANN
     </p>
   );
 }
