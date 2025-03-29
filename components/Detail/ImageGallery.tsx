@@ -54,6 +54,14 @@ export function ImageGallery({ title, imageData, fullscreen }: Props) {
     imageData[imageIndexAndDirection.index];
 
   useEffect(() => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+
+    timeoutRef.current = window.setTimeout(() => {
+      setTitleVisible(false);
+    }, 3500);
+
     return () => {
       if (timeoutRef.current) {
         clearTimeout(timeoutRef.current);
@@ -107,20 +115,8 @@ export function ImageGallery({ title, imageData, fullscreen }: Props) {
     }
   }
 
-  const handleMouseMove = () => {
-    setTitleVisible(false);
-
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-    }
-
-    timeoutRef.current = window.setTimeout(() => {
-      setTitleVisible(true);
-    }, 1000);
-  };
-
   return (
-    <Container onMouseMove={handleMouseMove}>
+    <Container>
       <AnimatePresence
         initial={false}
         mode={"popLayout"}
@@ -211,9 +207,6 @@ const Title = styled.h2`
   font-weight: 500;
   color: #ffff00;
   text-align: center;
-  &:hover {
-    opacity: 0;
-  }
   @media only screen and (max-width: 768px) {
     font-size: 30px;
     line-height: 30px;
