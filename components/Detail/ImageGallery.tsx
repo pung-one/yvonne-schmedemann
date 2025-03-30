@@ -226,6 +226,7 @@ const StyledImage = styled(Image)<{
   @media only screen and (max-width: 768px) {
     padding: 0 10px;
     object-fit: contain;
+    height: fit-content;
   }
 `;
 

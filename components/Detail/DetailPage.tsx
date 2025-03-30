@@ -13,7 +13,7 @@ export function DetailPage({ project }: { project: Project }) {
 
   return (
     <>
-      <Container $fullscreen={project.fullscreen}>
+      <Container $fullscreen={project?.fullscreen}>
         <CategorySign $color={getCategoryColor(project.category)}>
           {project.category.toLocaleUpperCase()}
         </CategorySign>
@@ -48,6 +48,7 @@ const Container = styled.article<{
   margin-left: ${({ $fullscreen }) => ($fullscreen ? `-75px` : "unset")};
   @media only screen and (max-width: 768px) {
     margin-left: 0;
+    padding-top: ${({ $fullscreen }) => ($fullscreen ? "140px" : "70px")};
   }
 `;
 
