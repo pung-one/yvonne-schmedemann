@@ -28,11 +28,7 @@ export function TopSection({ portrait, bio, customers }: Props) {
           </PortraitContainer>
         )}
 
-        <Bio>
-          <span>YVONNE SCHMEDEMANN</span>
-          <br />
-          {bio}
-        </Bio>
+        <Bio>{bio}</Bio>
       </LeftSection>
 
       <Customers>{customers}</Customers>
@@ -84,10 +80,6 @@ const Bio = styled.p`
   line-height: 24px;
   letter-spacing: 0.6pt;
   white-space: pre-line;
-  span {
-    font-family: "LogoFont";
-    font-size: 20px;
-  }
   @media only screen and (max-width: 1140px) {
     padding: 100px 20px;
   }
