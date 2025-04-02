@@ -97,6 +97,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.4 }}
             style={{
+              paddingTop: "25.5px",
               height: "100%",
               opacity: opacity,
               pointerEvents: pointerEvents,
