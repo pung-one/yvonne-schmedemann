@@ -54,7 +54,7 @@ const LeftSection = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 100px;
+  gap: 50px;
   @media only screen and (max-width: 1140px) {
     width: 100%;
   }
@@ -78,7 +78,7 @@ const PortraitImage = styled(Image)`
 `;
 
 const Bio = styled.p`
-  padding: 100px 50px;
+  padding: 50px;
   border-top: 1px solid black;
   border-bottom: 1px solid black;
   line-height: 24px;

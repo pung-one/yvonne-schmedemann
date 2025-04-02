@@ -68,7 +68,7 @@ const Container = styled.section`
   display: flex;
   align-items: flex-end;
   gap: 50px;
-  padding: 100px 0 0;
+  padding: 50px 0 0;
   @media only screen and (max-width: 1140px) {
     flex-direction: column-reverse;
     align-items: flex-start;
