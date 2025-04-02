@@ -4,7 +4,7 @@ import { getCategoryColor } from "@/lib/_utils";
 import { emitter } from "@/lib/hoverEvents";
 import { Category } from "@/lib/types";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 
@@ -83,6 +83,13 @@ export function NavDesktop() {
         href={"/about"}
       >
         ABOUT
+      </StyledLink>
+      <StyledLink
+        $isActive={pathname.includes("about#contact")}
+        $color={"#ff00cf"}
+        href={"/about#contact"}
+      >
+        CONTACT
       </StyledLink>
     </Navigation>
   );

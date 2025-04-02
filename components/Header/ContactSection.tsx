@@ -31,12 +31,14 @@ export function ContactSection() {
 const Container = styled.div`
   display: flex;
   gap: 30px;
+  @media only screen and (max-width: 1024px) {
+    display: none;
+  }
 `;
 
 const ContactElement = styled.div`
   display: flex;
   flex-direction: column;
-  padding-top: 25.5px;
   h3 {
     font-size: 16px;
     font-weight: 500;

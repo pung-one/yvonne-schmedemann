@@ -14,8 +14,8 @@ export function DetailPage({ project }: { project: Project }) {
   return (
     <>
       <Container $fullscreen={project?.fullscreen}>
-        <CategorySign $color={getCategoryColor(project.category)}>
-          {project.category.toLocaleUpperCase()}
+        <CategorySign $color={getCategoryColor(project?.category)}>
+          {project?.category.toLocaleUpperCase()}
         </CategorySign>
 
         <CloseButton onClick={() => router.back()}>
