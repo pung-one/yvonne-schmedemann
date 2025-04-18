@@ -7,6 +7,7 @@ import Image from "next/image";
 import { PiArrowLeftThin, PiArrowRightThin } from "react-icons/pi";
 import { ImageData } from "@/lib/types";
 import { ShowWhiteLogoContext } from "../Layout";
+import { useArrowKeyHandlers } from "@/lib/useArrowKeyHandlers";
 
 const cmsBaseUrl = process.env.NEXT_PUBLIC_CMS_BASE_URL;
 
@@ -114,6 +115,8 @@ export function ImageGallery({ title, imageData, fullscreen }: Props) {
       prevImage();
     }
   }
+
+  useArrowKeyHandlers(prevImage, nextImage);
 
   return (
     <Container>
