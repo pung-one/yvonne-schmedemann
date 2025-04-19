@@ -81,7 +81,7 @@ export function ImageGallery({ title, imageData, fullscreen }: Props) {
       setImageIndexAndDirection(({ index }) => {
         return {
           index: index > 0 ? (index -= 1) : imageData.length - 1,
-          direction: "left",
+          direction: "right",
         };
       });
     }
@@ -92,7 +92,7 @@ export function ImageGallery({ title, imageData, fullscreen }: Props) {
       setImageIndexAndDirection(({ index }) => {
         return {
           index: index < imageData.length - 1 ? (index += 1) : 0,
-          direction: "right",
+          direction: "left",
         };
       });
     }
@@ -110,9 +110,9 @@ export function ImageGallery({ title, imageData, fullscreen }: Props) {
     const draggedDistance = dragInfo.offset.x;
     const swipeThreshold = 50;
     if (draggedDistance > swipeThreshold) {
-      nextImage();
-    } else if (draggedDistance < -swipeThreshold) {
       prevImage();
+    } else if (draggedDistance < -swipeThreshold) {
+      nextImage();
     }
   }
 
