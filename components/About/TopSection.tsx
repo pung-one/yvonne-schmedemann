@@ -24,7 +24,7 @@ export function TopSection({ portrait, bio, customers }: Props) {
               height={portrait.height}
               alt={portrait.alternativeText || ""}
             />
-            <p>Photo: Melf Holm</p>
+            <p>Photo: Naemi Eckert</p>
           </PortraitContainer>
         )}
 
