@@ -50,7 +50,7 @@ export default async function Page({
 }) {
   const projectsResponse = await fetch(
     cmsBaseUrl +
-      `/api/projekts?filters[category][$eq]=${params.category}&sort=positionOnCategoryPage:asc&populate=*&pagination[pageSize]=100`
+      `/api/projekts?filters[category][$eq]=${params.category}&sort=positionOnCategoryPage:asc&populate=*&pagination[pageSize]=100`,
   );
 
   const projectsObject = await projectsResponse.json();
