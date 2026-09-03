@@ -26,6 +26,11 @@ export function CategoryPage({ projects }: Props) {
               return;
             }
 
+            const displayedCategory =
+              category === "corporate" && project.categoryReplacementSubtitle
+                ? project.categoryReplacementSubtitle
+                : category;
+
             const { alternativeText, url, width, height } = imageData;
 
             return (
@@ -33,7 +38,7 @@ export function CategoryPage({ projects }: Props) {
                 href={`${category}/${project.documentId}`}
                 key={project.documentId}
                 className={`item${index + 1}`}
-                $title={`${project.Titel} \\A \\A ${category}\\A+${project.Bilder?.length}`}
+                $title={`${project.Titel} \\A \\A ${displayedCategory}\\A+${project.Bilder?.length}`}
               >
                 <StyledImage
                   placeholder="blur"

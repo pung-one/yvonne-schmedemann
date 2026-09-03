@@ -49,7 +49,6 @@ export function AllPage({ projects }: Props) {
             const imageData = project.allPageImage;
 
             const category = project.category;
-            const replacementSubtitle = project.categoryReplacementSubtitle;
 
             if (!imageData || !category) {
               return;
@@ -73,7 +72,7 @@ export function AllPage({ projects }: Props) {
                 href={`${category}/${project.documentId}`}
                 key={project.documentId}
                 className={`item${index + 1}`}
-                $title={`${project.Titel} \\A \\A ${replacementSubtitle ?? category}\\A+${project.Bilder.length}`}
+                $title={`${project.Titel} \\A \\A ${category}\\A+${project.Bilder.length}`}
                 $cursorColor={getCategoryColor(category)}
                 onMouseEnter={() =>
                   emitter.emit("hoverImageFromCategory", category)
