@@ -57,6 +57,7 @@ export type Project = {
   documentId: string;
   Titel: string;
   category: Category;
+  categoryReplacementSubtitle?: string;
   positionOnCategoryPage?: number;
   Beschreibung: string;
   createdAt: string;

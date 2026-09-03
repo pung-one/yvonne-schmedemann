@@ -25,7 +25,7 @@ export function AllPage({ projects }: Props) {
       const positions: DotPositions = {};
       projects?.forEach((project) => {
         const localStorageDotPosition = localStorage.getItem(
-          project.documentId
+          project.documentId,
         );
         if (localStorageDotPosition) {
           const dotPosition = JSON.parse(localStorageDotPosition);
@@ -49,6 +49,7 @@ export function AllPage({ projects }: Props) {
             const imageData = project.allPageImage;
 
             const category = project.category;
+            const replacementSubtitle = project.categoryReplacementSubtitle;
 
             if (!imageData || !category) {
               return;
@@ -72,7 +73,7 @@ export function AllPage({ projects }: Props) {
                 href={`${category}/${project.documentId}`}
                 key={project.documentId}
                 className={`item${index + 1}`}
-                $title={`${project.Titel} \\A \\A ${category}\\A+${project.Bilder.length}`}
+                $title={`${project.Titel} \\A \\A ${replacementSubtitle ?? category}\\A+${project.Bilder.length}`}
                 $cursorColor={getCategoryColor(category)}
                 onMouseEnter={() =>
                   emitter.emit("hoverImageFromCategory", category)
@@ -141,7 +142,7 @@ const ImageWrapper = styled(Link)<{ $title: string; $cursorColor: string }>`
   cursor: ${({ $cursorColor }) =>
     `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30'%3E%3Ccircle cx='12' cy='12' r='10' fill='${$cursorColor.replace(
       "#",
-      "%23"
+      "%23",
     )}'/%3E%3C/svg%3E")  15 15, auto`};
   &:after {
     z-index: 5;
