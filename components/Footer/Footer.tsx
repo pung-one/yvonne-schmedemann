@@ -5,13 +5,16 @@ import styled from "styled-components";
 import { ContactSection } from "../Header/ContactSection";
 
 export function Footer() {
+  const currentDate = new Date();
+  const year = currentDate.getFullYear();
+
   return (
     <Container>
       <ContactSection />
 
       <LegalSection>
         <p>
-          copyright @ 2025 all rights reserved{" "}
+          copyright @ {year} all rights reserved{" "}
           <Link href={"/terms-conditions"}>Datenschutz</Link>
           <Link href={"/impressum"}>Imprint</Link>
         </p>
